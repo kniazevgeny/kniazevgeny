@@ -35,15 +35,14 @@ nav
     v-flex(md2)
     v-flex(md5)
       // Title
-      v-app-bar-title
+      v-toolbar-title
         h3 {{ $t("title") }}
-      a(v-if='mode != 2' @click='mode = 2') Show More
-      a(v-if='mode == 2' @click='mode = 1') Show Less
+      transition
+        a(v-if='mode == 1' @click='mode = 2') Show More
+        a(v-if='mode == 2' @click='mode = 1') Show Less
     v-flex(md2)
       v-btn(text, icon, color='grey', @click='toggleMode')
         v-icon(small) brightness_2
-      v-btn(@click='toggleNavMode')
-        a toggle
       // Language picker
       v-menu(offset-y)
         template(v-slot:activator='{ on }')
@@ -76,11 +75,6 @@ export default class Navbar extends Vue {
   @AppStore.Mutation setLanguage!: (language: string) => void
 
   mode = 1 // 1 means meduim, 0 small, 2 expanded
-  toggleNavMode() {
-    // inverts value
-    this.mode += 1
-    if (this.mode == 3) this.mode = 0
-  }
 
   get locales() {
     return [
@@ -158,13 +152,11 @@ export default class Navbar extends Vue {
     // console.log(window.scrollY)
     if (window.scrollY < 10 && this.mode != 2) {
       this.mode = 1
-      return
+      // TODO: change gradient
     }
     if (window.scrollY > 100 && this.mode != 2) {
       this.mode = 0
-      return 
     }
-    // this.mode = 1
   }
 }
 </script>
@@ -205,7 +197,8 @@ header.v-app-bar.v-toolbar.v-sheet.theme--dark#header {
 svg,
 path,
 nav,
-header#header, .v-toolbar__content {
+header#header, .v-toolbar__content,
+.transition {
   transition: 0.5s ease-in-out !important;
 }
 </style>

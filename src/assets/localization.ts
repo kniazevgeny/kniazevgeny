@@ -1,10 +1,10 @@
 export const messages = {
   ru: {
-    title: 'Темплейт фронтенда',
+    title: 'Евгений Князев',
     notFound: 'Страница не найдена',
   },
   en: {
-    title: 'Frontend template',
+    title: 'Evgeny Kniazev',
     notFound: 'Page not found',
   },
 }
