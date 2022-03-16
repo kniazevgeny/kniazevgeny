@@ -5,7 +5,7 @@ v-app(
 )
   Navbar
   Snackbar
-  v-main
+  v-main(style='transition: 0.5s ease-in-out')
     router-view
 </template>
 
