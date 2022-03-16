@@ -17,6 +17,13 @@
       p {{ $t("home.rules.success") }}
       br
       br
+      #hdl2.headline.pb-4
+        span(v-html='$t("home.info")')
+      p {{ $t("home.rules.register") }}
+      p {{ $t("home.rules.money") }}
+      p {{ $t("home.rules.success") }}
+      br
+      br
       .headline.pb-4
         span(v-html='$t("home.info")')
       p {{ $t("home.rules.register") }}
@@ -55,5 +62,4 @@ export default class Home extends Vue {
 </script>
 
 <style>
-
 </style>
