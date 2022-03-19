@@ -1,6 +1,12 @@
 <template lang="pug">
 nav
-  v-app-bar#header(flat, app, :height='windowHeight * heightCoef[mode]')
+  v-app-bar#header(
+    flat,
+    app,
+    :hide-on-scroll='isMobile',
+    scroll-threshold='400',
+    :height='windowHeight * heightCoef[isMobile ? (mode != 1 ? mode : 0) : mode]'
+  )
     v-flex(xs1, md1)
     v-flex(xs3, md2, style='text-align: center')
       //- :style='"width: auto;"',
@@ -94,6 +100,10 @@ export default class Navbar extends Vue {
     }
   }
 
+  get isMobile() {
+    return window.innerWidth <= 800 && window.innerHeight <= 900
+  }
+
   get windowHeight() {
     return window.innerHeight
   }
@@ -108,14 +118,24 @@ export default class Navbar extends Vue {
     document.title = i18n.t('strippedTitle') as string
   }
 
+  setNavPadding() {
+    let nav = document.getElementsByTagName('nav')[0].style
+    if (this.mode == 1 && this.prevMode == 0) nav.paddingBottom = '0px'
+    if (this.mode == 0 && this.prevMode == 1 && !this.isMobile)
+      nav.paddingBottom =
+        this.windowHeight * this.heightCoef[1] -
+        this.windowHeight * this.heightCoef[0] +
+        'px'
+  }
+
   heightCoef = [0.15, 0.3, 0.55]
   d = [
-    'M 50 0 L 50.00 0.00 L 50.00 3.15 L 49.97 6.31 L 49.88 9.52 L 49.72 12.77 L 49.44 16.06 L 49.01 19.40 L 48.38 22.76 L 47.50 26.11 L 46.35 29.41 L 44.87 32.60 L 43.06 35.62 L 40.89 38.40 L 38.40 40.89 L 35.62 43.06 L 32.60 44.87 L 29.41 46.35 L 26.11 47.50 L 22.76 48.38 L 19.40 49.01 L 16.06 49.44 L 12.77 49.72 L 9.52 49.88 L 6.31 49.97 L 3.15 50.00 L -0.00 50.00 L -3.15 50.00 L -6.31 49.97 L -9.52 49.88 L -12.77 49.72 L -16.06 49.44 L -19.40 49.01 L -22.76 48.38 L -26.11 47.50 L -29.41 46.35 L -32.60 44.87 L -35.62 43.06 L -38.40 40.89 L -40.89 38.40 L -43.06 35.62 L -44.87 32.60 L -46.35 29.41 L -47.50 26.11 L -48.38 22.76 L -49.01 19.40 L -49.44 16.06 L -49.72 12.77 L -49.88 9.52 L -49.97 6.31 L -50.00 3.15 L -50.00 -0.00 L -50.00 -3.15 L -49.97 -6.31 L -49.88 -9.52 L -49.72 -12.77 L -49.44 -16.06 L -49.01 -19.40 L -48.38 -22.76 L -47.50 -26.11 L -46.35 -29.41 L -44.87 -32.60 L -43.06 -35.62 L -40.89 -38.40 L -38.40 -40.89 L -35.62 -43.06 L -32.60 -44.87 L -29.41 -46.35 L -26.11 -47.50 L -22.76 -48.38 L -19.40 -49.01 L -16.06 -49.44 L -12.77 -49.72 L -9.52 -49.88 L -6.31 -49.97 L -3.15 -50.00 L -0.00 -50.00 L 3.15 -50.00 L 6.31 -49.97 L 9.52 -49.88 L 12.77 -49.72 L 16.06 -49.44 L 19.40 -49.01 L 22.76 -48.38 L 26.11 -47.50 L 29.41 -46.35 L 32.60 -44.87 L 35.62 -43.06 L 38.40 -40.89 L 40.89 -38.40 L 43.06 -35.62 L 44.87 -32.60 L 46.35 -29.41 L 47.50 -26.11 L 48.38 -22.76 L 49.01 -19.40 L 49.44 -16.06 L 49.72 -12.77 L 49.88 -9.52 L 49.97 -6.31 L 50.00 -3.15 L 50.00 -0.00',
-    'M 50 0 L 50.00 0.00 L 50.00 3.15 L 50.00 6.32 L 50.00 9.54 L 50.00 12.84 L 49.99 16.24 L 49.97 19.78 L 49.91 23.49 L 49.77 27.36 L 49.48 31.40 L 48.87 35.51 L 47.74 39.49 L 45.83 43.04 L 43.04 45.83 L 39.49 47.74 L 35.51 48.87 L 31.40 49.48 L 27.36 49.77 L 23.49 49.91 L 19.78 49.97 L 16.24 49.99 L 12.84 50.00 L 9.54 50.00 L 6.32 50.00 L 3.15 50.00 L -0.00 50.00 L -3.15 50.00 L -6.32 50.00 L -9.54 50.00 L -12.84 50.00 L -16.24 49.99 L -19.78 49.97 L -23.49 49.91 L -27.36 49.77 L -31.40 49.48 L -35.51 48.87 L -39.49 47.74 L -43.04 45.83 L -45.83 43.04 L -47.74 39.49 L -48.87 35.51 L -49.48 31.40 L -49.77 27.36 L -49.91 23.49 L -49.97 19.78 L -49.99 16.24 L -50.00 12.84 L -50.00 9.54 L -50.00 6.32 L -50.00 3.15 L -50.00 -0.00 L -50.00 -3.15 L -50.00 -6.32 L -50.00 -9.54 L -50.00 -12.84 L -49.99 -16.24 L -49.97 -19.78 L -49.91 -23.49 L -49.77 -27.36 L -49.48 -31.40 L -48.87 -35.51 L -47.74 -39.49 L -45.83 -43.04 L -43.04 -45.83 L -39.49 -47.74 L -35.51 -48.87 L -31.40 -49.48 L -27.36 -49.77 L -23.49 -49.91 L -19.78 -49.97 L -16.24 -49.99 L -12.84 -50.00 L -9.54 -50.00 L -6.32 -50.00 L -3.15 -50.00 L -0.00 -50.00 L 3.15 -50.00 L 6.32 -50.00 L 9.54 -50.00 L 12.84 -50.00 L 16.24 -49.99 L 19.78 -49.97 L 23.49 -49.91 L 27.36 -49.77 L 31.40 -49.48 L 35.51 -48.87 L 39.49 -47.74 L 43.04 -45.83 L 45.83 -43.04 L 47.74 -39.49 L 48.87 -35.51 L 49.48 -31.40 L 49.77 -27.36 L 49.91 -23.49 L 49.97 -19.78 L 49.99 -16.24 L 50.00 -12.84 L 50.00 -9.54 L 50.00 -6.32 L 50.00 -3.15 L 50.00 -0.00',
-    'M 50 0 L 50.00 0.00 L 50.00 3.15 L 50.00 6.32 L 50.00 9.54 L 50.00 12.84 L 50.00 16.25 L 50.00 19.80 L 50.00 23.53 L 49.99 27.48 L 49.95 31.70 L 49.80 36.18 L 49.31 40.79 L 47.91 44.99 L 44.99 47.91 L 40.79 49.31 L 36.18 49.80 L 31.70 49.95 L 27.48 49.99 L 23.53 50.00 L 19.80 50.00 L 16.25 50.00 L 12.84 50.00 L 9.54 50.00 L 6.32 50.00 L 3.15 50.00 L -0.00 50.00 L -3.15 50.00 L -6.32 50.00 L -9.54 50.00 L -12.84 50.00 L -16.25 50.00 L -19.80 50.00 L -23.53 50.00 L -27.48 49.99 L -31.70 49.95 L -36.18 49.80 L -40.79 49.31 L -44.99 47.91 L -47.91 44.99 L -49.31 40.79 L -49.80 36.18 L -49.95 31.70 L -49.99 27.48 L -50.00 23.53 L -50.00 19.80 L -50.00 16.25 L -50.00 12.84 L -50.00 9.54 L -50.00 6.32 L -50.00 3.15 L -50.00 -0.00 L -50.00 -3.15 L -50.00 -6.32 L -50.00 -9.54 L -50.00 -12.84 L -50.00 -16.25 L -50.00 -19.80 L -50.00 -23.53 L -49.99 -27.48 L -49.95 -31.70 L -49.80 -36.18 L -49.31 -40.79 L -47.91 -44.99 L -44.99 -47.91 L -40.79 -49.31 L -36.18 -49.80 L -31.70 -49.95 L -27.48 -49.99 L -23.53 -50.00 L -19.80 -50.00 L -16.25 -50.00 L -12.84 -50.00 L -9.54 -50.00 L -6.32 -50.00 L -3.15 -50.00 L -0.00 -50.00 L 3.15 -50.00 L 6.32 -50.00 L 9.54 -50.00 L 12.84 -50.00 L 16.25 -50.00 L 19.80 -50.00 L 23.53 -50.00 L 27.48 -49.99 L 31.70 -49.95 L 36.18 -49.80 L 40.79 -49.31 L 44.99 -47.91 L 47.91 -44.99 L 49.31 -40.79 L 49.80 -36.18 L 49.95 -31.70 L 49.99 -27.48 L 50.00 -23.53 L 50.00 -19.80 L 50.00 -16.25 L 50.00 -12.84 L 50.00 -9.54 L 50.00 -6.32 L 50.00 -3.15 L 50.00 -0.00',
+    'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 49.9 9.5 L 49.7 12.8 L 49.4 16.1 L 49.0 19.4 L 48.4 22.8 L 47.5 26.1 L 46.3 29.4 L 44.9 32.6 L 43.1 35.6 L 40.9 38.4 L 38.4 40.9 L 35.6 43.1 L 32.6 44.9 L 29.4 46.3 L 26.1 47.5 L 22.8 48.4 L 19.4 49.0 L 16.1 49.4 L 12.8 49.7 L 9.5 49.9 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 49.9 L -12.8 49.7 L -16.1 49.4 L -19.4 49.0 L -22.8 48.4 L -26.1 47.5 L -29.4 46.3 L -32.6 44.9 L -35.6 43.1 L -38.4 40.9 L -40.9 38.4 L -43.1 35.6 L -44.9 32.6 L -46.3 29.4 L -47.5 26.1 L -48.4 22.8 L -49.0 19.4 L -49.4 16.1 L -49.7 12.8 L -49.9 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -49.9 -9.5 L -49.7 -12.8 L -49.4 -16.1 L -49.0 -19.4 L -48.4 -22.8 L -47.5 -26.1 L -46.3 -29.4 L -44.9 -32.6 L -43.1 -35.6 L -40.9 -38.4 L -38.4 -40.9 L -35.6 -43.1 L -32.6 -44.9 L -29.4 -46.3 L -26.1 -47.5 L -22.8 -48.4 L -19.4 -49.0 L -16.1 -49.4 L -12.8 -49.7 L -9.5 -49.9 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -49.9 L 12.8 -49.7 L 16.1 -49.4 L 19.4 -49.0 L 22.8 -48.4 L 26.1 -47.5 L 29.4 -46.3 L 32.6 -44.9 L 35.6 -43.1 L 38.4 -40.9 L 40.9 -38.4 L 43.1 -35.6 L 44.9 -32.6 L 46.3 -29.4 L 47.5 -26.1 L 48.4 -22.8 L 49.0 -19.4 L 49.4 -16.1 L 49.7 -12.8 L 49.9 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
+    'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 50.0 9.5 L 50.0 12.8 L 50.0 16.2 L 50.0 19.8 L 49.9 23.5 L 49.8 27.4 L 49.5 31.4 L 48.9 35.5 L 47.7 39.5 L 45.8 43.0 L 43.0 45.8 L 39.5 47.7 L 35.5 48.9 L 31.4 49.5 L 27.4 49.8 L 23.5 49.9 L 19.8 50.0 L 16.2 50.0 L 12.8 50.0 L 9.5 50.0 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 50.0 L -12.8 50.0 L -16.2 50.0 L -19.8 50.0 L -23.5 49.9 L -27.4 49.8 L -31.4 49.5 L -35.5 48.9 L -39.5 47.7 L -43.0 45.8 L -45.8 43.0 L -47.7 39.5 L -48.9 35.5 L -49.5 31.4 L -49.8 27.4 L -49.9 23.5 L -50.0 19.8 L -50.0 16.2 L -50.0 12.8 L -50.0 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -50.0 -9.5 L -50.0 -12.8 L -50.0 -16.2 L -50.0 -19.8 L -49.9 -23.5 L -49.8 -27.4 L -49.5 -31.4 L -48.9 -35.5 L -47.7 -39.5 L -45.8 -43.0 L -43.0 -45.8 L -39.5 -47.7 L -35.5 -48.9 L -31.4 -49.5 L -27.4 -49.8 L -23.5 -49.9 L -19.8 -50.0 L -16.2 -50.0 L -12.8 -50.0 L -9.5 -50.0 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -50.0 L 12.8 -50.0 L 16.2 -50.0 L 19.8 -50.0 L 23.5 -49.9 L 27.4 -49.8 L 31.4 -49.5 L 35.5 -48.9 L 39.5 -47.7 L 43.0 -45.8 L 45.8 -43.0 L 47.7 -39.5 L 48.9 -35.5 L 49.5 -31.4 L 49.8 -27.4 L 49.9 -23.5 L 50.0 -19.8 L 50.0 -16.2 L 50.0 -12.8 L 50.0 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
+    'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 50.0 9.5 L 50.0 12.8 L 50.0 16.2 L 50.0 19.8 L 50.0 23.5 L 50.0 27.5 L 49.9 31.7 L 49.8 36.2 L 49.3 40.8 L 47.9 45.0 L 45.0 47.9 L 40.8 49.3 L 36.2 49.8 L 31.7 49.9 L 27.5 50.0 L 23.5 50.0 L 19.8 50.0 L 16.2 50.0 L 12.8 50.0 L 9.5 50.0 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 50.0 L -12.8 50.0 L -16.2 50.0 L -19.8 50.0 L -23.5 50.0 L -27.5 50.0 L -31.7 49.9 L -36.2 49.8 L -40.8 49.3 L -45.0 47.9 L -47.9 45.0 L -49.3 40.8 L -49.8 36.2 L -49.9 31.7 L -50.0 27.5 L -50.0 23.5 L -50.0 19.8 L -50.0 16.2 L -50.0 12.8 L -50.0 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -50.0 -9.5 L -50.0 -12.8 L -50.0 -16.2 L -50.0 -19.8 L -50.0 -23.5 L -50.0 -27.5 L -49.9 -31.7 L -49.8 -36.2 L -49.3 -40.8 L -47.9 -45.0 L -45.0 -47.9 L -40.8 -49.3 L -36.2 -49.8 L -31.7 -49.9 L -27.5 -50.0 L -23.5 -50.0 L -19.8 -50.0 L -16.2 -50.0 L -12.8 -50.0 L -9.5 -50.0 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -50.0 L 12.8 -50.0 L 16.2 -50.0 L 19.8 -50.0 L 23.5 -50.0 L 27.5 -50.0 L 31.7 -49.9 L 36.2 -49.8 L 40.8 -49.3 L 45.0 -47.9 L 47.9 -45.0 L 49.3 -40.8 L 49.8 -36.2 L 49.9 -31.7 L 50.0 -27.5 L 50.0 -23.5 L 50.0 -19.8 L 50.0 -16.2 L 50.0 -12.8 L 50.0 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
   ]
   // TODO: adapt for mobile
-  svg_rect_size = ['75px', '150px', '175px']
+  svg_rect_size = ['75px', '120px', '175px']
 
   maskPath(eccentricity: number) {
     const halfWidth = 100 / 2.0
@@ -127,8 +147,6 @@ export default class Navbar extends Vue {
     var d = 'M ' + halfWidth + ' ' + 0
 
     // wierd math https://observablehq.com/@tomwhite/superellipse-generator
-    let prevX = 0
-    let prevY = 0
     for (var theta = 0.0; theta < TWO_PI; theta += TWO_PI / resolution) {
       var sineTheta = Math.sin(theta)
       var cosineTheta = Math.cos(theta)
@@ -139,26 +157,28 @@ export default class Navbar extends Vue {
         1 / eccentricity
       )
       // toFixed() optimizes performance significantly
-      d += ' L ' + (r * cosineTheta).toFixed(2) + ' ' + (r * sineTheta).toFixed(2)
+      d +=
+        ' L ' + (r * cosineTheta).toFixed(1) + ' ' + (r * sineTheta).toFixed(1)
     }
-    console.log(eccentricity)
-    console.log(d)
+    // console.log(eccentricity)
+    // console.log(d)
     return d
   }
 
   onScroll() {
     // console.log(window.scrollY)
-    if (window.scrollY < 20 && this.mode != 2) {
+    if (window.scrollY < 25 && this.mode != 2) {
       this.mode = 1
       // TODO: change gradient
     }
-    if (window.scrollY > 130 && this.mode == 1) {
+    if (window.scrollY > 100 && this.mode == 1) {
       this.mode = 0
     }
   }
 
   mounted() {
     // not required, but that's easier to change values
+    if (this.isMobile) this.d[0] = this.maskPath(2.5)
     // this.d[0] = this.maskPath(3)
     // this.d[1] = this.maskPath(6)
     // this.d[2] = this.maskPath(10)
@@ -167,8 +187,8 @@ export default class Navbar extends Vue {
     window.addEventListener('scroll', this.onScroll, true)
 
     // mobile layout optimization
-    if (window.innerHeight < 600 || window.innerWidth < 600) {
-      this.svg_rect_size = ['50px', '85px', '120px']
+    if (window.innerHeight < 800 || window.innerWidth < 700) {
+      this.svg_rect_size = ['75px', '85px', '120px']
       this.heightCoef = [0.2, 0.3, 0.85]
     }
   }
@@ -196,8 +216,11 @@ export default class Navbar extends Vue {
     }, 1)
   }
 
+  prevMode = 0
   @Watch('mode')
   onToggleMode(value: number, oldValue: number) {
+    this.prevMode = oldValue
+    this.setNavPadding()
     // to default values
     let svg = document.getElementsByTagName('svg')[0]
     let blurFilter = document.querySelector('#blur')?.firstElementChild
@@ -208,7 +231,7 @@ export default class Navbar extends Vue {
       parseInt(this.svg_rect_size[value].slice(0, -2)) /
       parseInt(this.svg_rect_size[oldValue].slice(0, -2))
     if (maxBlur < 1) maxBlur = 1 / maxBlur
-    this.animateBlur(svg, blurFilter, maxBlur / 1.5)
+    // this.animateBlur(svg, blurFilter, maxBlur / 1.5)
 
     // any error will be neutralized
     svg.setAttribute('filter', 'none')
@@ -254,23 +277,22 @@ header.v-app-bar.v-toolbar.v-sheet.theme--dark#header {
 
 svg,
 path,
-nav,
 header#header,
 .v-toolbar__content,
 .transition {
   transition: 0.5s ease-in-out !important;
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   svg,
   path,
   nav,
   header#header,
   .v-toolbar__content,
   .transition {
-    transition: 0.5s !important;
+    transition: .5s !important;
   }
-}
+} */
 
 path {
   /* will-change: transform; */
