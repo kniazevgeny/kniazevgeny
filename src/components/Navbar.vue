@@ -3,13 +3,13 @@ nav
   v-app-bar#header(
     flat,
     app,
-    :height='windowHeight * heightCoef[isMobile ? (mode!=1 ? mode : 0) : mode]',
+    :height='windowHeight * heightCoef[isMobile ? (mode != 1 ? mode : 0) : mode]'
   )
     v-flex(xs1, md1)
     v-flex(xs3, md2, style='text-align: center')
       //- :style='"width: auto;"',
       svg(
-        :style='"width:" + svg_rect_size[isMobile ? (mode!=1 ? mode : 0) : mode] + ";height:" + svg_rect_size[isMobile ? (mode!=1 ? mode : 0) : mode]',
+        :style='"width:" + svg_rect_size[isMobile ? (mode != 1 ? mode : 0) : mode] + ";height:" + svg_rect_size[isMobile ? (mode != 1 ? mode : 0) : mode]',
         width='200',
         height='200',
         viewBox='-50 -50 100 100',
@@ -19,7 +19,7 @@ nav
         mask#img-mask
           rect(x='-50', y='-50', height='100px', width='100px', fill='black')
           path(:d='d[mode]', fill='white')
-        path(:d='d[mode]', fill='url(#Gradient1)')
+        path(:d='d[mode]', fill='url(#Gradient1)', :key='gradient_key')
         image(
           :href='require("../assets/avatar.png")',
           x='-50px',
@@ -30,9 +30,12 @@ nav
         )
         defs
           linearGradient#Gradient1(x1='0', x2='1', y1='0', y2='1')
-            stop.stop1(offset='0%')
-            stop.stop2(offset='50%')
-            stop.stop3(offset='100%')
+            stop(
+              v-for='(offset, o) in gradient_offsets',
+              :key='gradient_offsets',
+              :class='"stop" + (o + 1)',
+              :offset='offset + "%"'
+            )
           filter#blur
             feGaussianBlur(in='SourceGraphic', stdDeviation='0,0')
     v-flex(xs1, md2)
@@ -118,9 +121,15 @@ export default class Navbar extends Vue {
 
   setHeaderFilters() {
     let header = document.getElementById('header')
-    if (this.isMobile) {header?.classList.add('blurry'); return}
+    if (this.isMobile) {
+      header?.classList.add('blurry')
+      return
+    }
 
-    if (!this.mode || this.mode == 2) window.setTimeout(()=>{header?.classList.add('blurry')}, 450)
+    if (!this.mode || this.mode == 2)
+      window.setTimeout(() => {
+        header?.classList.add('blurry')
+      }, 450)
     else header?.classList.remove('blurry')
   }
 
@@ -130,8 +139,9 @@ export default class Navbar extends Vue {
     'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 50.0 9.5 L 50.0 12.8 L 50.0 16.2 L 50.0 19.8 L 49.9 23.5 L 49.8 27.4 L 49.5 31.4 L 48.9 35.5 L 47.7 39.5 L 45.8 43.0 L 43.0 45.8 L 39.5 47.7 L 35.5 48.9 L 31.4 49.5 L 27.4 49.8 L 23.5 49.9 L 19.8 50.0 L 16.2 50.0 L 12.8 50.0 L 9.5 50.0 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 50.0 L -12.8 50.0 L -16.2 50.0 L -19.8 50.0 L -23.5 49.9 L -27.4 49.8 L -31.4 49.5 L -35.5 48.9 L -39.5 47.7 L -43.0 45.8 L -45.8 43.0 L -47.7 39.5 L -48.9 35.5 L -49.5 31.4 L -49.8 27.4 L -49.9 23.5 L -50.0 19.8 L -50.0 16.2 L -50.0 12.8 L -50.0 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -50.0 -9.5 L -50.0 -12.8 L -50.0 -16.2 L -50.0 -19.8 L -49.9 -23.5 L -49.8 -27.4 L -49.5 -31.4 L -48.9 -35.5 L -47.7 -39.5 L -45.8 -43.0 L -43.0 -45.8 L -39.5 -47.7 L -35.5 -48.9 L -31.4 -49.5 L -27.4 -49.8 L -23.5 -49.9 L -19.8 -50.0 L -16.2 -50.0 L -12.8 -50.0 L -9.5 -50.0 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -50.0 L 12.8 -50.0 L 16.2 -50.0 L 19.8 -50.0 L 23.5 -49.9 L 27.4 -49.8 L 31.4 -49.5 L 35.5 -48.9 L 39.5 -47.7 L 43.0 -45.8 L 45.8 -43.0 L 47.7 -39.5 L 48.9 -35.5 L 49.5 -31.4 L 49.8 -27.4 L 49.9 -23.5 L 50.0 -19.8 L 50.0 -16.2 L 50.0 -12.8 L 50.0 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
     'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 50.0 9.5 L 50.0 12.8 L 50.0 16.2 L 50.0 19.8 L 50.0 23.5 L 50.0 27.5 L 49.9 31.7 L 49.8 36.2 L 49.3 40.8 L 47.9 45.0 L 45.0 47.9 L 40.8 49.3 L 36.2 49.8 L 31.7 49.9 L 27.5 50.0 L 23.5 50.0 L 19.8 50.0 L 16.2 50.0 L 12.8 50.0 L 9.5 50.0 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 50.0 L -12.8 50.0 L -16.2 50.0 L -19.8 50.0 L -23.5 50.0 L -27.5 50.0 L -31.7 49.9 L -36.2 49.8 L -40.8 49.3 L -45.0 47.9 L -47.9 45.0 L -49.3 40.8 L -49.8 36.2 L -49.9 31.7 L -50.0 27.5 L -50.0 23.5 L -50.0 19.8 L -50.0 16.2 L -50.0 12.8 L -50.0 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -50.0 -9.5 L -50.0 -12.8 L -50.0 -16.2 L -50.0 -19.8 L -50.0 -23.5 L -50.0 -27.5 L -49.9 -31.7 L -49.8 -36.2 L -49.3 -40.8 L -47.9 -45.0 L -45.0 -47.9 L -40.8 -49.3 L -36.2 -49.8 L -31.7 -49.9 L -27.5 -50.0 L -23.5 -50.0 L -19.8 -50.0 L -16.2 -50.0 L -12.8 -50.0 L -9.5 -50.0 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -50.0 L 12.8 -50.0 L 16.2 -50.0 L 19.8 -50.0 L 23.5 -50.0 L 27.5 -50.0 L 31.7 -49.9 L 36.2 -49.8 L 40.8 -49.3 L 45.0 -47.9 L 47.9 -45.0 L 49.3 -40.8 L 49.8 -36.2 L 49.9 -31.7 L 50.0 -27.5 L 50.0 -23.5 L 50.0 -19.8 L 50.0 -16.2 L 50.0 -12.8 L 50.0 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
   ]
-  // TODO: adapt for mobile
   svg_rect_size = ['75px', '120px', '175px']
+  gradient_offsets = [0, 50, 100, 150, 200, 250, 300, 350]
+  gradient_key = 0
 
   maskPath(eccentricity: number) {
     const halfWidth = 100 / 2.0
@@ -161,15 +171,29 @@ export default class Navbar extends Vue {
     return d
   }
 
+  processGradientOssfetChange(f: number) {
+    this.gradient_key += 1
+
+    window.setTimeout(() => {
+      if (f == 50) return
+      for (let i = 0; i < this.gradient_offsets.length; i++) {
+        this.gradient_offsets[i] -= 1
+      }
+      if (this.gradient_offsets[this.gradient_offsets.length - 3] < -50)
+        for (let i = 0; i < this.gradient_offsets.length; i++)
+          this.gradient_offsets[i] = 50 * i
+      this.processGradientOssfetChange(f + 1)
+    }, 1)
+  }
+
+  changeGradientOffsets() {
+    window.setTimeout(()=>{this.processGradientOssfetChange(0)}, 650)
+  }
+
   onScroll() {
     // console.log(window.scrollY)
-    if (window.scrollY < 45 && this.mode != 2) {
-      this.mode = 1
-      // TODO: change gradient
-    }
-    if (window.scrollY > 100 && this.mode == 1) {
-      this.mode = 0
-    }
+    if (window.scrollY < 45 && this.mode != 2) this.mode = 1
+    if (window.scrollY > 100 && this.mode == 1) this.mode = 0
   }
 
   mounted() {
@@ -187,6 +211,9 @@ export default class Navbar extends Vue {
       this.svg_rect_size = ['75px', '85px', '120px']
       this.heightCoef = [0.15, 0.3, 0.85]
     }
+
+    // animate gradient
+    this.changeGradientOffsets()
 
     this.setNavPadding()
   }
@@ -221,6 +248,7 @@ export default class Navbar extends Vue {
   @Watch('mode')
   onToggleMode(value: number, oldValue: number) {
     this.prevMode = oldValue
+    if (value >= 1) this.changeGradientOffsets()
     this.setHeaderFilters()
     // to default values
     let svg = document.getElementsByTagName('svg')[0]
@@ -283,31 +311,29 @@ header.v-app-bar.v-toolbar.v-sheet.blurry.theme--dark#header {
 .stop3 {
   stop-color: rgb(255, 123, 0);
 }
+.stop4 {
+  stop-color: rgb(255, 208, 0);
+}
+.stop5 {
+  stop-color: rgb(0, 225, 255);
+}
+.stop6 {
+  stop-color: rgb(62, 70, 180);
+}
+.stop7 {
+  stop-color: rgb(116, 3, 190);
+}
+.stop8 {
+  stop-color: rgb(230, 22, 84);
+}
 
 svg,
 path,
 header#header,
 .v-toolbar__content,
-.transition {
-  transition: .4s cubic-bezier(0.52, 0.06, 0.45, 1.03) !important;
-}
-
-/* @media screen and (max-width: 600px) {
-  svg,
-  path,
-  nav,
-  header#header,
-  .v-toolbar__content,
-  .transition {
-    transition: .5s !important;
-  }
-} */
-
-path {
-  /* will-change: transform; */
-}
-
-#header {
-  /* overflow-y: scroll; */
+.transition,
+.stop1,
+.stop2 {
+  transition: 0.4s cubic-bezier(0.52, 0.06, 0.45, 1.03) !important;
 }
 </style>
