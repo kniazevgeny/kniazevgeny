@@ -3,15 +3,13 @@ nav
   v-app-bar#header(
     flat,
     app,
-    :hide-on-scroll='isMobile',
-    scroll-threshold='400',
-    :height='windowHeight * heightCoef[isMobile ? (mode != 1 ? mode : 0) : mode]'
+    :height='windowHeight * heightCoef[isMobile ? (mode!=1 ? mode : 0) : mode]',
   )
     v-flex(xs1, md1)
     v-flex(xs3, md2, style='text-align: center')
       //- :style='"width: auto;"',
       svg(
-        :style='"width:" + svg_rect_size[mode] + ";height:" + svg_rect_size[mode]',
+        :style='"width:" + svg_rect_size[isMobile ? (mode!=1 ? mode : 0) : mode] + ";height:" + svg_rect_size[isMobile ? (mode!=1 ? mode : 0) : mode]',
         width='200',
         height='200',
         viewBox='-50 -50 100 100',
@@ -43,14 +41,9 @@ nav
       v-toolbar-title
         h3 {{ $t("title") }}
       a(v-if='mode <= 1', @click='mode = 2') Show More
-      a(v-if='mode == 2', @click='mode = 1') Show Less
+      a(v-if='mode == 2', @click='mode = prevMode') Show Less
       div
         v-spacer
-      a a
-      div(style='height: 55px')
-        a a
-      div(style='height: 55px')
-        a a
     v-flex(xs1, md2)
       v-btn(text, icon, color='grey', @click='toggleMode')
         v-icon(small) brightness_2
@@ -120,15 +113,18 @@ export default class Navbar extends Vue {
 
   setNavPadding() {
     let nav = document.getElementsByTagName('nav')[0].style
-    if (this.mode == 1 && this.prevMode == 0) nav.paddingBottom = '0px'
-    if (this.mode == 0 && this.prevMode == 1 && !this.isMobile)
-      nav.paddingBottom =
-        this.windowHeight * this.heightCoef[1] -
-        this.windowHeight * this.heightCoef[0] +
-        'px'
+    nav.paddingBottom = '100px'
   }
 
-  heightCoef = [0.15, 0.3, 0.55]
+  setHeaderFilters() {
+    let header = document.getElementById('header')
+    if (this.isMobile) {header?.classList.add('blurry'); return}
+
+    if (!this.mode || this.mode == 2) window.setTimeout(()=>{header?.classList.add('blurry')}, 450)
+    else header?.classList.remove('blurry')
+  }
+
+  heightCoef = [0.15, 0.35, 0.55]
   d = [
     'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 49.9 9.5 L 49.7 12.8 L 49.4 16.1 L 49.0 19.4 L 48.4 22.8 L 47.5 26.1 L 46.3 29.4 L 44.9 32.6 L 43.1 35.6 L 40.9 38.4 L 38.4 40.9 L 35.6 43.1 L 32.6 44.9 L 29.4 46.3 L 26.1 47.5 L 22.8 48.4 L 19.4 49.0 L 16.1 49.4 L 12.8 49.7 L 9.5 49.9 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 49.9 L -12.8 49.7 L -16.1 49.4 L -19.4 49.0 L -22.8 48.4 L -26.1 47.5 L -29.4 46.3 L -32.6 44.9 L -35.6 43.1 L -38.4 40.9 L -40.9 38.4 L -43.1 35.6 L -44.9 32.6 L -46.3 29.4 L -47.5 26.1 L -48.4 22.8 L -49.0 19.4 L -49.4 16.1 L -49.7 12.8 L -49.9 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -49.9 -9.5 L -49.7 -12.8 L -49.4 -16.1 L -49.0 -19.4 L -48.4 -22.8 L -47.5 -26.1 L -46.3 -29.4 L -44.9 -32.6 L -43.1 -35.6 L -40.9 -38.4 L -38.4 -40.9 L -35.6 -43.1 L -32.6 -44.9 L -29.4 -46.3 L -26.1 -47.5 L -22.8 -48.4 L -19.4 -49.0 L -16.1 -49.4 L -12.8 -49.7 L -9.5 -49.9 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -49.9 L 12.8 -49.7 L 16.1 -49.4 L 19.4 -49.0 L 22.8 -48.4 L 26.1 -47.5 L 29.4 -46.3 L 32.6 -44.9 L 35.6 -43.1 L 38.4 -40.9 L 40.9 -38.4 L 43.1 -35.6 L 44.9 -32.6 L 46.3 -29.4 L 47.5 -26.1 L 48.4 -22.8 L 49.0 -19.4 L 49.4 -16.1 L 49.7 -12.8 L 49.9 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
     'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 50.0 9.5 L 50.0 12.8 L 50.0 16.2 L 50.0 19.8 L 49.9 23.5 L 49.8 27.4 L 49.5 31.4 L 48.9 35.5 L 47.7 39.5 L 45.8 43.0 L 43.0 45.8 L 39.5 47.7 L 35.5 48.9 L 31.4 49.5 L 27.4 49.8 L 23.5 49.9 L 19.8 50.0 L 16.2 50.0 L 12.8 50.0 L 9.5 50.0 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 50.0 L -12.8 50.0 L -16.2 50.0 L -19.8 50.0 L -23.5 49.9 L -27.4 49.8 L -31.4 49.5 L -35.5 48.9 L -39.5 47.7 L -43.0 45.8 L -45.8 43.0 L -47.7 39.5 L -48.9 35.5 L -49.5 31.4 L -49.8 27.4 L -49.9 23.5 L -50.0 19.8 L -50.0 16.2 L -50.0 12.8 L -50.0 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -50.0 -9.5 L -50.0 -12.8 L -50.0 -16.2 L -50.0 -19.8 L -49.9 -23.5 L -49.8 -27.4 L -49.5 -31.4 L -48.9 -35.5 L -47.7 -39.5 L -45.8 -43.0 L -43.0 -45.8 L -39.5 -47.7 L -35.5 -48.9 L -31.4 -49.5 L -27.4 -49.8 L -23.5 -49.9 L -19.8 -50.0 L -16.2 -50.0 L -12.8 -50.0 L -9.5 -50.0 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -50.0 L 12.8 -50.0 L 16.2 -50.0 L 19.8 -50.0 L 23.5 -49.9 L 27.4 -49.8 L 31.4 -49.5 L 35.5 -48.9 L 39.5 -47.7 L 43.0 -45.8 L 45.8 -43.0 L 47.7 -39.5 L 48.9 -35.5 L 49.5 -31.4 L 49.8 -27.4 L 49.9 -23.5 L 50.0 -19.8 L 50.0 -16.2 L 50.0 -12.8 L 50.0 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
@@ -167,7 +163,7 @@ export default class Navbar extends Vue {
 
   onScroll() {
     // console.log(window.scrollY)
-    if (window.scrollY < 25 && this.mode != 2) {
+    if (window.scrollY < 45 && this.mode != 2) {
       this.mode = 1
       // TODO: change gradient
     }
@@ -189,8 +185,10 @@ export default class Navbar extends Vue {
     // mobile layout optimization
     if (window.innerHeight < 800 || window.innerWidth < 700) {
       this.svg_rect_size = ['75px', '85px', '120px']
-      this.heightCoef = [0.2, 0.3, 0.85]
+      this.heightCoef = [0.15, 0.3, 0.85]
     }
+
+    this.setNavPadding()
   }
 
   blur_i = 0
@@ -199,16 +197,19 @@ export default class Navbar extends Vue {
     blurFilter: Element | null | undefined,
     maxBlur: number
   ) {
-    // 5 * 100 = 500ms
     window.setTimeout(() => {
       // https://www.desmos.com/calculator/ekaxwdyase
       // let maxBlur = 2.5
       let x = this.blur_i / 100
       let noise = Math.random() / 20
-      let coef = 4 + Math.pow(noise, 2)
+      let coef = 5 + Math.pow(noise, 2)
+      // Mobile optimization
+      if (this.isMobile && maxBlur != 1.2) maxBlur = 1.2
       let y = -coef * Math.pow(x, 2) + 4 * x - 0.3 // value in (0;1). Max at (0.5; 1)
-      let blur = Math.round(maxBlur * y > 0 ? maxBlur * y : 0)
       // https://tympanus.net/codrops/2015/04/08/motion-blur-effect-svg/
+      let blur = Math.round(maxBlur * y > 0 ? maxBlur * y : 0)
+      // Mobile optimization
+      // if (blur > 2 && maxBlur < 2) blur = 1.2
       blurFilter?.setAttribute('stdDeviation', blur.toString())
       svg.setAttribute('filter', 'url(#blur)')
       this.blur_i += 1
@@ -220,7 +221,7 @@ export default class Navbar extends Vue {
   @Watch('mode')
   onToggleMode(value: number, oldValue: number) {
     this.prevMode = oldValue
-    this.setNavPadding()
+    this.setHeaderFilters()
     // to default values
     let svg = document.getElementsByTagName('svg')[0]
     let blurFilter = document.querySelector('#blur')?.firstElementChild
@@ -231,7 +232,7 @@ export default class Navbar extends Vue {
       parseInt(this.svg_rect_size[value].slice(0, -2)) /
       parseInt(this.svg_rect_size[oldValue].slice(0, -2))
     if (maxBlur < 1) maxBlur = 1 / maxBlur
-    // this.animateBlur(svg, blurFilter, maxBlur / 1.5)
+    this.animateBlur(svg, blurFilter, maxBlur / 1.5)
 
     // any error will be neutralized
     svg.setAttribute('filter', 'none')
@@ -257,12 +258,20 @@ nav a:active {
 }
 
 header.v-app-bar.v-toolbar.v-sheet#header {
+  background-color: rgba(255, 255, 255, 1) !important;
+  backdrop-filter: none;
+}
+header.v-app-bar.v-toolbar.v-sheet.blurry#header {
   background-color: rgba(255, 255, 255, 0.65) !important;
-  backdrop-filter: blur(12px) saturate(1.2) !important;
+  backdrop-filter: blur(12px) saturate(1.2);
 }
 header.v-app-bar.v-toolbar.v-sheet.theme--dark#header {
+  background-color: rgba(0, 0, 0, 1) !important;
+  backdrop-filter: none;
+}
+header.v-app-bar.v-toolbar.v-sheet.blurry.theme--dark#header {
   background-color: rgba(0, 0, 0, 0.65) !important;
-  backdrop-filter: blur(12px) saturate(1.2) !important;
+  backdrop-filter: blur(12px) saturate(1.2);
 }
 
 .stop1 {
@@ -280,7 +289,7 @@ path,
 header#header,
 .v-toolbar__content,
 .transition {
-  transition: 0.5s ease-in-out !important;
+  transition: .4s cubic-bezier(0.52, 0.06, 0.45, 1.03) !important;
 }
 
 /* @media screen and (max-width: 600px) {
