@@ -1,5 +1,5 @@
 <template lang="pug">
-nav
+nav(v-scroll="onScroll")
   v-app-bar#header(
     flat,
     app,
@@ -13,7 +13,6 @@ nav
         width='200',
         height='200',
         viewBox='-50 -50 100 100',
-        fill='linear-gradient(to bottom right, orange, orangered)',
         xmlns='http://www.w3.org/2000/svg'
       )
         mask#img-mask
@@ -214,7 +213,7 @@ export default class Navbar extends Vue {
     // this.d[2] = this.maskPath(10)
 
     // set a watcher on scrollY
-    window.addEventListener('scroll', this.onScroll, true)
+    // window.addEventListener('scroll', this.onScroll, true)
 
     // mobile layout optimization
     if (window.innerHeight < 800 || window.innerWidth < 700) {

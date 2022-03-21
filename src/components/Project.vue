@@ -1,17 +1,23 @@
 <template lang="pug">
-v-card.project.mt-3.pa-1
-  v-card-title {{ title }}
-  v-carousel(cycle, show-arrows-on-hover, height='auto')
-    v-carousel-item(v-for='(slide, i) in slides', :key='i' height='auto')
-      v-img(aspect-ratio='1.5', :src='slide')
-  a show more
-  span {{ type }}
+v-lazy(
+  v-model='isActive',
+  :options='{ threshold: 0.8 }',
+  min-height='550',
+  transition='fade-transition'
+)
+  v-card.project.mt-10.pa-3.pb-9.mb-6
+    v-card-title.pl-0 {{ title }}
+    v-carousel(cycle, show-arrows-on-hover, height='auto')
+      v-carousel-item(v-for='(slide, i) in slides', :key='i', height='auto')
+        v-img(aspect-ratio='1.5', :src='slide')
+    a show more
+    span {{ type }}
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { Prop } from 'vue-property-decorator'
+import { Prop, Watch } from 'vue-property-decorator'
 import { i18n } from '@/plugins/i18n'
 import * as api from '@/utils/api'
 import { namespace } from 'vuex-class'
@@ -28,7 +34,7 @@ export default class Project extends Vue {
   public slides!: string[]
 
   expanded = false
-  slide1 = "../assets/echarge-1.png"
+  isActive = false
 }
 </script>
 <style scoped>

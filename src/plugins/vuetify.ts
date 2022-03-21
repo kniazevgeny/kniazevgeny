@@ -19,8 +19,10 @@ import Vuetify, {
   VCarousel,
   VCarouselItem,
   VSlider,
+  VLazy,
   VMain,
 } from 'vuetify/lib'
+import {Intersect, Scroll} from 'vuetify/es5/directives'
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify, {
@@ -44,12 +46,17 @@ Vue.use(Vuetify, {
     VCarousel,
     VCarouselItem,
     VSlider,
+    VLazy,
     VMain,
   },
+  directives: {
+    Intersect,
+    Scroll
+  }
 })
 
 export default new Vuetify({
   icons: {
     iconfont: 'mdi',
-  },
+  }
 })

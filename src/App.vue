@@ -5,7 +5,7 @@ v-app(
 )
   Navbar
   Snackbar
-  v-main(style='transition: none; padding-top: 200px')
+  v-main(style='transition: none')
     router-view
 </template>
 

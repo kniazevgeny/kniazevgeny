@@ -1,22 +1,29 @@
 <template lang="pug">
-.v-container.pa-4
+.v-container.pa-4(v-scroll='onScrollYChange')
   // Main content
   #slider
     v-slider(
       vertical,
       hint,
-      thumb-label='always',
-      v-model='scrollY',
-      @drag='setScroll()'
+      v-model='sliderPos',
+      @input='setScroll()',
+      ticks='always',
+      :tick-labels='ticksLabels',
+      step='1',
+      :max='$t("projects").length - 1'
     )
   v-layout(justify-center, align-center)
     v-flex(xs1, sm2, md2)
     v-flex(xs10, sm8, md8)
-      v-layout(v-for='(project, i) in projects', :key='i')
+      v-layout(column)
         Project(
+          v-for='(project, i) in $t("projects")',
+          :key='i',
           :title='project.title',
           :type='project.type',
-          :slides='project.slides'
+          :slides='project.slides',
+          v-intersect="{handler: onIntersect,options: {threshold: 0.7}}",
+          :id='"p" + i'
         )
 
     v-flex(xs1, sm2, md2)
@@ -40,70 +47,62 @@ const AppStore = namespace('AppStore')
 const SnackbarStore = namespace('SnackbarStore')
 
 import Project from '@/components/Project.vue'
+import { Interface } from 'readline'
 
 @Component({ components: { Project } })
 export default class Home extends Vue {
   @AppStore.Mutation setUser!: (user: User) => void
   @SnackbarStore.Mutation setSnackbarError!: (error: string) => void
 
-  scrollY = 0
-
-  projects = [
-    {
-      title: 'ECharge',
-      type: 'MVP',
-      slides: [
-        require('../assets/echarge-1.png'),
-        require('../assets/echarge-2.png'),
-        require('../assets/echarge-3.png'),
-      ],
-    },
-    {
-      title: 'Стратегия развития банка для самозанятых',
-      type: 'Кейс',
-      slides: ['https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'],
-    },
-    {
-      title: 'Бронирование парковки',
-      type: 'MVP',
-      slides: ['https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'],
-    },
-    {
-      title: 'Роль сообществ в цифровой экономике',
-      type: 'Аналитический обзор',
-      slides: ['https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'],
-    },
-    {
-      title: 'The Matrix: ЕГЭ',
-      type: 'Видео',
-      slides: ['https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'],
-    },
-    {
-      title: 'Сравнение уровня развития ВИЭ в РФ и Канаде',
-      type: 'Исследование',
-      slides: ['https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'],
-    },
-  ]
+  sliderPos = 0
+  realPos = 0
+  scrollY = 100
+  ticksLabels = []
 
   isScrolling = false
   setScroll() {
-    // prevent scrollY update during using timeline navigation
+    // prevent scrollY or sliderPos update during using timeline navigation
     this.isScrolling = true
     window.setTimeout(() => {
       this.isScrolling = false
-    }, 25)
-    window.scrollTo(0, (this.scrollY / 100) * document.body.offsetHeight)
+    }, 450)
+    this.realPos = (this.$t('projects').length as number) - 1 - this.sliderPos
+    this.$vuetify.goTo('#p' + this.realPos.toString(), {
+      duration: 420,
+      easing: 'easeInCubic',
+    })
+    // window.scrollTo(0, (this.scrollY / 100) * document.body.offsetHeight)
+  }
+
+  onIntersect(
+    entry: IntersectionObserverEntry[],
+    observer: IntersectionObserver,
+    isIntersecting: boolean
+  ) {
+    if (
+      !this.isScrolling &&
+      isIntersecting
+    ) {
+      this.realPos = parseInt(entry[0].target.id.slice(1))
+      this.sliderPos = (this.$t('projects').length as any) - 1 - this.realPos
+    }
   }
 
   mounted() {
-    window.addEventListener('scroll', this.onScrollYChange, true)
+    interface proj {
+      title: string
+    }
+    let projects = this.$t('projects') as any as proj[]
+    // projects.reverse()
+    projects.forEach((el) => {
+      this.ticksLabels.push(el.title as never)
+    })
+    this.ticksLabels.reverse()
   }
 
   onScrollYChange() {
     let docHeight = document.body.offsetHeight - window.innerHeight
-
-    if (!this.isScrolling)
-    this.scrollY = (window.scrollY / docHeight) * 100
+    // if (!this.isScrolling) this.scrollY = 100 - (window.scrollY / docHeight) * 100
   }
 }
 </script>
@@ -111,7 +110,7 @@ export default class Home extends Vue {
 <style>
 #slider {
   position: fixed;
-  right: 5vw;
+  right: 15vw;
   top: 25vh;
 }
 </style>
