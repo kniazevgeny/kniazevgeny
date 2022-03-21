@@ -18,7 +18,7 @@ nav
       )
         mask#img-mask
           rect(x='-50', y='-50', height='100px', width='100px', fill='black')
-          path(:d='d[mode]', fill='white')
+          path(:d='d[mode]', fill='white', :key='gradient_key')
         path(:d='d[mode]', fill='url(#Gradient1)', :key='gradient_key')
         image(
           :href='require("../assets/avatar.png")',
@@ -32,7 +32,7 @@ nav
           linearGradient#Gradient1(x1='0', x2='1', y1='0', y2='1')
             stop(
               v-for='(offset, o) in gradient_offsets',
-              :key='gradient_offsets',
+              :key='o',
               :class='"stop" + (o + 1)',
               :offset='offset + "%"'
             )
@@ -42,7 +42,7 @@ nav
     v-flex(xs6, md5)
       // Title
       v-toolbar-title
-        h3 {{ $t("title") }}
+        h3.h {{ $t("title") }}
       a(v-if='mode <= 1', @click='mode = 2') Show More
       a(v-if='mode == 2', @click='mode = prevMode') Show Less
       div
@@ -109,7 +109,7 @@ export default class Navbar extends Vue {
   toggleMode() {
     this.setDark(!this.dark)
     ;(this.$vuetify.theme as any).dark = this.dark
-    ;this.setHeaderFilters()
+    this.setHeaderFilters()
   }
   changeLanguage(locale: string) {
     i18n.locale = locale
@@ -174,11 +174,16 @@ export default class Navbar extends Vue {
     return d
   }
 
+  // when mode changes, gradient change is starting to lag
+  stopGradientOffsetChange = false
+
   processGradientOssfetChange(f: number) {
     this.gradient_key += 1
 
     window.setTimeout(() => {
-      if (f == 100) return
+      if (f == 100 || this.stopGradientOffsetChange) {
+        return
+      }
       for (let i = 0; i < this.gradient_offsets.length; i++) {
         this.gradient_offsets[i] -= 0.5
       }
@@ -190,7 +195,9 @@ export default class Navbar extends Vue {
   }
 
   changeGradientOffsets() {
-    window.setTimeout(()=>{this.processGradientOssfetChange(0)}, 1050)
+    window.setTimeout(() => {
+      this.processGradientOssfetChange(0)
+    }, 650)
   }
 
   onScroll() {
@@ -251,7 +258,14 @@ export default class Navbar extends Vue {
   @Watch('mode')
   onToggleMode(value: number, oldValue: number) {
     this.prevMode = oldValue
-    if (value >= 1) this.changeGradientOffsets()
+    if (value > 0) this.changeGradientOffsets()
+    if (value === 0) {
+      // prevent gradient lags on scroll
+      this.stopGradientOffsetChange = true
+      window.setTimeout(() => {
+        this.stopGradientOffsetChange = false
+      }, 10)
+    }
     this.setHeaderFilters()
     // to default values
     let svg = document.getElementsByTagName('svg')[0]
@@ -337,6 +351,6 @@ header#header,
 .transition,
 .stop1,
 .stop2 {
-  transition: 1s cubic-bezier(0.52, 0.06, 0.45, 1.03) !important;
+  transition: 0.65s cubic-bezier(0.52, 0.06, 0.45, 1.03) !important;
 }
 </style>
