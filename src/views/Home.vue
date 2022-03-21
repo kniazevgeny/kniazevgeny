@@ -69,9 +69,8 @@ export default class Home extends Vue {
     this.realPos = (this.$t('projects').length as number) - 1 - this.sliderPos
     this.$vuetify.goTo('#p' + this.realPos.toString(), {
       duration: 420,
-      easing: 'easeInCubic',
+      easing: 'easeInOutQuart',
     })
-    // window.scrollTo(0, (this.scrollY / 100) * document.body.offsetHeight)
   }
 
   onIntersect(
@@ -110,7 +109,8 @@ export default class Home extends Vue {
 <style>
 #slider {
   position: fixed;
-  right: 15vw;
+  right: 18vw;
   top: 25vh;
+  z-index: 1;
 }
 </style>

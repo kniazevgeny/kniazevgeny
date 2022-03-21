@@ -10,15 +10,15 @@ const router = new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '*',
       name: 'home',
       component: Home,
     },
-    {
-      path: '*',
-      name: 'notFound',
-      component: NotFound,
-    },
+    // {
+    //   path: '*',
+    //   name: 'notFound',
+    //   component: NotFound,
+    // },
   ],
 })
 
