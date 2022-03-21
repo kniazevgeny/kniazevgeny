@@ -80,7 +80,7 @@ export default class Navbar extends Vue {
   @AppStore.Mutation setDark!: (dark: boolean) => void
   @AppStore.Mutation setLanguage!: (language: string) => void
 
-  mode = 1 // 1 means meduim, 0 small, 2 expanded
+  mode = 0 // 1 means meduim, 0 small, 2 expanded
 
   get locales() {
     return [
@@ -97,6 +97,8 @@ export default class Navbar extends Vue {
   }
 
   get isMobile() {
+    return true
+    // obsolete & lagging
     return window.innerWidth <= 800 && window.innerHeight <= 900
   }
 
@@ -107,6 +109,7 @@ export default class Navbar extends Vue {
   toggleMode() {
     this.setDark(!this.dark)
     ;(this.$vuetify.theme as any).dark = this.dark
+    ;this.setHeaderFilters()
   }
   changeLanguage(locale: string) {
     i18n.locale = locale
@@ -175,9 +178,9 @@ export default class Navbar extends Vue {
     this.gradient_key += 1
 
     window.setTimeout(() => {
-      if (f == 50) return
+      if (f == 100) return
       for (let i = 0; i < this.gradient_offsets.length; i++) {
-        this.gradient_offsets[i] -= 1
+        this.gradient_offsets[i] -= 0.5
       }
       if (this.gradient_offsets[this.gradient_offsets.length - 3] < -50)
         for (let i = 0; i < this.gradient_offsets.length; i++)
@@ -187,7 +190,7 @@ export default class Navbar extends Vue {
   }
 
   changeGradientOffsets() {
-    window.setTimeout(()=>{this.processGradientOssfetChange(0)}, 650)
+    window.setTimeout(()=>{this.processGradientOssfetChange(0)}, 1050)
   }
 
   onScroll() {
@@ -229,7 +232,7 @@ export default class Navbar extends Vue {
       // let maxBlur = 2.5
       let x = this.blur_i / 100
       let noise = Math.random() / 20
-      let coef = 5 + Math.pow(noise, 2)
+      let coef = 4 + Math.pow(noise, 2)
       // Mobile optimization
       if (this.isMobile && maxBlur != 1.2) maxBlur = 1.2
       let y = -coef * Math.pow(x, 2) + 4 * x - 0.3 // value in (0;1). Max at (0.5; 1)
@@ -239,7 +242,7 @@ export default class Navbar extends Vue {
       // if (blur > 2 && maxBlur < 2) blur = 1.2
       blurFilter?.setAttribute('stdDeviation', blur.toString())
       svg.setAttribute('filter', 'url(#blur)')
-      this.blur_i += 1
+      this.blur_i += 1.5
       if (this.blur_i < 100) this.animateBlur(svg, blurFilter, maxBlur)
     }, 1)
   }
@@ -334,6 +337,6 @@ header#header,
 .transition,
 .stop1,
 .stop2 {
-  transition: 0.4s cubic-bezier(0.52, 0.06, 0.45, 1.03) !important;
+  transition: 1s cubic-bezier(0.52, 0.06, 0.45, 1.03) !important;
 }
 </style>
