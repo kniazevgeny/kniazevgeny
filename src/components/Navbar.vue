@@ -308,6 +308,7 @@ header.v-app-bar.v-toolbar.v-sheet#header {
 header.v-app-bar.v-toolbar.v-sheet.blurry#header {
   background-color: rgba(255, 255, 255, 0.65) !important;
   backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: saturate(1.2) blur(12px);
 }
 header.v-app-bar.v-toolbar.v-sheet.theme--dark#header {
   background-color: rgba(0, 0, 0, 1) !important;
@@ -316,6 +317,7 @@ header.v-app-bar.v-toolbar.v-sheet.theme--dark#header {
 header.v-app-bar.v-toolbar.v-sheet.blurry.theme--dark#header {
   background-color: rgba(0, 0, 0, 0.65) !important;
   backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: saturate(1.2) blur(12px);
 }
 
 .stop1 {

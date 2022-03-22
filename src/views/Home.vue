@@ -11,9 +11,9 @@
       step='1',
       :max='$t("projects").length - 1',
       dark,
-      :thumb-color='dark ? "grey lighten-2" : "grey darken-2"',
-      track-color='primary',
-      track-fill-color='grey'
+      thumb-color='transparent',
+      track-color='grey darken-2',
+      track-fill-color='grey lighten-2'
     )
   v-layout(justify-center, align-center)
     v-flex(xs1, sm2, md2)
@@ -25,7 +25,7 @@
           :title='project.title',
           :type='project.type',
           :slides='project.slides',
-          v-intersect='{handler: onIntersect,options: {threshold: 0.5}}',
+          v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
           :id='"p" + i'
         )
 
@@ -54,7 +54,6 @@ import Project from '@/components/Project.vue'
 @Component({ components: { Project } })
 export default class Home extends Vue {
   @AppStore.Mutation setUser!: (user: User) => void
-  @AppStore.State dark!: boolean
   @SnackbarStore.Mutation setSnackbarError!: (error: string) => void
 
   sliderPos = 0
@@ -136,10 +135,6 @@ export default class Home extends Vue {
       ).classList.add('slider_near')
   }
 
-  @Watch('dark')
-  onThemeChange(dark: boolean) {
-    // if (!dark)
-  }
 }
 </script>
 
@@ -148,14 +143,12 @@ export default class Home extends Vue {
   position: fixed;
   right: 10px;
   padding-left: 15vw;
-  height: 300px;
   top: 25vh;
-  z-index: 1;
+  z-index: 1000;
   transition: 0.3s ease-in-out;
-  cursor: none;
 }
 .v-slider {
-  height: 300px;
+  height: 250px;
 }
 
 #slider:hover {
@@ -163,6 +156,9 @@ export default class Home extends Vue {
 }
 
 @media screen and (max-width: 600px) {
+  .v-slider {
+    height: 340px;
+  }
   #slider {
     padding-left: 100px;
     right: 15px;
@@ -177,22 +173,33 @@ export default class Home extends Vue {
 }
 
 .v-slider__tick-label.slider_current {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.77);
 }
-
 .v-slider__tick-label.slider_near {
-  background: rgba(0, 0, 0, 0.65);
+  /* background: rgba(0, 0, 0, 0.65); */
 }
 
+.v-slider__tick {
+  width: 0 !important;
+}
 .v-slider__tick-label {
   background: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: saturate(1.2) blur(12px);
+  backdrop-filter: saturate(1.2) blur(10px);
   border-radius: 3px;
-  padding: 2px;
+  padding: 8px;
   transition: 0.4s ease-out;
   padding-top: 6px;
   padding-bottom: 6px;
   white-space: break-spaces !important;
-  width: max-content;
+  width: 600px;
   max-width: 34vw;
+}
+
+.v-slider--vertical .v-slider__track-container {
+  width: 9px !important;
+}
+.v-slider__track-background, .v-slider__track-fill {
+  border-radius: 3px;
 }
 </style>
