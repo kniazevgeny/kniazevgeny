@@ -34,7 +34,7 @@ export default class Project extends Vue {
   public slides!: string[]
 
   expanded = false
-  isActive = false
+  isActive = true
 }
 </script>
 <style scoped>
