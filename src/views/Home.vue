@@ -135,7 +135,6 @@ export default class Home extends Vue {
           .firstChild as HTMLElement
       ).classList.add('slider_near')
   }
-
 }
 </script>
 
@@ -143,7 +142,7 @@ export default class Home extends Vue {
 #slider {
   position: fixed;
   right: 10px;
-  padding-left: 15vw;
+  padding-left: 10vw;
   top: 25vh;
   z-index: 1000;
   transition: 50ms;
@@ -156,6 +155,24 @@ export default class Home extends Vue {
   padding-right: 35vw;
 }
 
+@media screen and (min-width: 1300px) and (max-width: 1500px) {
+  #slider:hover {
+    padding-right: 30vw;
+  }
+  .v-slider {
+    height: 230px;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  #slider:hover {
+    padding-right: 25vw;
+  }
+  .v-slider {
+    height: 220px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .v-slider {
     height: 340px;
@@ -163,7 +180,6 @@ export default class Home extends Vue {
   #slider {
     padding-left: 100px;
     right: 15px;
-    
   }
   #slider:hover {
     padding-right: 250px;
@@ -201,7 +217,8 @@ export default class Home extends Vue {
 .v-slider--vertical .v-slider__track-container {
   width: 7px !important;
 }
-.v-slider__track-background, .v-slider__track-fill {
+.v-slider__track-background,
+.v-slider__track-fill {
   border-radius: 3px;
 }
 </style>

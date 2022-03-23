@@ -183,7 +183,7 @@ export default class Navbar extends Vue {
     this.gradient_key += 1
 
     window.setTimeout(() => {
-      if (f == 100 || this.stopGradientOffsetChange) {
+      if (f == 75 || this.stopGradientOffsetChange) {
         return
       }
       for (let i = 0; i < this.gradient_offsets.length; i++) {
