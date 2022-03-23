@@ -5,13 +5,17 @@ v-lazy(
   min-height='550',
   transition='fade-transition'
 )
-  v-card.project.mt-10.pa-3.pb-9.mb-6
-    v-card-title.pl-0 {{ title }}
-    v-carousel(cycle, show-arrows-on-hover, height='auto')
+  v-card.project.mt-10.pb-9.mb-6
+    v-carousel(cycle, hide-delimiters, height='auto')
       v-carousel-item(v-for='(slide, i) in slides', :key='i', height='auto')
         v-img(aspect-ratio='1.5', :src='slide')
+    v-flex(xs12 row).pa-3
+      v-flex(xs8)
+        v-card-title.pa-3(style='word-break: break-word;') {{ title }}
+      v-flex(xs1)
+      v-flex(xs3 style='align-self: center;')
+        span.pa-3(style='font-size: 12px; font-weight: bold') {{type}}
     a show more
-    span {{ type }}
 </template>
 
 <script lang="ts">

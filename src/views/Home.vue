@@ -2,7 +2,7 @@
 .v-container.pa-4
   // Main content
   #slider
-    v-slider.slider_element(
+    v-slider(
       vertical,
       v-model='sliderPos',
       @input='setScroll()',
@@ -12,8 +12,8 @@
       :max='$t("projects").length - 1',
       dark,
       thumb-color='transparent',
-      track-color='grey darken-2',
-      track-fill-color='grey lighten-2'
+      :track-color='dark ? "grey lighten-3" : "grey darken-3"',
+      :track-fill-color='dark ? "grey darken-2" : "grey lighten-2"'
     )
   v-layout(justify-center, align-center)
     v-flex(xs1, sm2, md2)
@@ -54,6 +54,7 @@ import Project from '@/components/Project.vue'
 @Component({ components: { Project } })
 export default class Home extends Vue {
   @AppStore.Mutation setUser!: (user: User) => void
+  @AppStore.State dark!: boolean
   @SnackbarStore.Mutation setSnackbarError!: (error: string) => void
 
   sliderPos = 0
@@ -70,7 +71,7 @@ export default class Home extends Vue {
     }, 450)
     this.realPos = (this.$t('projects').length as number) - 1 - this.sliderPos
     this.$vuetify.goTo('#p' + this.realPos.toString(), {
-      duration: 420,
+      duration: 320,
       easing: 'easeInOutQuart',
     })
   }
@@ -145,10 +146,10 @@ export default class Home extends Vue {
   padding-left: 15vw;
   top: 25vh;
   z-index: 1000;
-  transition: 0.3s ease-in-out;
+  transition: 50ms;
 }
 .v-slider {
-  height: 250px;
+  height: 270px;
 }
 
 #slider:hover {
@@ -194,6 +195,7 @@ export default class Home extends Vue {
   white-space: break-spaces !important;
   width: 600px;
   max-width: 34vw;
+  font-weight: 600;
 }
 
 .v-slider--vertical .v-slider__track-container {
