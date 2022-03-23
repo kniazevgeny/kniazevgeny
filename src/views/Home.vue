@@ -199,7 +199,7 @@ export default class Home extends Vue {
 }
 
 .v-slider--vertical .v-slider__track-container {
-  width: 9px !important;
+  width: 7px !important;
 }
 .v-slider__track-background, .v-slider__track-fill {
   border-radius: 3px;

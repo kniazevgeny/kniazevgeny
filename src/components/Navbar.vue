@@ -1,5 +1,5 @@
 <template lang="pug">
-nav(v-scroll="onScroll")
+nav(v-scroll='onScroll')
   v-app-bar#header(
     flat,
     app,
@@ -108,7 +108,7 @@ export default class Navbar extends Vue {
   toggleMode() {
     this.setDark(!this.dark)
     ;(this.$vuetify.theme as any).dark = this.dark
-    this.setHeaderFilters()
+    window.setTimeout(()=>{this.setHeaderFilters()}, 25)
   }
   changeLanguage(locale: string) {
     i18n.locale = locale
@@ -125,14 +125,17 @@ export default class Navbar extends Vue {
     let header = document.getElementById('header')
     if (this.isMobile) {
       header?.classList.add('blurry')
-      return
+      return 0
     }
 
     if (!this.mode || this.mode == 2)
       window.setTimeout(() => {
         header?.classList.add('blurry')
       }, 450)
-    else header?.classList.remove('blurry')
+    else {
+      // console.log('removed')
+      header?.classList.remove('blurry')
+    }
   }
 
   heightCoef = [0.15, 0.35, 0.55]
@@ -200,7 +203,6 @@ export default class Navbar extends Vue {
   }
 
   onScroll() {
-    // console.log(window.scrollY)
     if (window.scrollY < 45 && this.mode != 2) this.mode = 1
     if (window.scrollY > 100 && this.mode == 1) this.mode = 0
   }
@@ -223,7 +225,7 @@ export default class Navbar extends Vue {
 
     // animate gradient
     this.changeGradientOffsets()
-
+    window.setTimeout(()=>{this.setHeaderFilters()}, 50)
     this.setNavPadding()
   }
 
@@ -258,6 +260,7 @@ export default class Navbar extends Vue {
   onToggleMode(value: number, oldValue: number) {
     this.prevMode = oldValue
     if (value > 0) this.changeGradientOffsets()
+    this.setHeaderFilters()
     if (value === 0) {
       // prevent gradient lags on scroll
       this.stopGradientOffsetChange = true
@@ -265,7 +268,6 @@ export default class Navbar extends Vue {
         this.stopGradientOffsetChange = false
       }, 10)
     }
-    this.setHeaderFilters()
     // to default values
     let svg = document.getElementsByTagName('svg')[0]
     let blurFilter = document.querySelector('#blur')?.firstElementChild
