@@ -108,7 +108,9 @@ export default class Navbar extends Vue {
   toggleMode() {
     this.setDark(!this.dark)
     ;(this.$vuetify.theme as any).dark = this.dark
-    window.setTimeout(()=>{this.setHeaderFilters()}, 25)
+    window.setTimeout(() => {
+      this.setHeaderFilters()
+    }, 25)
   }
   changeLanguage(locale: string) {
     i18n.locale = locale
@@ -225,7 +227,9 @@ export default class Navbar extends Vue {
 
     // animate gradient
     this.changeGradientOffsets()
-    window.setTimeout(()=>{this.setHeaderFilters()}, 50)
+    window.setTimeout(() => {
+      this.setHeaderFilters()
+    }, 50)
     this.setNavPadding()
   }
 

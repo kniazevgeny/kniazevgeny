@@ -5,12 +5,12 @@ v-lazy(
   min-height='550',
   transition='fade-transition'
 )
-  v-card.project.mt-10.pb-9.mb-6()
+  v-card.project.mt-10.pb-9.mb-6
     v-carousel(cycle, hide-delimiters, height='auto')
       v-carousel-item(v-for='(slide, i) in slides', :key='i', height='auto')
         v-img(aspect-ratio='1.5', :src='slide')
-      span.proj_type {{type}}
-    v-card-title.pa-3(style='word-break: break-word;') {{ title }}
+      span.proj_type {{ type }}
+    v-card-title.pa-3(style='word-break: break-word') {{ title }}
     a show more
 </template>
 
@@ -44,8 +44,7 @@ export default class Project extends Vue {
   margin: auto;
 }
 .project.theme--light {
-  box-shadow:  20px 20px 60px #d9d9d9,
-             -20px -20px 60px #ffffff !important;
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff !important;
 }
 .proj_type {
   font-size: 12px;

@@ -50,15 +50,19 @@ export default class App extends Vue {
       title: i18n.t('title') as string,
     }
   }
-  
-  mounted() { }
+
+  mounted() {}
 }
 </script>
 <style>
-body, p, a, span {
+body,
+p,
+a,
+span {
   font-family: 'Bitter', serif !important;
 }
-.h, .v-card__title {
+.h,
+.v-card__title {
   font-family: 'Roboto Slab', serif;
   font-weight: 600 !important;
 }
