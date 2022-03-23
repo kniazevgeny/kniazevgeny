@@ -25,6 +25,7 @@
           :title='project.title',
           :type='project.type',
           :slides='project.slides',
+          :lazySlides='project.lazySlides.length ? project.lazySlides : []',
           v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
           :id='"p" + i'
         )
@@ -141,7 +142,7 @@ export default class Home extends Vue {
 <style>
 #slider {
   position: fixed;
-  right: 10px;
+  right: 20px;
   padding-left: 10vw;
   top: 25vh;
   z-index: 1000;
@@ -193,14 +194,14 @@ export default class Home extends Vue {
   background: rgba(0, 0, 0, 0.77);
 }
 .v-slider__tick-label.slider_near {
-  /* background: rgba(0, 0, 0, 0.65); */
+  background: rgba(0, 0, 0, 0.65);
 }
 
 .v-slider__tick {
   width: 0 !important;
 }
 .v-slider__tick-label {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.33);
   -webkit-backdrop-filter: saturate(1.2) blur(12px);
   backdrop-filter: saturate(1.2) blur(10px);
   border-radius: 3px;

@@ -118,11 +118,6 @@ export default class Navbar extends Vue {
     document.title = i18n.t('strippedTitle') as string
   }
 
-  setNavPadding() {
-    let nav = document.getElementsByTagName('nav')[0].style
-    nav.paddingBottom = '100px'
-  }
-
   setHeaderFilters() {
     let header = document.getElementById('header')
     if (this.isMobile) {
@@ -230,7 +225,6 @@ export default class Navbar extends Vue {
     window.setTimeout(() => {
       this.setHeaderFilters()
     }, 50)
-    this.setNavPadding()
   }
 
   blur_i = 0

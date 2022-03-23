@@ -6,9 +6,17 @@ v-lazy(
   transition='fade-transition'
 )
   v-card.project.mt-10.pb-9.mb-6
-    v-carousel(cycle, hide-delimiters, height='auto')
+    v-carousel(cycle, hide-delimiters, height='auto', :interval='interval')
       v-carousel-item(v-for='(slide, i) in slides', :key='i', height='auto')
-        v-img(aspect-ratio='1.5', :src='slide')
+        v-img(aspect-ratio='1.5', :src='slide', :lazy-src='lazySlides.length ? lazySlides[i] : ""')
+          template(v-slot:placeholder)
+            v-row(
+              class="fill-height ma-0"
+              align="center"
+              justify="center")
+              v-progress-circular(
+                indeterminate
+                color="grey")
       span.proj_type {{ type }}
     v-card-title.pa-3(style='word-break: break-word') {{ title }}
     a show more
@@ -33,6 +41,13 @@ export default class Project extends Vue {
   @Prop({ required: true })
   public slides!: string[]
 
+  @Prop({})
+  public lazySlides?: string[]
+
+  get interval() {
+    return 24000 / this.slides.length - 2000
+  }
+  
   expanded = false
   isActive = true
 }

@@ -20,6 +20,8 @@ import Vuetify, {
   VCarouselItem,
   VSlider,
   VLazy,
+  VRow,
+  VProgressCircular,
   VMain,
 } from 'vuetify/lib'
 import {Intersect, Scroll} from 'vuetify/es5/directives'
@@ -47,6 +49,8 @@ Vue.use(Vuetify, {
     VCarouselItem,
     VSlider,
     VLazy,
+    VRow,
+    VProgressCircular,
     VMain,
   },
   directives: {
