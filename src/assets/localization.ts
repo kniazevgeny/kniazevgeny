@@ -45,16 +45,24 @@ export const messages = {
           require('../assets/honestspeculators-3-m.webp'),
         ],
         lazySlides: [
-          require('../assets/mckinsey-1-l.webp'),
-          require('../assets/mckinsey-2-l.webp'),
-          require('../assets/mckinsey-3-l.webp'),
+          require('../assets/honestspeculators-1-l.webp'),
+          require('../assets/honestspeculators-2-l.webp'),
+          require('../assets/honestspeculators-3-l.webp'),
         ]
       },
       {
         title: 'Роль сообществ в цифровой экономике',
         type: 'Аналитический обзор',
-        slides: ['https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'],
-        lazySlides: []
+        slides: [
+          require('../assets/cybereconomy-1-m.webp'),
+          require('../assets/cybereconomy-2-m.webp'),
+          require('../assets/cybereconomy-3-m.webp'),
+        ],
+        lazySlides: [
+          require('../assets/cybereconomy-1-l.webp'),
+          require('../assets/cybereconomy-2-l.webp'),
+          require('../assets/cybereconomy-3-l.webp'),
+        ]
       },
       {
         title: 'The Matrix: ЕГЭ',
@@ -65,8 +73,16 @@ export const messages = {
       {
         title: 'Сравнение уровня развития ВИЭ в РФ и Канаде',
         type: 'Исследование',
-        slides: ['https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'],
-        lazySlides: []
+        slides: [
+          require('../assets/russierenouvelables-1-m.webp'),
+          require('../assets/russierenouvelables-2-m.webp'),
+          require('../assets/russierenouvelables-3-m.webp'),
+        ],
+        lazySlides: [
+          require('../assets/russierenouvelables-1-l.webp'),
+          require('../assets/russierenouvelables-2-l.webp'),
+          require('../assets/russierenouvelables-3-l.webp'),
+        ]
       },
     ]
   },
