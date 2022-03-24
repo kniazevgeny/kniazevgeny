@@ -39,8 +39,16 @@ export const messages = {
       {
         title: 'Бронирование парковки',
         type: 'MVP',
-        slides: ['https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'],
-        lazySlides: []
+        slides: [
+          require('../assets/honestspeculators-1-m.webp'),
+          require('../assets/honestspeculators-2-m.webp'),
+          require('../assets/honestspeculators-3-m.webp'),
+        ],
+        lazySlides: [
+          require('../assets/mckinsey-1-l.webp'),
+          require('../assets/mckinsey-2-l.webp'),
+          require('../assets/mckinsey-3-l.webp'),
+        ]
       },
       {
         title: 'Роль сообществ в цифровой экономике',

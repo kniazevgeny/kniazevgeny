@@ -3,9 +3,8 @@ v-lazy(
   v-model='isActive',
   :options='{ threshold: 0.8 }',
   min-height='550',
-  transition='fade-transition'
-)
-  v-card.project.mt-10.pb-9.mb-6
+  transition='fade-transition')
+  v-card.project.mt-10.pb-9.mb-6(v-intersect='{handler: onIntersect,options: {threshold: 0.7}}')
     v-carousel(cycle, hide-delimiters, height='auto', :interval='interval')
       v-carousel-item(v-for='(slide, i) in slides', :key='i', height='auto')
         v-img(aspect-ratio='1.5', :src='slide', :lazy-src='lazySlides.length ? lazySlides[i] : ""')
@@ -44,8 +43,19 @@ export default class Project extends Vue {
   @Prop({})
   public lazySlides?: string[]
 
+  isIntersecting = false
+  onIntersect(
+    entry: IntersectionObserverEntry[],
+    observer: IntersectionObserver,
+    isIntersecting: boolean
+  ) {
+    this.isIntersecting = isIntersecting
+  }
+
   get interval() {
+    if (this.isIntersecting)
     return 24000 / this.slides.length - 2000
+    return 24000
   }
   
   expanded = false
