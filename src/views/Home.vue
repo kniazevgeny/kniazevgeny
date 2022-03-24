@@ -25,7 +25,7 @@
           :title='project.title',
           :type='project.type',
           :slides='project.slides',
-          :lazySlides='project.lazySlides.length ? project.lazySlides : []',
+          :lazySlides='project.lazySlides',
           v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
           :id='"p" + i'
         )
@@ -179,11 +179,13 @@ export default class Home extends Vue {
     height: 340px;
   }
   #slider {
-    padding-left: 100px;
-    right: 15px;
+    padding-left: 8vw;
+    right: 18px;
   }
   #slider:hover {
     padding-right: 250px;
+    padding-left: 0;
+    right: 0;
   }
   .v-slider__tick-label {
     max-width: 54vw !important;

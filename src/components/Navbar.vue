@@ -1,12 +1,12 @@
 <template lang="pug">
 nav(v-scroll='onScroll')
-  v-app-bar#header(
+  v-app-bar#header.blurry(
     flat,
     app,
     :height='windowHeight * heightCoef[isMobile ? (mode != 1 ? mode : 0) : mode]'
   )
-    v-flex(xs1, md1)
-    v-flex(xs3, md2, style='text-align: center')
+    v-flex(xs1, sm1, md2)
+    v-flex(xs2, sm2, md2, style='text-align: center')
       //- :style='"width: auto;"',
       svg(
         :style='"width:" + svg_rect_size[isMobile ? (mode != 1 ? mode : 0) : mode] + ";height:" + svg_rect_size[isMobile ? (mode != 1 ? mode : 0) : mode]',
@@ -37,8 +37,8 @@ nav(v-scroll='onScroll')
             )
           filter#blur
             feGaussianBlur(in='SourceGraphic', stdDeviation='0,0')
-    v-flex(xs1, md2)
-    v-flex(xs6, md5)
+    v-flex(xs1, sm2, md2)
+    v-flex(xs7, sm7, md6)
       // Title
       v-toolbar-title
         h3.h {{ $t("title") }}
@@ -46,7 +46,7 @@ nav(v-scroll='onScroll')
       a(v-if='mode == 2', @click='mode = prevMode') Show Less
       div
         v-spacer
-    v-flex(xs1, md2)
+    v-flex(xs1, sm2, md2)
       v-btn(text, icon, color='grey', @click='toggleMode')
         v-icon(small) brightness_2
       // Language picker
@@ -119,20 +119,20 @@ export default class Navbar extends Vue {
   }
 
   setHeaderFilters() {
-    let header = document.getElementById('header')
-    if (this.isMobile) {
-      header?.classList.add('blurry')
-      return 0
-    }
+    // let header = document.getElementById('header')
+    // if (this.isMobile) {
+    //   header?.classList.add('blurry')
+    //   return 0
+    // }
 
-    if (!this.mode || this.mode == 2)
-      window.setTimeout(() => {
-        header?.classList.add('blurry')
-      }, 450)
-    else {
-      // console.log('removed')
-      header?.classList.remove('blurry')
-    }
+    // if (!this.mode || this.mode == 2)
+    //   window.setTimeout(() => {
+    //     header?.classList.add('blurry')
+    //   }, 450)
+    // else {
+    //   // console.log('removed')
+    //   header?.classList.remove('blurry')
+    // }
   }
 
   heightCoef = [0.15, 0.35, 0.55]
