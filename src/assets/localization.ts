@@ -10,6 +10,7 @@ export const messages = {
         title: 'ECharge',
         type: 'MVP',
         slides: [
+          // TODO: if mobile, show 600-700px width img 
           require('../assets/echarge-1-m.webp'),
           require('../assets/echarge-2-m.webp'),
           require('../assets/echarge-3-m.webp'),
@@ -67,7 +68,7 @@ export const messages = {
       {
         title: 'The Matrix: ЕГЭ',
         type: 'Видео',
-        slides: ['https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'],
+        slides: [''],
         lazySlides: []
       },
       {

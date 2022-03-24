@@ -98,6 +98,9 @@ export default class Home extends Vue {
       this.ticksLabels.push(el.title as never)
     })
     this.ticksLabels.reverse()
+
+    // paint v-slider navigation before any scroll
+    window.setTimeout(()=>{this.onRealPosChange(0,0)}, 50)
   }
 
   @Watch('realPos')
@@ -154,6 +157,7 @@ export default class Home extends Vue {
 
 #slider:hover {
   padding-right: 35vw;
+  right: 0;
 }
 
 @media screen and (min-width: 1300px) and (max-width: 1500px) {

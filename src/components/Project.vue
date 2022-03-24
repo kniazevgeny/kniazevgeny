@@ -5,9 +5,9 @@ v-lazy(
   min-height='550',
   transition='fade-transition')
   v-card.project.mt-10.pb-9.mb-6(v-intersect='{handler: onIntersect,options: {threshold: 0.7}}')
-    v-carousel(cycle, hide-delimiters, height='auto', :interval='interval')
+    v-carousel(continous, cycle, hide-delimiters, height='auto', :interval='interval')
       v-carousel-item(v-for='(slide, i) in slides', :key='i', height='auto')
-        v-img(aspect-ratio='1.5', :src='slide', :lazy-src='lazySlides.length ? lazySlides[i] : ""')
+        v-img(aspect-ratio='1.5', :src='slide', :lazy-src='lazySlides[i]')
           template(v-slot:placeholder)
             v-row(
               class="fill-height ma-0"
@@ -16,6 +16,18 @@ v-lazy(
               v-progress-circular(
                 indeterminate
                 color="grey")
+      //- Use templates because of different icons. Otherwise 
+      //- initial icon pack freezes all the content loading 
+      template(v-slot:prev="{ on, attrs }")
+        v-icon(
+          large
+          v-bind="attrs"
+          v-on="on") arrow_left
+      template(v-slot:next="{ on, attrs }")
+        v-icon(
+          large
+          v-bind="attrs"
+          v-on="on") arrow_right
       span.proj_type {{ type }}
     v-card-title.pa-3(style='word-break: break-word') {{ title }}
     a show more
@@ -54,7 +66,7 @@ export default class Project extends Vue {
 
   get interval() {
     if (this.isIntersecting)
-    return 24000 / this.slides.length - 2000
+    return 32000 / this.slides.length - 2000
     return 24000
   }
   
