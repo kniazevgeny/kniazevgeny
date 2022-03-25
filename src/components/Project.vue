@@ -28,9 +28,18 @@ v-lazy(
           large
           v-bind="attrs"
           v-on="on") arrow_right
-      span.proj_type {{ type }}
-    v-card-title.pa-3(style='word-break: break-word') {{ title }}
-    a show more
+      h3.proj_type {{ type }}
+    v-tooltip(bottom)
+      template(v-slot:activator="{ on, attrs }")
+        v-btn.proj_expand(icon, v-bind="attrs", v-on="on")
+          v-icon open_in_full
+      span open project page
+    h2.pa-3.pb-0.h(style='word-break: break-word; padding-right: 20px' @click='$router.push("#abc")') 
+      h2.grad-accent() {{ title }}
+    p.pl-3.mb-0.pt-3(v-for='(text, i) in paragraphs', v-show='expanded ? true : i == 0') {{ text }}
+    div(v-show='expanded')
+      //- Download buttons
+    a.pl-3.grad-accent(style='text-decoration: underline !important', @click='expanded = !expanded', v-if='paragraphs.length - 1 && !expanded') {{ $t("home.showMore") }}
 </template>
 
 <script lang="ts">
@@ -52,6 +61,9 @@ export default class Project extends Vue {
   @Prop({ required: true })
   public slides!: string[]
 
+  @Prop({ required: true })
+  public paragraphs!: string[]
+  
   @Prop({})
   public lazySlides?: string[]
 
@@ -76,7 +88,7 @@ export default class Project extends Vue {
 </script>
 <style scoped>
 .project {
-  max-width: calc(60vh * 1.5);
+  max-width: calc(60vh * 1.778);
   border-radius: 10px !important;
   margin: auto;
 }
@@ -92,10 +104,32 @@ export default class Project extends Vue {
   right: 6px;
   padding: 3px 8px 3px 8px;
   border-radius: 3px;
-  font-family: 'Roboto Slab', serif !important;
+  font-family: 'Roboto Slab', monospace !important;
   font-weight: 600;
-  backdrop-filter: saturate(1.5) blur(12px) brightness(0.7);
-  -webkit-backdrop-filter: saturate(1.5) blur(12px) brightness(0.7);
+  background: linear-gradient(-45deg, var(--gradient-colors));
+  background: -webkit-linear-gradient(-45deg, var(--gradient-colors));
+  /* backdrop-filter: saturate(1.5) blur(12px) brightness(0.7); */
+  /* -webkit-backdrop-filter: saturate(1.5) blur(12px) brightness(0.7); */
   color: white;
+}
+
+.proj_expand {
+  position: absolute;
+  margin-top: 12px;
+  right: 6px;
+}
+
+.anchor {
+  bottom: 0;
+  display: inline-block;
+  left: 0;
+  margin: 0 -0.7em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.anchor:hover {
+  outline-width: 0;
 }
 </style>

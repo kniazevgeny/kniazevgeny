@@ -5,7 +5,7 @@ v-app(
 )
   Navbar
   Snackbar
-  v-main(style='transition: none; padding-top: 140px')
+  v-main(style='transition: none')
     router-view
 </template>
 
@@ -50,8 +50,19 @@ export default class App extends Vue {
       title: i18n.t('title') as string,
     }
   }
-
-  mounted() {}
+  
+  mounted() {
+    let gradients = [
+      ["rgb(226, 190, 170)", "rgb(221, 116, 75)", "rgb(248, 164, 85)"],
+      ["rgb(219, 112, 144)", "rgb(223, 173, 153)", "rgb(139, 228, 198)"],
+      ["rgb(146, 70, 233)", "rgb(152, 175, 226)", "rgb(224, 173, 79)"]
+    ]
+    let i = Math.round(Math.random() * 2)
+    // set random gradient
+    document.body.style.setProperty("--gradient-from", gradients[i][0])
+    document.body.style.setProperty("--accent-color", gradients[i][1])
+    document.body.style.setProperty("--gradient-to", gradients[i][2])
+  }
 }
 </script>
 <style>
@@ -59,11 +70,26 @@ body,
 p,
 a,
 span {
-  font-family: 'Bitter', serif !important;
+  font-family: 'Bitter', monospace !important;
 }
 .h,
 .v-card__title {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto Slab', monospace;
   font-weight: 600 !important;
+  width: fit-content;
+}
+
+body {
+  --gradient-from: rgb(146, 70, 233);
+  --accent-color: rgb(152, 175, 226);
+  --gradient-to: rgb(224, 173, 79);
+  --gradient-colors: var(--gradient-from), var(--gradient-to);
+}
+.grad-accent {
+  background: linear-gradient(-45deg, var(--gradient-colors));
+  background: -webkit-linear-gradient(-45deg, var(--gradient-colors));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>

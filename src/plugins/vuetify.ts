@@ -22,6 +22,7 @@ import Vuetify, {
   VLazy,
   VRow,
   VProgressCircular,
+  VTooltip,
   VMain,
 } from 'vuetify/lib'
 import {Intersect, Scroll} from 'vuetify/es5/directives'
@@ -51,6 +52,7 @@ Vue.use(Vuetify, {
     VLazy,
     VRow,
     VProgressCircular,
+    VTooltip,
     VMain,
   },
   directives: {

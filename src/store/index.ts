@@ -1,6 +1,5 @@
 import AppStore from '@/store/modules/AppStore'
 import SnackbarStore from '@/store/modules/SnackbarStore'
-import persistentState from '@/store/plugins/persistentState'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -11,7 +10,7 @@ const store = new Vuex.Store({
     AppStore,
     SnackbarStore,
   },
-  plugins: [persistentState],
+  plugins: [],
 })
 
 export default store

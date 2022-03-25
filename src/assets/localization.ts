@@ -3,7 +3,8 @@ export const messages = {
     title: 'Евгений Князев',
     notFound: 'Страница не найдена',
     home: {
-      privacy: 'bb'
+      privacy: 'bb',
+      showMore: 'Показать ещё'
     },
     projects: [
       {
@@ -19,6 +20,9 @@ export const messages = {
           require('../assets/echarge-1-l.webp'),
           require('../assets/echarge-2-l.webp'),
           require('../assets/echarge-3-l.webp'),
+        ],
+        paragraphs: [
+          'MVP на тильде и на vue.js для проекта ECharge: зарядные станции для электромобилей.',
         ]
       },
       {
@@ -35,6 +39,11 @@ export const messages = {
           require('../assets/mckinsey-2-l.webp'),
           require('../assets/mckinsey-3-l.webp'),
           require('../assets/mckinsey-4-l.webp'),
+        ],
+        paragraphs: [
+          'Презентация и финмодель для полуфинала кейс-чемпионата McKinsey & HSE Case Club. В команде из трех аналитиков и дизайнера проработали анализ рынка самозанятых арендодателей, сегментировали рынок, проработали инициативы и предложили стратегию развития на 5 лет.',
+          'В ходе анализа изучили документы в источниках от ЦБ РФ до бумаг с IPO Cian на sec.gov, поговорили с продактом из Райфа, замоделировали рост пользовательской базы (через когорты), посчитали WACC и NPV',
+          ''
         ]
       },
       {
@@ -49,6 +58,10 @@ export const messages = {
           require('../assets/honestspeculators-1-l.webp'),
           require('../assets/honestspeculators-2-l.webp'),
           require('../assets/honestspeculators-3-l.webp'),
+        ],
+        paragraphs: [
+          'MVP для проекта "Бронирование парковок". MVP состоит из карты (GMaps), на которой можно выбрать ближайшее место парковки и дальнейших шагов по бронированию.',
+          'Задача: продемонстрировать, как может быть реализована идея по переоборудованию старых зданий под автоматические парковки, а именно, как она будет выглядеть с точки зрения пользователя.'
         ]
       },
       {
@@ -63,13 +76,21 @@ export const messages = {
           require('../assets/cybereconomy-1-l.webp'),
           require('../assets/cybereconomy-2-l.webp'),
           require('../assets/cybereconomy-3-l.webp'),
+        ],
+        paragraphs: [
+          'Этот аналитический обзор — компиляция работы лаборатории "Экономика цифровых сообществ" на "Архипелаге 2121", проходившего в 2021 году в Великом Новгороде. Наша лаборатория исследовала феномены цифровых сообществ и цифровой экономики.',
+          'Сперва рассмотрели тексты Майка Монтейро, Пола Грэма, Дэвида Гребера, Джеймса Уильямса, Ваннкартеша Рао, Роберта Солоу и других, чтобы определить основные точки зрения на цифровую экономику. В результате удалось выделить позиции с помощью категорий Оптимизм-Скептицизм и Личная Выгода-Общественное развитие',
+          'Затем '
         ]
       },
       {
         title: 'The Matrix: ЕГЭ',
         type: 'Видео',
         slides: [''],
-        lazySlides: []
+        lazySlides: [],
+        paragraphs: [
+          '',
+        ]
       },
       {
         title: 'Сравнение уровня развития ВИЭ в РФ и Канаде',
@@ -83,6 +104,9 @@ export const messages = {
           require('../assets/russierenouvelables-1-l.webp'),
           require('../assets/russierenouvelables-2-l.webp'),
           require('../assets/russierenouvelables-3-l.webp'),
+        ],
+        paragraphs: [
+          'Исследовал одну из ЦУР (целей устойчивого развития) в рамках прокета двуязычного отделения в старших классах. ',
         ]
       },
     ]
@@ -90,5 +114,8 @@ export const messages = {
   en: {
     title: 'Evgeny Kniazev',
     notFound: 'Page not found',
+    home: {
+      showMore: 'Show more'
+    }
   },
 }

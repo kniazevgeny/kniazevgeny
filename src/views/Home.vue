@@ -19,6 +19,12 @@
     v-flex(xs1, sm2, md2)
     v-flex(xs10, sm8, md8)
       v-layout(column)
+        h1.h.grad-accent My Story
+        p.pt-2 blah blah blah
+        p blah blah blah
+        p blah blah blah
+        h1.pt-3.h.grad-accent My Projects
+        //- Projects
         Project(
           v-for='(project, i) in $t("projects")',
           :key='i',
@@ -26,6 +32,7 @@
           :type='project.type',
           :slides='project.slides',
           :lazySlides='project.lazySlides',
+          :paragraphs='project.paragraphs',
           v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
           :id='"p" + i'
         )
