@@ -1,15 +1,14 @@
 <template lang="pug">
 nav(v-scroll='onScroll')
-  v-app-bar#header.blurry(
+  v-app-bar#header(
     flat,
-    app,
-    :height='windowHeight * heightCoef[isMobile ? (mode != 1 ? mode : 0) : mode]'
+    :height='windowHeight * heightCoef[mode]'
   )
     v-flex(xs1, sm1, md2)
     v-flex(xs2, sm2, md2, style='text-align: center')
       //- :style='"width: auto;"',
       svg(
-        :style='"width:" + svg_rect_size[isMobile ? (mode != 1 ? mode : 0) : mode] + ";height:" + svg_rect_size[isMobile ? (mode != 1 ? mode : 0) : mode]',
+        :style='"width:" + svg_rect_size[mode] + ";height:" + svg_rect_size[mode]',
         width='200',
         height='200',
         viewBox='-50 -50 100 100',
@@ -42,8 +41,8 @@ nav(v-scroll='onScroll')
       // Title
       v-toolbar-title
         h3.h {{ $t("title") }}
-      a(v-if='mode <= 1', @click='mode = 2') Show More
-      a(v-if='mode == 2', @click='mode = prevMode') Show Less
+      //- a(v-if='mode <= 1', @click='mode = 2') Show More
+      //- a(v-if='mode == 2', @click='mode = prevMode') Show Less
       div
         v-spacer
     v-flex(xs1, sm2, md2)
@@ -79,7 +78,7 @@ export default class Navbar extends Vue {
   @AppStore.Mutation setDark!: (dark: boolean) => void
   @AppStore.Mutation setLanguage!: (language: string) => void
 
-  mode = 0 // 1 means meduim, 0 small, 2 expanded
+  mode = 2 // 1 means meduim, 0 small, 2 expanded
 
   get locales() {
     return [
@@ -108,31 +107,11 @@ export default class Navbar extends Vue {
   toggleMode() {
     this.setDark(!this.dark)
     ;(this.$vuetify.theme as any).dark = this.dark
-    window.setTimeout(() => {
-      this.setHeaderFilters()
-    }, 25)
   }
   changeLanguage(locale: string) {
     i18n.locale = locale
     this.setLanguage(locale)
     document.title = i18n.t('strippedTitle') as string
-  }
-
-  setHeaderFilters() {
-    // let header = document.getElementById('header')
-    // if (this.isMobile) {
-    //   header?.classList.add('blurry')
-    //   return 0
-    // }
-
-    // if (!this.mode || this.mode == 2)
-    //   window.setTimeout(() => {
-    //     header?.classList.add('blurry')
-    //   }, 450)
-    // else {
-    //   // console.log('removed')
-    //   header?.classList.remove('blurry')
-    // }
   }
 
   heightCoef = [0.12, 0.35, 0.55]
@@ -173,37 +152,6 @@ export default class Navbar extends Vue {
     return d
   }
 
-  // when mode changes, gradient change is starting to lag
-  stopGradientOffsetChange = false
-
-  processGradientOssfetChange(f: number) {
-    this.gradient_key += 1
-
-    window.setTimeout(() => {
-      if (f == 75 || this.stopGradientOffsetChange) {
-        return
-      }
-      for (let i = 0; i < this.gradient_offsets.length; i++) {
-        this.gradient_offsets[i] -= 0.5
-      }
-      if (this.gradient_offsets[this.gradient_offsets.length - 3] < -50)
-        for (let i = 0; i < this.gradient_offsets.length; i++)
-          this.gradient_offsets[i] = 50 * i
-      this.processGradientOssfetChange(f + 1)
-    }, 1)
-  }
-
-  changeGradientOffsets() {
-    window.setTimeout(() => {
-      this.processGradientOssfetChange(0)
-    }, 650)
-  }
-
-  onScroll() {
-    if (window.scrollY < 45 && this.mode != 2) this.mode = 1
-    if (window.scrollY > 100 && this.mode == 1) this.mode = 0
-  }
-
   mounted() {
     // not required, but that's easier to change values
     if (this.isMobile) this.d[0] = this.maskPath(2.5)
@@ -221,66 +169,9 @@ export default class Navbar extends Vue {
     }
 
     // animate gradient
-    this.changeGradientOffsets()
-    window.setTimeout(() => {
-      this.setHeaderFilters()
-    }, 50)
+    // this.changeGradientOffsets()
   }
 
-  blur_i = 0
-  animateBlur(
-    svg: SVGSVGElement,
-    blurFilter: Element | null | undefined,
-    maxBlur: number
-  ) {
-    window.setTimeout(() => {
-      // https://www.desmos.com/calculator/ekaxwdyase
-      // let maxBlur = 2.5
-      let x = this.blur_i / 100
-      let noise = Math.random() / 20
-      let coef = 4 + Math.pow(noise, 2)
-      // Mobile optimization
-      if (this.isMobile && maxBlur != 1.2) maxBlur = 1.2
-      let y = -coef * Math.pow(x, 2) + 4 * x - 0.3 // value in (0;1). Max at (0.5; 1)
-      // https://tympanus.net/codrops/2015/04/08/motion-blur-effect-svg/
-      let blur = Math.round(maxBlur * y > 0 ? maxBlur * y : 0)
-      // Mobile optimization
-      // if (blur > 2 && maxBlur < 2) blur = 1.2
-      blurFilter?.setAttribute('stdDeviation', blur.toString())
-      svg.setAttribute('filter', 'url(#blur)')
-      this.blur_i += 1.5
-      if (this.blur_i < 100) this.animateBlur(svg, blurFilter, maxBlur)
-    }, 1)
-  }
-
-  prevMode = 0
-  @Watch('mode')
-  onToggleMode(value: number, oldValue: number) {
-    this.prevMode = oldValue
-    if (value > 0) this.changeGradientOffsets()
-    this.setHeaderFilters()
-    if (value === 0) {
-      // prevent gradient lags on scroll
-      this.stopGradientOffsetChange = true
-      window.setTimeout(() => {
-        this.stopGradientOffsetChange = false
-      }, 10)
-    }
-    // to default values
-    let svg = document.getElementsByTagName('svg')[0]
-    let blurFilter = document.querySelector('#blur')?.firstElementChild
-    this.blur_i = 0
-
-    // let the ratio between prev and next sizes control maxBlur
-    let maxBlur =
-      parseInt(this.svg_rect_size[value].slice(0, -2)) /
-      parseInt(this.svg_rect_size[oldValue].slice(0, -2))
-    if (maxBlur < 1) maxBlur = 1 / maxBlur
-    this.animateBlur(svg, blurFilter, maxBlur / 1.5)
-
-    // any error will be neutralized
-    svg.setAttribute('filter', 'none')
-  }
 }
 </script>
 
@@ -302,7 +193,7 @@ nav a:active {
 }
 
 header.v-app-bar.v-toolbar.v-sheet#header {
-  background-color: rgba(255, 255, 255, 1) !important;
+  background-color: transparent;
   backdrop-filter: none;
 }
 header.v-app-bar.v-toolbar.v-sheet.blurry#header {
@@ -311,7 +202,7 @@ header.v-app-bar.v-toolbar.v-sheet.blurry#header {
   -webkit-backdrop-filter: saturate(1.2) blur(12px);
 }
 header.v-app-bar.v-toolbar.v-sheet.theme--dark#header {
-  background-color: rgba(0, 0, 0, 1) !important;
+  background-color: transparent;
   backdrop-filter: none;
 }
 header.v-app-bar.v-toolbar.v-sheet.blurry.theme--dark#header {
@@ -321,28 +212,13 @@ header.v-app-bar.v-toolbar.v-sheet.blurry.theme--dark#header {
 }
 
 .stop1 {
-  stop-color: rgb(116, 3, 190);
+  stop-color: var(--gradient-from);
 }
 .stop2 {
-  stop-color: rgb(230, 22, 84);
+  stop-color: var(--accent-color);
 }
 .stop3 {
-  stop-color: rgb(255, 123, 0);
-}
-.stop4 {
-  stop-color: rgb(255, 208, 0);
-}
-.stop5 {
-  stop-color: rgb(0, 225, 255);
-}
-.stop6 {
-  stop-color: rgb(62, 70, 180);
-}
-.stop7 {
-  stop-color: rgb(116, 3, 190);
-}
-.stop8 {
-  stop-color: rgb(230, 22, 84);
+  stop-color: var(--gradient-to);
 }
 
 svg,
