@@ -34,12 +34,12 @@ v-lazy(
         v-btn.proj_expand(icon, v-bind="attrs", v-on="on")
           v-icon open_in_full
       span open project page
-    h2.pa-3.pb-0.h(style='word-break: break-word; padding-right: 20px' @click='$router.push("#abc")') 
-      h2.grad-accent() {{ title }}
+    h2.pa-3.pb-0.h(style='word-break: break-word;' @click='$router.push("#abc")') 
+      span.grad-accent(style='padding-right: 30px') {{ title }}
     p.pl-3.mb-0.pt-3(v-for='(text, i) in paragraphs', v-show='expanded ? true : i == 0') {{ text }}
     div(v-show='expanded')
       //- Download buttons
-    a.pl-3.grad-accent(style='text-decoration: underline !important', @click='expanded = !expanded', v-if='paragraphs.length - 1 && !expanded') {{ $t("home.showMore") }}
+    a.pl-3.grad-accent(style='text-decoration: underline !important', @click='expanded = true', v-if='paragraphs.length - 1 && !expanded') {{ $t("home.showMore") }}
 </template>
 
 <script lang="ts">
