@@ -34,6 +34,7 @@
           :lazySlides='project.lazySlides',
           :paragraphs='project.paragraphs',
           v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
+          :hasDemo='project.hasDemo === true'
           :id='"p" + i'
         )
 
@@ -181,7 +182,7 @@ export default class Home extends Vue {
     padding-right: 25vw;
   }
   .v-slider {
-    height: 220px;
+    height: 250px;
   }
 }
 

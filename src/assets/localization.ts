@@ -109,6 +109,28 @@ export const messages = {
           'Исследовал одну из ЦУР (целей устойчивого развития) в рамках прокета двуязычного отделения в старших классах. ',
         ]
       },
+      {
+        title: 'Криптовалютный кошелек keyzu.ru',
+        type: 'MVP',
+        hasDemo: true,
+        slides: [
+          require('../assets/keyzu-1-m.webp'),
+          require('../assets/keyzu-1-m.webp'),
+          require('../assets/keyzu-2-m.webp'),
+          require('../assets/keyzu-3-m.webp'),
+          require('../assets/keyzu-4-m.webp'),
+        ],
+        lazySlides: [
+          require('../assets/keyzu-1-l.webp'),
+          require('../assets/keyzu-1-l.webp'),
+          require('../assets/keyzu-2-l.webp'),
+          require('../assets/keyzu-3-l.webp'),
+          require('../assets/keyzu-4-l.webp'),
+        ],
+        paragraphs: [
+          '',
+        ]
+      },
     ]
   },
   en: {

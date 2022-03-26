@@ -3,43 +3,62 @@ v-lazy(
   v-model='isActive',
   :options='{ threshold: 0.8 }',
   min-height='550',
-  transition='fade-transition')
-  v-card.project.mt-10.pb-9.mb-6(v-intersect='{handler: onIntersect,options: {threshold: 0.7}}')
-    v-carousel(continous, cycle, hide-delimiters, height='auto', :interval='interval')
+  transition='fade-transition'
+)
+  v-card.project.mt-10.pb-9.mb-6(
+    v-intersect='{handler: onIntersect,options: {threshold: 0.7}}'
+  )
+    v-carousel(
+      continous,
+      :cycle='!hasDemo',
+      hide-delimiters,
+      height='auto',
+      :interval='interval'
+    )
       v-carousel-item(v-for='(slide, i) in slides', :key='i', height='auto')
-        v-img(aspect-ratio='1.5', :src='slide', :lazy-src='lazySlides[i]')
+        //- If has youtube demo
+        iframe.mb-6(
+          v-if='hasDemo && i === 1',
+          style='width: calc(60vh * 1.76); height: 60vh',
+          src='https://www.youtube.com/embed/2FANMskvytA?controls=1&autoplay=1',
+          title='YouTube video player; Keyzu demo',
+          frameborder='0',
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+          allowfullscreen
+        )
+        //- Else show images
+        v-img(v-else, :aspect-ratio='hasDemo ? "1.76" : "1.5"', :src='slide', :lazy-src='lazySlides[i]')
           template(v-slot:placeholder)
-            v-row(
-              class="fill-height ma-0"
-              align="center"
-              justify="center")
-              v-progress-circular(
-                indeterminate
-                color="grey")
+            v-row.fill-height.ma-0(align='center', justify='center')
+              v-progress-circular(indeterminate, color='grey')
       //- Use templates because of different icons. Otherwise 
       //- initial icon pack freezes all the content loading 
-      template(v-slot:prev="{ on, attrs }")
-        v-icon(
-          large
-          v-bind="attrs"
-          v-on="on") arrow_left
-      template(v-slot:next="{ on, attrs }")
-        v-icon(
-          large
-          v-bind="attrs"
-          v-on="on") arrow_right
+      template(v-slot:prev='{ on, attrs }')
+        v-icon(large, v-bind='attrs', v-on='on') arrow_left
+      template(v-slot:next='{ on, attrs }')
+        v-icon(large, v-bind='attrs', v-on='on') arrow_right
       h3.proj_type {{ type }}
     v-tooltip(bottom)
-      template(v-slot:activator="{ on, attrs }")
-        v-btn.proj_expand(icon, v-bind="attrs", v-on="on")
+      template(v-slot:activator='{ on, attrs }')
+        v-btn.proj_expand(icon, v-bind='attrs', v-on='on')
           v-icon open_in_full
       span open project page
-    h2.pa-3.pb-0.h(style='word-break: break-word;' @click='$router.push("#abc")') 
+    h2.pa-3.pb-0.h(
+      style='word-break: break-word',
+      @click='$router.push("#abc")'
+    ) 
       span.grad-accent(style='padding-right: 30px') {{ title }}
-    p.pl-3.mb-0.pt-3(v-for='(text, i) in paragraphs', v-show='expanded ? true : i == 0') {{ text }}
+    p.pl-3.mb-0.pt-3(
+      v-for='(text, i) in paragraphs',
+      v-show='expanded ? true : i == 0'
+    ) {{ text }}
     div(v-show='expanded')
       //- Download buttons
-    a.pl-3.grad-accent(style='text-decoration: underline !important', @click='expanded = true', v-if='paragraphs.length - 1 && !expanded') {{ $t("home.showMore") }}
+    a.pl-3.grad-accent(
+      style='text-decoration: underline !important',
+      @click='expanded = true',
+      v-if='paragraphs.length - 1 && !expanded'
+    ) {{ $t("home.showMore") }}
 </template>
 
 <script lang="ts">
@@ -63,9 +82,12 @@ export default class Project extends Vue {
 
   @Prop({ required: true })
   public paragraphs!: string[]
-  
+
   @Prop({})
   public lazySlides?: string[]
+
+  @Prop({})
+  public hasDemo?: boolean
 
   isIntersecting = false
   onIntersect(
@@ -77,11 +99,10 @@ export default class Project extends Vue {
   }
 
   get interval() {
-    if (this.isIntersecting)
-    return 32000 / this.slides.length - 2000
+    if (this.isIntersecting) return 32000 / this.slides.length - 2000
     return 24000
   }
-  
+
   expanded = false
   isActive = true
 }
