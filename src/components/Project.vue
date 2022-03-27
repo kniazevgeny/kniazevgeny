@@ -19,7 +19,7 @@ v-lazy(
         //- If has youtube demo
         iframe.mb-6(
           v-if='hasDemo && i === 1',
-          style='width: calc(60vh * 1.76); height: 60vh',
+          :style='isVertical ? "" : "width: calc(60vh * 1.76); height: 60vh"',
           src='https://www.youtube.com/embed/2FANMskvytA?controls=1&autoplay=1',
           title='YouTube video player; Keyzu demo',
           frameborder='0',
@@ -88,6 +88,10 @@ export default class Project extends Vue {
 
   @Prop({})
   public hasDemo?: boolean
+
+  get isVertical() {
+    return window.innerWidth / window.innerHeight < 1.2 
+  }
 
   isIntersecting = false
   onIntersect(

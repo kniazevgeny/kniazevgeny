@@ -1,5 +1,5 @@
 <template lang="pug">
-nav(v-scroll='onScroll')
+nav(v-scroll='')
   v-app-bar#header(
     flat,
     :height='windowHeight * heightCoef[mode]'

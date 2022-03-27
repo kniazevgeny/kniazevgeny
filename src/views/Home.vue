@@ -186,21 +186,33 @@ export default class Home extends Vue {
   }
 }
 
+@media screen and (min-width: 600px) and (max-width: 1300px) {
+  #slider:hover {
+    padding-right: 40vw;
+  }
+  .v-slider {
+    height: 400px;
+  }
+  .v-slider__tick-label {
+    max-width: 35vw !important;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .v-slider {
-    height: 340px;
+    height: 400px;
   }
   #slider {
     padding-left: 8vw;
     right: 18px;
   }
   #slider:hover {
-    padding-right: 250px;
+    padding-right: 270px;
     padding-left: 0;
     right: 0;
   }
   .v-slider__tick-label {
-    max-width: 54vw !important;
+    max-width: 63vw !important;
   }
 }
 
