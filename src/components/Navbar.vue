@@ -46,12 +46,12 @@ nav(v-scroll='')
       div
         v-spacer
     v-flex(xs1, sm2, md2)
-      v-btn(text, icon, color='grey', @click='toggleMode')
+      v-btn(text, icon, color='var(--accent-color)', @click='toggleMode')
         v-icon(small) brightness_2
       // Language picker
       v-menu(offset-y)
         template(v-slot:activator='{ on }')
-          v-btn(text, icon, color='grey', v-on='on') {{ currentLocale.icon }}
+          v-btn(text, icon, color='var(--accent-color)', v-on='on') {{ currentLocale.icon }}
         v-list
           v-list-item(
             v-for='locale in locales',
@@ -121,7 +121,7 @@ export default class Navbar extends Vue {
     'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 50.0 9.5 L 50.0 12.8 L 50.0 16.2 L 50.0 19.8 L 50.0 23.5 L 50.0 27.5 L 49.9 31.7 L 49.8 36.2 L 49.3 40.8 L 47.9 45.0 L 45.0 47.9 L 40.8 49.3 L 36.2 49.8 L 31.7 49.9 L 27.5 50.0 L 23.5 50.0 L 19.8 50.0 L 16.2 50.0 L 12.8 50.0 L 9.5 50.0 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 50.0 L -12.8 50.0 L -16.2 50.0 L -19.8 50.0 L -23.5 50.0 L -27.5 50.0 L -31.7 49.9 L -36.2 49.8 L -40.8 49.3 L -45.0 47.9 L -47.9 45.0 L -49.3 40.8 L -49.8 36.2 L -49.9 31.7 L -50.0 27.5 L -50.0 23.5 L -50.0 19.8 L -50.0 16.2 L -50.0 12.8 L -50.0 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -50.0 -9.5 L -50.0 -12.8 L -50.0 -16.2 L -50.0 -19.8 L -50.0 -23.5 L -50.0 -27.5 L -49.9 -31.7 L -49.8 -36.2 L -49.3 -40.8 L -47.9 -45.0 L -45.0 -47.9 L -40.8 -49.3 L -36.2 -49.8 L -31.7 -49.9 L -27.5 -50.0 L -23.5 -50.0 L -19.8 -50.0 L -16.2 -50.0 L -12.8 -50.0 L -9.5 -50.0 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -50.0 L 12.8 -50.0 L 16.2 -50.0 L 19.8 -50.0 L 23.5 -50.0 L 27.5 -50.0 L 31.7 -49.9 L 36.2 -49.8 L 40.8 -49.3 L 45.0 -47.9 L 47.9 -45.0 L 49.3 -40.8 L 49.8 -36.2 L 49.9 -31.7 L 50.0 -27.5 L 50.0 -23.5 L 50.0 -19.8 L 50.0 -16.2 L 50.0 -12.8 L 50.0 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
   ]
   svg_rect_size = ['75px', '120px', '155px']
-  gradient_offsets = [0, 50, 100, 150, 200, 250, 300, 350]
+  gradient_offsets = [0, 100, 100, 150, 200, 250, 300, 350]
   gradient_key = 0
 
   maskPath(eccentricity: number) {
@@ -215,9 +215,6 @@ header.v-app-bar.v-toolbar.v-sheet.blurry.theme--dark#header {
   stop-color: var(--gradient-from);
 }
 .stop2 {
-  stop-color: var(--accent-color);
-}
-.stop3 {
   stop-color: var(--gradient-to);
 }
 

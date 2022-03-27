@@ -41,7 +41,7 @@ v-lazy(
     v-tooltip(bottom)
       template(v-slot:activator='{ on, attrs }')
         v-btn.proj_expand(icon, v-bind='attrs', v-on='on')
-          v-icon open_in_full
+          v-icon(color='var(--accent-color)') open_in_full
       span open project page
     h2.pa-3.pb-0.h(
       style='word-break: break-word',

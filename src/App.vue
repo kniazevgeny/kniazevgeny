@@ -53,11 +53,12 @@ export default class App extends Vue {
   
   mounted() {
     let gradients = [
-      ["rgb(226, 190, 170)", "rgb(221, 116, 75)", "rgb(248, 164, 85)"],
+      ["rgb(226, 190, 170)", "rgb(240, 77, 65)", "rgb(248, 164, 85)"],
       ["rgb(219, 112, 144)", "rgb(223, 173, 153)", "rgb(139, 228, 198)"],
-      ["rgb(146, 70, 233)", "rgb(152, 175, 226)", "rgb(224, 173, 79)"]
+      ["rgb(169, 151, 252)", "rgb(245, 188, 123)", "rgb(225, 123, 245)"],
+      ["rgb(243, 78, 174)", "rgb(223, 102, 66)", "rgb(245, 188, 123)"]
     ]
-    let i = Math.round(Math.random() * 2)
+    let i = Math.round(Math.random() * (gradients.length-1))
     // set random gradient
     document.body.style.setProperty("--gradient-from", gradients[i][0])
     document.body.style.setProperty("--accent-color", gradients[i][1])
@@ -80,9 +81,9 @@ span {
 }
 
 body {
-  --gradient-from: rgb(146, 70, 233);
-  --accent-color: rgb(152, 175, 226);
-  --gradient-to: rgb(224, 173, 79);
+  --gradient-from: rgb(243, 78, 174);
+  --accent-color: rgb(253, 67, 113);
+  --gradient-to: rgb(245, 188, 123);
   --gradient-colors: var(--gradient-from), var(--gradient-to);
 }
 .grad-accent {
