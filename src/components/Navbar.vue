@@ -37,7 +37,7 @@ nav(v-scroll='')
           filter#blur
             feGaussianBlur(in='SourceGraphic', stdDeviation='0,0')
     v-flex(xs1, sm2, md2)
-    v-flex(xs7, sm7, md6)
+    v-flex(xs7, sm7, md6).ml-6
       // Title
       v-toolbar-title
         h3.h {{ $t("title") }}
@@ -45,7 +45,7 @@ nav(v-scroll='')
       //- a(v-if='mode == 2', @click='mode = prevMode') Show Less
       div
         v-spacer
-    v-flex(xs1, sm2, md2)
+    v-flex(xs1, sm2, md2, :style='isMobile ? "align-self: start" : ""')
       v-btn(text, icon, color='var(--accent-color)', @click='toggleMode')
         v-icon(small) brightness_2
       // Language picker
@@ -95,7 +95,7 @@ export default class Navbar extends Vue {
   }
 
   get isMobile() {
-    return true
+    // return true
     // obsolete & lagging
     return window.innerWidth <= 800 && window.innerHeight <= 900
   }
@@ -154,7 +154,7 @@ export default class Navbar extends Vue {
 
   mounted() {
     // not required, but that's easier to change values
-    if (this.isMobile) this.d[0] = this.maskPath(2.5)
+    // if (this.isMobile) this.d[0] = this.maskPath(2.5)
     // this.d[0] = this.maskPath(3)
     // this.d[1] = this.maskPath(6)
     // this.d[2] = this.maskPath(10)
