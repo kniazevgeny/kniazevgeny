@@ -30,6 +30,7 @@
           :key='i',
           :title='project.title',
           :type='project.type',
+          :link='project.link',
           :_slides='project.slides',
           :lazySlides='project.lazySlides',
           :paragraphs='project.paragraphs',

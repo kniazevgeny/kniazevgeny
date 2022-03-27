@@ -10,6 +10,7 @@ export const messages = {
       {
         title: 'ECharge',
         type: 'MVP',
+        link: 'https://echargeenergy.com/',
         slides: [
           // TODO: if mobile, show 600-700px width img 
           require('../assets/echarge-1-m.webp'),
@@ -28,6 +29,7 @@ export const messages = {
       {
         title: 'Стратегия развития банка для самозанятых',
         type: 'Кейс',
+        link: null,
         slides: [
           require('../assets/mckinsey-1-m.webp'),
           require('../assets/mckinsey-2-m.webp'),
@@ -49,6 +51,7 @@ export const messages = {
       {
         title: 'Бронирование парковки',
         type: 'MVP',
+        link: 'https://honestspeculators.github.io/',
         slides: [
           require('../assets/honestspeculators-1-m.webp'),
           require('../assets/honestspeculators-2-m.webp'),
@@ -67,6 +70,7 @@ export const messages = {
       {
         title: 'Роль сообществ в цифровой экономике',
         type: 'Аналитический обзор',
+        link: 'https://habr.com/ru/post/598567/',
         slides: [
           require('../assets/cybereconomy-1-m.webp'),
           require('../assets/cybereconomy-2-m.webp'),
@@ -86,6 +90,7 @@ export const messages = {
       {
         title: 'The Matrix: ЕГЭ',
         type: 'Видео',
+        link: 'https://vk.com/video250210451_456239517',
         hasDemo: true,
         embedURL: 'https://vk.com/video_ext.php?oid=250210451&id=456239517&hash=96cdf72be8c36f77&hd=2&autoplay=1&',
         slides: [''],
@@ -97,6 +102,7 @@ export const messages = {
       {
         title: 'Сравнение уровня развития ВИЭ в РФ и Канаде',
         type: 'Исследование',
+        link: 'https://kniazevgeny.github.io/russierenouvelables/',
         slides: [
           require('../assets/russierenouvelables-1-m.webp'),
           require('../assets/russierenouvelables-2-m.webp'),
@@ -114,6 +120,7 @@ export const messages = {
       {
         title: 'Криптовалютный кошелек keyzu.ru',
         type: 'MVP',
+        link: null,
         hasDemo: true,
         embedURL: 'https://www.youtube.com/embed/2FANMskvytA?autoplay=1&',
         slides: [

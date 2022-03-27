@@ -19,7 +19,7 @@ v-lazy(
         //- If has youtube demo
         iframe.mb-6(
           v-if='hasDemo && i === 1',
-          :style='isVertical ? "width: 100%" : "width: calc(60vh * 1.76); height: 60vh"',
+          :style='isVertical ? "width: 100%; height: calc(70vw / 1.76)" : "width: calc(60vh * 1.76); height: 60vh"',
           :src='embedURL + (isVertical ? "controls=1&" : "")',
           title='Video player',
           frameborder='0',
@@ -27,7 +27,12 @@ v-lazy(
           allowfullscreen
         )
         //- Else show images
-        v-img(v-else, :aspect-ratio='hasDemo ? "1.76" : "1.5"', :src='slide', :lazy-src='lazySlides[i]')
+        v-img(
+          v-else,
+          :aspect-ratio='hasDemo ? "1.76" : "1.5"',
+          :src='slide',
+          :lazy-src='lazySlides[i]'
+        )
           template(v-slot:placeholder)
             v-row.fill-height.ma-0(align='center', justify='center')
               v-progress-circular(indeterminate, color='grey')
@@ -41,13 +46,10 @@ v-lazy(
     v-tooltip(bottom)
       template(v-slot:activator='{ on, attrs }')
         v-btn.proj_expand(icon, v-bind='attrs', v-on='on')
-          v-icon(color='var(--accent-color)') open_in_full
+          v-icon(color='white') open_in_full
       span open project page
-    h2.pa-3.pb-0.h(
-      style='word-break: break-word',
-      @click='$router.push("#abc")'
-    ) 
-      span.grad-accent(style='padding-right: 30px') {{ title }}
+    h2.pa-3.pb-0.pr-10.h(style='word-break: break-word')
+      a.grad-accent(:href='link', rel="noopener noreferrer", target="_blank") {{ title }}
     p.pl-3.mb-0.pt-3(
       v-for='(text, i) in paragraphs',
       v-show='expanded ? true : i == 0'
@@ -76,7 +78,10 @@ export default class Project extends Vue {
 
   @Prop({ required: true })
   public type!: string
-  
+
+  @Prop({ required: true })
+  public link!: string | null
+
   @Prop({})
   public lazySlides?: string[]
 
@@ -90,16 +95,16 @@ export default class Project extends Vue {
   private _slides!: string[]
 
   get slides() {
-    if (this.hasDemo) return Array.prototype.concat(this._slides[0], this._slides)
+    if (this.hasDemo)
+      return Array.prototype.concat(this._slides[0], this._slides)
     return this._slides
   }
 
   @Prop({ required: true })
   public paragraphs!: string[]
 
-
   get isVertical() {
-    return window.innerWidth / window.innerHeight < 1.2 
+    return window.innerWidth / window.innerHeight < 1.2
   }
 
   isIntersecting = false
