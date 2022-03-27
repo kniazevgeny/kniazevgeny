@@ -30,11 +30,12 @@
           :key='i',
           :title='project.title',
           :type='project.type',
-          :slides='project.slides',
+          :_slides='project.slides',
           :lazySlides='project.lazySlides',
           :paragraphs='project.paragraphs',
           v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
-          :hasDemo='project.hasDemo === true'
+          :hasDemo='project.hasDemo == true'
+          :embedURL='project.embedURL'
           :id='"p" + i'
         )
 

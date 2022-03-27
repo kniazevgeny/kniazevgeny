@@ -86,6 +86,8 @@ export const messages = {
       {
         title: 'The Matrix: ЕГЭ',
         type: 'Видео',
+        hasDemo: true,
+        embedURL: 'https://vk.com/video_ext.php?oid=250210451&id=456239517&hash=96cdf72be8c36f77&hd=2&autoplay=1&',
         slides: [''],
         lazySlides: [],
         paragraphs: [
@@ -113,15 +115,14 @@ export const messages = {
         title: 'Криптовалютный кошелек keyzu.ru',
         type: 'MVP',
         hasDemo: true,
+        embedURL: 'https://www.youtube.com/embed/2FANMskvytA?autoplay=1&',
         slides: [
-          require('../assets/keyzu-1-m.webp'),
           require('../assets/keyzu-1-m.webp'),
           require('../assets/keyzu-2-m.webp'),
           require('../assets/keyzu-3-m.webp'),
           require('../assets/keyzu-4-m.webp'),
         ],
         lazySlides: [
-          require('../assets/keyzu-1-l.webp'),
           require('../assets/keyzu-1-l.webp'),
           require('../assets/keyzu-2-l.webp'),
           require('../assets/keyzu-3-l.webp'),

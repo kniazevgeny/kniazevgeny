@@ -19,9 +19,9 @@ v-lazy(
         //- If has youtube demo
         iframe.mb-6(
           v-if='hasDemo && i === 1',
-          :style='isVertical ? "" : "width: calc(60vh * 1.76); height: 60vh"',
-          src='https://www.youtube.com/embed/2FANMskvytA?controls=1&autoplay=1',
-          title='YouTube video player; Keyzu demo',
+          :style='isVertical ? "width: 100%" : "width: calc(60vh * 1.76); height: 60vh"',
+          :src='embedURL + (isVertical ? "controls=1&" : "")',
+          title='Video player',
           frameborder='0',
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
           allowfullscreen
@@ -76,18 +76,27 @@ export default class Project extends Vue {
 
   @Prop({ required: true })
   public type!: string
-
-  @Prop({ required: true })
-  public slides!: string[]
-
-  @Prop({ required: true })
-  public paragraphs!: string[]
-
+  
   @Prop({})
   public lazySlides?: string[]
 
   @Prop({})
   public hasDemo?: boolean
+
+  @Prop({})
+  public embedURL?: string
+
+  @Prop({ required: true })
+  private _slides!: string[]
+
+  get slides() {
+    if (this.hasDemo) return Array.prototype.concat(this._slides[0], this._slides)
+    return this._slides
+  }
+
+  @Prop({ required: true })
+  public paragraphs!: string[]
+
 
   get isVertical() {
     return window.innerWidth / window.innerHeight < 1.2 
