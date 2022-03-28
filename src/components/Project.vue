@@ -10,6 +10,7 @@ v-lazy(
     :id='_id'
   )
     v-carousel(
+      v-if='slides',
       continous,
       :cycle='!hasDemo',
       hide-delimiters,
@@ -44,11 +45,13 @@ v-lazy(
       template(v-slot:next='{ on, attrs }')
         v-icon(large, v-bind='attrs', v-on='on') arrow_right
       h3.proj_type {{ type }}
-    v-tooltip(bottom)
+    //- v-tooltip(bottom)
       template(v-slot:activator='{ on, attrs }')
         v-btn.proj_expand(icon, v-bind='attrs', v-on='on')
           v-icon(color='grey') open_in_full
       span open project page
+    div(v-if='!slides', style='background: #000; position: relative; height: 37px')
+      h3.proj_type {{ type }}
     // Project name
     h2.pa-3.pb-0.pr-10(style='word-break: break-word')
       a.h(
@@ -105,11 +108,13 @@ export default class Project extends Vue {
   @Prop({})
   public embedURL?: string
 
-  @Prop({ required: true })
-  private _slides!: string[]
+  @Prop({ })
+  private _slides?: string[] | undefined
 
   get slides() {
+    if (this._slides != undefined && typeof this._slides == typeof [""] && this._slides?.length == 0) return false
     if (this.hasDemo)
+     // @ts-ignore
       return Array.prototype.concat(this._slides[0], this._slides)
     return this._slides
   }
@@ -131,6 +136,7 @@ export default class Project extends Vue {
   }
 
   get interval() {
+    // @ts-ignore
     if (this.isIntersecting) return 32000 / this.slides.length - 2000
     return 24000
   }
