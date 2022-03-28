@@ -19,20 +19,22 @@
     v-flex(xs1, sm1, md2)
     v-flex(xs10, sm10, md8)
       v-layout(column)
-        h1.h.grad-accent {{ $t('home.myStoryTitle') }}
+        h1.h.grad-accent {{ $t("home.myStoryTitle") }}
         div(style='position: relative')
           p.mb-0.pt-3(
             v-for='(text, i) in $t("home.myStory")',
             v-if='isMyStoryExpanded ? true : i < 2 + Number(!isMobile)',
             v-html='text'
           )
-          div(:style='!isMyStoryExpanded ? "background-image: linear-gradient(to top,#121212 -10%,rgba(0,0,0,0) 70%,rgba(0,0,0,0)); position: absolute;     height: 100%; width: 100%; top: 0; bottom: 0; left: 0; right: 0; position: absolute;" : ""')
+          div(
+            :style='!isMyStoryExpanded ? "background-image: linear-gradient(to top,#121212 -10%,rgba(0,0,0,0) 70%,rgba(0,0,0,0)); position: absolute;     height: 100%; width: 100%; top: 0; bottom: 0; left: 0; right: 0; position: absolute;" : ""'
+          )
         a.pt-2.grad-accent.text-center(
           style='text-decoration: underline !important',
           @click='isMyStoryExpanded = true',
           v-if='$t("home.myStory").length - 1 && !isMyStoryExpanded'
         ) {{ $t("home.showMore") }}
-        h1.pt-3.h.grad-accent {{ $t('home.myProjectsTitle') }}
+        h1.pt-3.h.grad-accent {{ $t("home.myProjectsTitle") }}
         //- Projects
         Project(
           v-for='(project, i) in $t("projects")',
@@ -56,9 +58,11 @@
     v-flex.pt-4
       .h {{ $t("home.thank") }}
       .caption.justify-center.d-flex
-        a(href='https://github.com/kniazevgeny/kniazevgeny/tree/master',
-        rel='noopener noreferrer',
-        target='_blank') {{ $t("home.openSource") }}
+        a(
+          href='https://github.com/kniazevgeny/kniazevgeny/tree/master',
+          rel='noopener noreferrer',
+          target='_blank'
+        ) {{ $t("home.openSource") }}
 </template>
 
 <script lang="ts">
@@ -83,7 +87,7 @@ export default class Home extends Vue {
 
   isMyStoryExpanded = false
 
-  sliderPos = 0
+  sliderPos = this.$t('projects').length as number
   realPos = 0
   scrollY = 100
   ticksLabels = []
