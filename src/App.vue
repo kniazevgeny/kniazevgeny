@@ -5,7 +5,7 @@ v-app(
 )
   Navbar
   Snackbar
-  v-main.mt-12(style='transition: none')
+  v-main.mt-12
     router-view
 </template>
 
@@ -50,19 +50,19 @@ export default class App extends Vue {
       title: i18n.t('title') as string,
     }
   }
-  
+
   mounted() {
     let gradients = [
-      ["rgb(226, 190, 170)", "rgb(240, 77, 65)", "rgb(248, 164, 85)"],
-      ["rgb(219, 112, 144)", "rgb(223, 173, 153)", "rgb(139, 228, 198)"],
-      ["rgb(169, 151, 252)", "rgb(241, 174, 138)", "rgb(225, 123, 245)"],
-      ["rgb(243, 78, 174)", "rgb(223, 102, 66)", "rgb(245, 188, 123)"]
+      ['rgb(226, 190, 170)', 'rgb(240, 77, 65)', 'rgb(248, 164, 85)'],
+      ['rgb(219, 112, 144)', 'rgb(223, 173, 153)', 'rgb(139, 228, 198)'],
+      ['rgb(169, 151, 252)', 'rgb(241, 174, 138)', 'rgb(225, 123, 245)'],
+      ['rgb(243, 78, 174)', 'rgb(223, 102, 66)', 'rgb(245, 188, 123)'],
     ]
-    let i = Math.round(Math.random() * (gradients.length-1))
+    let i = Math.round(Math.random() * (gradients.length - 1))
     // set random gradient
-    document.body.style.setProperty("--gradient-from", gradients[i][0])
-    document.body.style.setProperty("--accent-color", gradients[i][1])
-    document.body.style.setProperty("--gradient-to", gradients[i][2])
+    document.body.style.setProperty('--gradient-from', gradients[i][0])
+    document.body.style.setProperty('--accent-color', gradients[i][1])
+    document.body.style.setProperty('--gradient-to', gradients[i][2])
   }
 }
 </script>

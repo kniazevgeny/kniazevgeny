@@ -21,16 +21,19 @@ nav(v-scroll='')
                 v-list-item-title {{ locale.icon }}
           //- v-btn(text, icon, color='grey', @click='toggleMode')
             v-icon(small) brightness_2
-      
-      v-row()
+
+      v-row
         v-flex(xs1, sm1, md2)
-        v-layout(column, style='flex: 1.5 1; justify-content: center;')
-          svg(
-            viewBox='-50 -50 100 100',
-            xmlns='http://www.w3.org/2000/svg'
-          )
+        v-layout(column, style='flex: 1.5 1; justify-content: center')
+          svg(viewBox='-50 -50 100 100', xmlns='http://www.w3.org/2000/svg')
             mask#img-mask
-              rect(x='-50', y='-50', height='100px', width='100px', fill='black')
+              rect(
+                x='-50',
+                y='-50',
+                height='100px',
+                width='100px',
+                fill='black'
+              )
               path(:d='d[svg_path]', fill='white', :key='gradient_key')
             path(:d='d[svg_path]', fill='url(#Gradient1)', :key='gradient_key')
             image(
@@ -50,9 +53,12 @@ nav(v-scroll='')
                   :offset='offset + "%"'
                 )
         v-flex(xs1)
-        v-layout.ml-n3(column, :style="'justify-content: center; flex: ' + (isMobile ? '2.5' : '3.5')")
-          h1.h.grad-accent(style='font-size: 2.5rem; line-height: 2.5rem;') {{ $t("title") }}
-          div.mt-4
+        v-layout.ml-n3(
+          column,
+          :style='"justify-content: center; flex: " + (isMobile ? "2.5" : "3.5")'
+        )
+          h1.h.grad-accent(style='font-size: 2.5rem; line-height: 2.5rem') {{ $t("title") }}
+          .mt-4
             a(href='https://t.me/kniazevgeny')
               img(src='@/assets/telegram.svg')
             a.pl-4(href='https://github.com/kniazevgeny')
@@ -82,7 +88,6 @@ export default class Navbar extends Vue {
   @AppStore.Mutation setLanguage!: (language: string) => void
 
   svg_path = 2 // 1 means meduim, 0 small, 2 expanded
-  mode = 2 // 1 means meduim, 0 small, 2 expanded
 
   get locales() {
     return [
@@ -153,20 +158,13 @@ export default class Navbar extends Vue {
   }
 
   mounted() {
-    // not required, but that's easier to change values
-    // if (this.isMobile) this.d[0] = this.maskPath(2.5)
     // this.d[0] = this.maskPath(3)
     // this.d[1] = this.maskPath(6)
     // this.d[2] = this.maskPath(10)
-    window.setTimeout(()=>{this.svg_path = 0}, 960)
-
-    // set a watcher on scrollY
-    // window.addEventListener('scroll', this.onScroll, true)
-
-    // animate gradient
-    // this.changeGradientOffsets()
+    window.setTimeout(() => {
+      this.svg_path = 0
+    }, 960)
   }
-
 }
 </script>
 
