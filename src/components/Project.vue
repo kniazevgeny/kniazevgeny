@@ -6,7 +6,8 @@ v-lazy(
   transition='fade-transition'
 )
   v-card.project.mt-10.pb-9.mb-6(
-    v-intersect='{handler: onIntersect,options: {threshold: 0.7}}'
+    v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
+    :id='_id'
   )
     v-carousel(
       continous,
@@ -46,19 +47,28 @@ v-lazy(
     v-tooltip(bottom)
       template(v-slot:activator='{ on, attrs }')
         v-btn.proj_expand(icon, v-bind='attrs', v-on='on')
-          v-icon(color='white') open_in_full
+          v-icon(color='grey') open_in_full
       span open project page
     // Project name
-    h2.pa-3.pb-0.pr-10.h(style='word-break: break-word')
-      a(style='color: white; text-decoration: none' :href='link', rel="noopener noreferrer", target="_blank") {{ title }}
-    p.pl-3.mb-0.pt-3(
-      v-for='(text, i) in paragraphs',
-      v-show='expanded ? true : i == 0'
-    ) {{ text }}
-    div(v-show='expanded')
-      //- Download buttons
-    a.pl-3.grad-accent(
-      style='text-decoration: underline !important',
+    h2.pa-3.pb-0.pr-10(style='word-break: break-word')
+      a.h(
+        style='color: white; text-decoration: none',
+        :href='link',
+        rel='noopener noreferrer',
+        target='_blank'
+      ) {{ title }}
+    div(style='position: relative')
+      p.pl-3.mb-0.pt-3(
+        v-for='(text, i) in paragraphs',
+        v-show='expanded ? true : i == 0',
+        v-text='text'
+      )
+      div(
+        :style='!expanded ? "background-image: linear-gradient(to top,#1e1e1e -10%,rgba(0,0,0,0) 70%,rgba(0,0,0,0)); position: absolute; height: 100%; width: 100%; top: 0; bottom: 0; left: 0; right: 0; position: absolute;" : ""'
+      )
+      div(v-show='expanded')
+        //- Download buttons
+    a.pt-2.grad-accent.justify-center.d-flex(
       @click='expanded = true',
       v-if='paragraphs.length - 1 && !expanded'
     ) {{ $t("home.showMore") }}
@@ -79,6 +89,9 @@ export default class Project extends Vue {
 
   @Prop({ required: true })
   public type!: string
+
+  @Prop({})
+  public _id?: string
 
   @Prop({ required: true })
   public link!: string | null
@@ -122,7 +135,9 @@ export default class Project extends Vue {
     return 24000
   }
 
-  expanded = false
+  // if > 2 then we need expansion tools
+  // unless show everything
+  expanded = this.paragraphs.length < 2
   isActive = true
 }
 </script>
