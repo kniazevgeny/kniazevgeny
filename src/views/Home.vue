@@ -224,12 +224,16 @@ export default class Home extends Vue {
 .v-slider__tick-label.slider_near {
   background: rgba(0, 0, 0, 0.65);
 }
+.v-slider__tick-label:hover {
+  background: var(--accent-color);
+  cursor: pointer;
+}
 
 .v-slider__tick {
   width: 0 !important;
 }
 .v-slider__tick-label {
-  background: rgba(0, 0, 0, 0.33);
+  background: rgba(0, 0, 0, 0.28);
   -webkit-backdrop-filter: saturate(1.2) blur(12px);
   backdrop-filter: saturate(1.2) blur(10px);
   border-radius: 3px;

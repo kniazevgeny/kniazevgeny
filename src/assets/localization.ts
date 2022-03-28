@@ -43,7 +43,7 @@ export const messages = {
           require('../assets/mckinsey-4-l.webp'),
         ],
         paragraphs: [
-          'Презентация и финмодель для полуфинала кейс-чемпионата McKinsey & HSE Case Club. В команде из трех аналитиков и дизайнера проработали анализ рынка самозанятых арендодателей, сегментировали рынок, проработали инициативы и предложили стратегию развития на 5 лет.',
+          'Презентация и финмодель для полуфинала кейс-чемпионата McKinsey & HSE Case Club. В команде из трех аналитиков проработали анализ рынка самозанятых арендодателей, сегментировали рынок, проработали инициативы и предложили стратегию развития на 5 лет.',
           'В ходе анализа изучили документы в источниках от ЦБ РФ до бумаг с IPO Cian на sec.gov, поговорили с продактом из Райфа, замоделировали рост пользовательской базы (через когорты), посчитали WACC и NPV',
           ''
         ]
@@ -93,8 +93,22 @@ export const messages = {
         link: 'https://vk.com/video250210451_456239517',
         hasDemo: true,
         embedURL: 'https://vk.com/video_ext.php?oid=250210451&id=456239517&hash=96cdf72be8c36f77&hd=2&autoplay=1&',
-        slides: [''],
-        lazySlides: [],
+        slides: [
+          require('../assets/matrix-1-m.webp'),
+          require('../assets/matrix-2-m.webp'),
+          require('../assets/matrix-3-m.webp'),
+          require('../assets/matrix-4-m.webp'),
+          require('../assets/matrix-5-m.webp'),
+          require('../assets/matrix-6-m.webp'),
+        ],
+        lazySlides: [
+          require('../assets/matrix-1-l.webp'),
+          require('../assets/matrix-2-l.webp'),
+          require('../assets/matrix-3-l.webp'),
+          require('../assets/matrix-4-l.webp'),
+          require('../assets/matrix-5-l.webp'),
+          require('../assets/matrix-6-l.webp'),
+        ],
         paragraphs: [
           '',
         ]

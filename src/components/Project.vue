@@ -48,8 +48,9 @@ v-lazy(
         v-btn.proj_expand(icon, v-bind='attrs', v-on='on')
           v-icon(color='white') open_in_full
       span open project page
+    // Project name
     h2.pa-3.pb-0.pr-10.h(style='word-break: break-word')
-      a.grad-accent(:href='link', rel="noopener noreferrer", target="_blank") {{ title }}
+      a(style='color: white; text-decoration: none' :href='link', rel="noopener noreferrer", target="_blank") {{ title }}
     p.pl-3.mb-0.pt-3(
       v-for='(text, i) in paragraphs',
       v-show='expanded ? true : i == 0'
