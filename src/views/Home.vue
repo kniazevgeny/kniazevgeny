@@ -280,4 +280,8 @@ export default class Home extends Vue {
 .v-slider__track-fill {
   border-radius: 3px;
 }
+p > a.grad-accent {
+  word-break: break-word;
+  white-space: pre-wrap;
+}
 </style>
