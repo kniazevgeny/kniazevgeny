@@ -71,11 +71,13 @@ body,
 p,
 a,
 span {
-  font-family: 'Bitter', monospace !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 400 !important;
 }
 .h,
-.v-card__title {
-  font-family: 'Roboto Slab', monospace;
+.v-card__title,
+.v-slider__tick-label {
+  font-family: 'Roboto Slab', monospace !important;
   font-weight: 600 !important;
   width: fit-content;
 }
