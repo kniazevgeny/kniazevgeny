@@ -16,14 +16,23 @@
       :track-fill-color='dark ? "grey darken-2" : "grey lighten-2"'
     )
   v-layout(justify-center, align-center)
-    v-flex(xs1, sm2, md2)
-    v-flex(xs10, sm8, md8)
+    v-flex(xs1, sm1, md2)
+    v-flex(xs10, sm10, md8)
       v-layout(column)
-        h1.h.grad-accent My Story
-        p.pt-2 blah blah blah
-        p blah blah blah
-        p blah blah blah
-        h1.pt-3.h.grad-accent My Projects
+        h1.h.grad-accent {{ $t('home.myStoryTitle') }}
+        div(style='position: relative')
+          p.mb-0.pt-3(
+            v-for='(text, i) in $t("home.myStory")',
+            v-if='isMyStoryExpanded ? true : i < 2 + Number(!isMobile)',
+            v-html='text'
+          )
+          div(:style='!isMyStoryExpanded ? "background-image: linear-gradient(to top,#121212 -10%,rgba(0,0,0,0) 70%,rgba(0,0,0,0)); position: absolute;     height: 100%; width: 100%; top: 0; bottom: 0; left: 0; right: 0; position: absolute;" : ""')
+        a.pt-2.grad-accent.text-center(
+          style='text-decoration: underline !important',
+          @click='isMyStoryExpanded = true',
+          v-if='$t("home.myStory").length - 1 && !isMyStoryExpanded'
+        ) {{ $t("home.showMore") }}
+        h1.pt-3.h.grad-accent {{ $t('home.myProjectsTitle') }}
         //- Projects
         Project(
           v-for='(project, i) in $t("projects")',
@@ -35,17 +44,21 @@
           :lazySlides='project.lazySlides',
           :paragraphs='project.paragraphs',
           v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
-          :hasDemo='project.hasDemo == true'
-          :embedURL='project.embedURL'
-          :id='"p" + i'
+          :hasDemo='project.hasDemo == true',
+          :embedURL='project.embedURL',
+          :id='"p" + i',
+          :_id='project.id'
         )
 
-    v-flex(xs1, sm2, md2)
+    v-flex(xs1, sm1, md2)
 
   v-layout(column, justify-center, align-center)
     v-flex.pt-4
-      .caption
-        router-link(to='/privacy') {{ $t("home.privacy") }}
+      .h {{ $t("home.thank") }}
+      .caption.justify-center.d-flex
+        a(href='https://github.com/kniazevgeny/kniazevgeny/tree/master',
+        rel='noopener noreferrer',
+        target='_blank') {{ $t("home.openSource") }}
 </template>
 
 <script lang="ts">
@@ -68,10 +81,16 @@ export default class Home extends Vue {
   @AppStore.State dark!: boolean
   @SnackbarStore.Mutation setSnackbarError!: (error: string) => void
 
+  isMyStoryExpanded = false
+
   sliderPos = 0
   realPos = 0
   scrollY = 100
   ticksLabels = []
+
+  get isMobile() {
+    return window.innerWidth <= 800 && window.innerHeight <= 900
+  }
 
   isScrolling = false
   setScroll() {
@@ -110,7 +129,9 @@ export default class Home extends Vue {
     this.ticksLabels.reverse()
 
     // paint v-slider navigation before any scroll
-    window.setTimeout(()=>{this.onRealPosChange(0,0)}, 50)
+    window.setTimeout(() => {
+      this.onRealPosChange(0, 0)
+    }, 50)
   }
 
   @Watch('realPos')
@@ -225,8 +246,9 @@ export default class Home extends Vue {
   background: rgba(0, 0, 0, 0.65);
 }
 .v-slider__tick-label:hover {
-  background: var(--accent-color);
+  background: var(--gradient-from);
   cursor: pointer;
+  opacity: 0.9;
 }
 
 .v-slider__tick {
