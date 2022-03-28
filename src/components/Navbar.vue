@@ -11,7 +11,7 @@ nav(v-scroll='')
           // Language picker
           v-menu(offset-y)
             template(v-slot:activator='{ on }')
-              v-btn(text, icon, color='var(--accent-color)', v-on='on') {{ currentLocale.icon }}
+              v-btn(text, icon, color='grey', v-on='on') {{ currentLocale.icon }}
             v-list
               v-list-item(
                 v-for='locale in locales',
@@ -19,7 +19,7 @@ nav(v-scroll='')
                 :key='locale.code'
               )
                 v-list-item-title {{ locale.icon }}
-          v-btn(text, icon, color='var(--accent-color)', @click='toggleMode')
+          //- v-btn(text, icon, color='grey', @click='toggleMode')
             v-icon(small) brightness_2
       
       v-row()
@@ -99,8 +99,6 @@ export default class Navbar extends Vue {
   }
 
   get isMobile() {
-    // return true
-    // obsolete & lagging
     return window.innerWidth <= 800 && window.innerHeight <= 900
   }
 
@@ -160,7 +158,7 @@ export default class Navbar extends Vue {
     // this.d[0] = this.maskPath(3)
     // this.d[1] = this.maskPath(6)
     // this.d[2] = this.maskPath(10)
-    window.setTimeout(()=>{this.svg_path = 0}, 560)
+    window.setTimeout(()=>{this.svg_path = 0}, 960)
 
     // set a watcher on scrollY
     // window.addEventListener('scroll', this.onScroll, true)
