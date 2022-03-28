@@ -83,16 +83,7 @@ export const messages = {
         title: 'Роль сообществ в цифровой экономике',
         type: 'Аналитический обзор',
         link: 'https://habr.com/ru/post/598567/',
-        slides: [
-          require('../assets/cybereconomy-1-m.webp'),
-          require('../assets/cybereconomy-2-m.webp'),
-          require('../assets/cybereconomy-3-m.webp'),
-        ],
-        lazySlides: [
-          require('../assets/cybereconomy-1-l.webp'),
-          require('../assets/cybereconomy-2-l.webp'),
-          require('../assets/cybereconomy-3-l.webp'),
-        ],
+        slides: undefined,
         paragraphs: [
           'Этот аналитический обзор — компиляция работы лаборатории "Экономика цифровых сообществ" на "Архипелаге 2121", проходившего в 2021 году в Великом Новгороде. Наша лаборатория исследовала феномены цифровых сообществ и цифровой экономики.',
           'Сперва рассмотрели тексты Майка Монтейро, Пола Грэма, Дэвида Гребера, Джеймса Уильямса, Ваннкартеша Рао, Роберта Солоу и других, чтобы определить основные точки зрения на цифровую экономику. В результате удалось выделить позиции с помощью категорий Оптимизм-Скептицизм и Личная Выгода-Общественное развитие',
@@ -129,16 +120,7 @@ export const messages = {
         title: 'Сравнение уровня развития ВИЭ в РФ и Канаде',
         type: 'Исследование',
         link: 'https://kniazevgeny.github.io/russierenouvelables/',
-        slides: [
-          require('../assets/russierenouvelables-1-m.webp'),
-          require('../assets/russierenouvelables-2-m.webp'),
-          require('../assets/russierenouvelables-3-m.webp'),
-        ],
-        lazySlides: [
-          require('../assets/russierenouvelables-1-l.webp'),
-          require('../assets/russierenouvelables-2-l.webp'),
-          require('../assets/russierenouvelables-3-l.webp'),
-        ],
+        slides: undefined,
         paragraphs: [
           'Исследовал одну из ЦУР (целей устойчивого развития) в рамках прокета двуязычного отделения в старших классах. ',
         ]
