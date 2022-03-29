@@ -40,7 +40,7 @@
           v-for='(yearProjects, i) in $t("projects")'
           :key='i',
         )
-          v-row.mt-8.mb-8
+          v-row.mt-12.mb-8(:class='Boolean(i) ? "pt-12" : ""')
             v-divider.mt-3.ml-4.mr-4
             .h.grad-accent {{yearProjects.year}}
             v-divider.mt-3.ml-4.mr-4
