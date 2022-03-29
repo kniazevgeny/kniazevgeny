@@ -15,7 +15,8 @@ v-lazy(
       :cycle='!hasDemo',
       hide-delimiters,
       height='auto',
-      :interval='interval'
+      :interval='interval',
+      :showArrows='Boolean(slides.length - 1)'
     )
       v-carousel-item(v-for='(slide, i) in slides', :key='i', height='auto')
         //- If has youtube demo
@@ -50,8 +51,6 @@ v-lazy(
         v-btn.proj_expand(icon, v-bind='attrs', v-on='on')
           v-icon(color='grey') open_in_full
       span open project page
-    div(v-if='!slides', style='background: #000; position: relative; height: 37px')
-      h3.proj_type {{ type }}
     // Project name
     h2.pa-3.pb-0.pr-10(style='word-break: break-word')
       a.h(
