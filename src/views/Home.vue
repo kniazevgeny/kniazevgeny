@@ -15,6 +15,48 @@
       :track-color='dark ? "grey lighten-3" : "grey darken-3"',
       :track-fill-color='dark ? "grey darken-2" : "grey lighten-2"'
     )
+  // Head, links and name
+  v-row.mt-n12.mb-12
+    v-flex(xs1, sm1, md2)
+    v-layout(column, style='flex: 1.5 1; justify-content: center')
+      svg(viewBox='-50 -50 100 100', xmlns='http://www.w3.org/2000/svg')
+        mask#img-mask
+          rect(x='-50', y='-50', height='100px', width='100px', fill='black')
+          path(:d='d[svg_path]', fill='white', :key='gradient_key')
+        path(:d='d[svg_path]', fill='url(#Gradient1)', :key='gradient_key')
+        image(
+          :href='require("../assets/avatar.webp")',
+          x='-50px',
+          y='-50px',
+          height='100px',
+          width='100px',
+          mask='url(#img-mask)'
+        )
+        defs
+          linearGradient#Gradient1(x1='0', x2='1', y1='0', y2='1')
+            stop(
+              v-for='(offset, o) in gradient_offsets',
+              :key='o',
+              :class='"stop" + (o + 1)',
+              :offset='offset + "%"'
+            )
+    v-flex(xs1)
+    v-layout.ml-n3(
+      column,
+      :style='"justify-content: center; flex: " + (isMobile ? "2.5" : "3.5")'
+    )
+      h1.h.grad-accent(style='font-size: 2.5rem; line-height: 2.5rem') {{ $t("title") }}
+      .mt-4
+        a(href='https://t.me/kniazevgeny')
+          img(src='@/assets/telegram.svg')
+        a.pl-4(href='https://github.com/kniazevgeny')
+          img(src='@/assets/github.svg')
+        a.pl-4(href='https://linkedin.com/in/kniazevgeny')
+          img(src='@/assets/linkedin.svg')
+        a.pl-4(href='mailto:eugene.kniazev@gmial.com')
+          img(src='@/assets/email.svg')
+    v-flex(xs1, sm1, md2)
+  // About me
   v-layout(justify-center, align-center)
     v-flex(xs1, sm1, md2)
     v-flex(xs10, sm10, md8)
@@ -36,13 +78,10 @@
         ) {{ $t("home.showMore") }}
         h1.pt-12.mb-n6.h.grad-accent {{ $t("home.myProjectsTitle") }}
         //- Projects
-        div(
-          v-for='(yearProjects, i) in $t("projects")'
-          :key='i',
-        )
+        div(v-for='(yearProjects, i) in $t("projects")', :key='i')
           v-row.mt-12.mb-8(:class='Boolean(i) ? "pt-12" : ""')
             v-divider.mt-3.ml-4.mr-4
-            .h.grad-accent {{yearProjects.year}}
+            .h.grad-accent {{ yearProjects.year }}
             v-divider.mt-3.ml-4.mr-4
           Project(
             v-for='(project, j) in yearProjects.projects',
@@ -59,7 +98,7 @@
             :embedURL='project.embedURL',
             :id='"p" + (howManyProjectsBeforeYear[i] + j)',
             :_id='project.id'
-            )
+          )
 
     v-flex(xs1, sm1, md2)
 
@@ -100,15 +139,53 @@ export default class Home extends Vue {
   scrollY = 100
   ticksLabels = []
 
+  svg_path = 2 // 1 means meduim, 0 small, 2 expanded
+
+  d = [
+    'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 49.9 9.5 L 49.7 12.8 L 49.4 16.1 L 49.0 19.4 L 48.4 22.8 L 47.5 26.1 L 46.3 29.4 L 44.9 32.6 L 43.1 35.6 L 40.9 38.4 L 38.4 40.9 L 35.6 43.1 L 32.6 44.9 L 29.4 46.3 L 26.1 47.5 L 22.8 48.4 L 19.4 49.0 L 16.1 49.4 L 12.8 49.7 L 9.5 49.9 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 49.9 L -12.8 49.7 L -16.1 49.4 L -19.4 49.0 L -22.8 48.4 L -26.1 47.5 L -29.4 46.3 L -32.6 44.9 L -35.6 43.1 L -38.4 40.9 L -40.9 38.4 L -43.1 35.6 L -44.9 32.6 L -46.3 29.4 L -47.5 26.1 L -48.4 22.8 L -49.0 19.4 L -49.4 16.1 L -49.7 12.8 L -49.9 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -49.9 -9.5 L -49.7 -12.8 L -49.4 -16.1 L -49.0 -19.4 L -48.4 -22.8 L -47.5 -26.1 L -46.3 -29.4 L -44.9 -32.6 L -43.1 -35.6 L -40.9 -38.4 L -38.4 -40.9 L -35.6 -43.1 L -32.6 -44.9 L -29.4 -46.3 L -26.1 -47.5 L -22.8 -48.4 L -19.4 -49.0 L -16.1 -49.4 L -12.8 -49.7 L -9.5 -49.9 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -49.9 L 12.8 -49.7 L 16.1 -49.4 L 19.4 -49.0 L 22.8 -48.4 L 26.1 -47.5 L 29.4 -46.3 L 32.6 -44.9 L 35.6 -43.1 L 38.4 -40.9 L 40.9 -38.4 L 43.1 -35.6 L 44.9 -32.6 L 46.3 -29.4 L 47.5 -26.1 L 48.4 -22.8 L 49.0 -19.4 L 49.4 -16.1 L 49.7 -12.8 L 49.9 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
+    'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 50.0 9.5 L 50.0 12.8 L 50.0 16.2 L 50.0 19.8 L 49.9 23.5 L 49.8 27.4 L 49.5 31.4 L 48.9 35.5 L 47.7 39.5 L 45.8 43.0 L 43.0 45.8 L 39.5 47.7 L 35.5 48.9 L 31.4 49.5 L 27.4 49.8 L 23.5 49.9 L 19.8 50.0 L 16.2 50.0 L 12.8 50.0 L 9.5 50.0 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 50.0 L -12.8 50.0 L -16.2 50.0 L -19.8 50.0 L -23.5 49.9 L -27.4 49.8 L -31.4 49.5 L -35.5 48.9 L -39.5 47.7 L -43.0 45.8 L -45.8 43.0 L -47.7 39.5 L -48.9 35.5 L -49.5 31.4 L -49.8 27.4 L -49.9 23.5 L -50.0 19.8 L -50.0 16.2 L -50.0 12.8 L -50.0 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -50.0 -9.5 L -50.0 -12.8 L -50.0 -16.2 L -50.0 -19.8 L -49.9 -23.5 L -49.8 -27.4 L -49.5 -31.4 L -48.9 -35.5 L -47.7 -39.5 L -45.8 -43.0 L -43.0 -45.8 L -39.5 -47.7 L -35.5 -48.9 L -31.4 -49.5 L -27.4 -49.8 L -23.5 -49.9 L -19.8 -50.0 L -16.2 -50.0 L -12.8 -50.0 L -9.5 -50.0 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -50.0 L 12.8 -50.0 L 16.2 -50.0 L 19.8 -50.0 L 23.5 -49.9 L 27.4 -49.8 L 31.4 -49.5 L 35.5 -48.9 L 39.5 -47.7 L 43.0 -45.8 L 45.8 -43.0 L 47.7 -39.5 L 48.9 -35.5 L 49.5 -31.4 L 49.8 -27.4 L 49.9 -23.5 L 50.0 -19.8 L 50.0 -16.2 L 50.0 -12.8 L 50.0 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
+    'M 50 0 L 50.0 0.0 L 50.0 3.1 L 50.0 6.3 L 50.0 9.5 L 50.0 12.8 L 50.0 16.2 L 50.0 19.8 L 50.0 23.5 L 50.0 27.5 L 49.9 31.7 L 49.8 36.2 L 49.3 40.8 L 47.9 45.0 L 45.0 47.9 L 40.8 49.3 L 36.2 49.8 L 31.7 49.9 L 27.5 50.0 L 23.5 50.0 L 19.8 50.0 L 16.2 50.0 L 12.8 50.0 L 9.5 50.0 L 6.3 50.0 L 3.1 50.0 L -0.0 50.0 L -3.1 50.0 L -6.3 50.0 L -9.5 50.0 L -12.8 50.0 L -16.2 50.0 L -19.8 50.0 L -23.5 50.0 L -27.5 50.0 L -31.7 49.9 L -36.2 49.8 L -40.8 49.3 L -45.0 47.9 L -47.9 45.0 L -49.3 40.8 L -49.8 36.2 L -49.9 31.7 L -50.0 27.5 L -50.0 23.5 L -50.0 19.8 L -50.0 16.2 L -50.0 12.8 L -50.0 9.5 L -50.0 6.3 L -50.0 3.1 L -50.0 -0.0 L -50.0 -3.1 L -50.0 -6.3 L -50.0 -9.5 L -50.0 -12.8 L -50.0 -16.2 L -50.0 -19.8 L -50.0 -23.5 L -50.0 -27.5 L -49.9 -31.7 L -49.8 -36.2 L -49.3 -40.8 L -47.9 -45.0 L -45.0 -47.9 L -40.8 -49.3 L -36.2 -49.8 L -31.7 -49.9 L -27.5 -50.0 L -23.5 -50.0 L -19.8 -50.0 L -16.2 -50.0 L -12.8 -50.0 L -9.5 -50.0 L -6.3 -50.0 L -3.1 -50.0 L -0.0 -50.0 L 3.1 -50.0 L 6.3 -50.0 L 9.5 -50.0 L 12.8 -50.0 L 16.2 -50.0 L 19.8 -50.0 L 23.5 -50.0 L 27.5 -50.0 L 31.7 -49.9 L 36.2 -49.8 L 40.8 -49.3 L 45.0 -47.9 L 47.9 -45.0 L 49.3 -40.8 L 49.8 -36.2 L 49.9 -31.7 L 50.0 -27.5 L 50.0 -23.5 L 50.0 -19.8 L 50.0 -16.2 L 50.0 -12.8 L 50.0 -9.5 L 50.0 -6.3 L 50.0 -3.1 L 50.0 -0.0',
+  ]
+  gradient_offsets = [0, 100, 100, 150, 200, 250, 300, 350]
+  gradient_key = 0
+
+  maskPath(eccentricity: number) {
+    const halfWidth = 100 / 2.0
+    const halfHeight = 100 / 2.0
+
+    const TWO_PI = Math.PI * 2.0
+    const resolution = 100
+
+    var d = 'M ' + halfWidth + ' ' + 0
+
+    // wierd math https://observablehq.com/@tomwhite/superellipse-generator
+    for (var theta = 0.0; theta < TWO_PI; theta += TWO_PI / resolution) {
+      var sineTheta = Math.sin(theta)
+      var cosineTheta = Math.cos(theta)
+      var r = Math.pow(
+        1 /
+          (Math.pow(Math.abs(cosineTheta) / halfWidth, eccentricity) +
+            Math.pow(Math.abs(sineTheta) / halfHeight, eccentricity)),
+        1 / eccentricity
+      )
+      // toFixed() optimizes performance significantly
+      d +=
+        ' L ' + (r * cosineTheta).toFixed(1) + ' ' + (r * sineTheta).toFixed(1)
+    }
+    // console.log(eccentricity)
+    // console.log(d)
+    return d
+  }
+
   get isMobile() {
     return window.innerWidth <= 800 && window.innerHeight <= 900
   }
 
   get projectsWithoutYears() {
     let result = []
-    for (let y=0; y < this.$t('projects').length; y++)
+    for (let y = 0; y < this.$t('projects').length; y++)
       // @ts-ignore
-      for (let j=0; j < this.$t('projects')[y].projects.length; j++)
+      for (let j = 0; j < this.$t('projects')[y].projects.length; j++)
         // @ts-ignore
         result.push(this.$t('projects')[y].projects[j])
     return result
@@ -116,12 +193,11 @@ export default class Home extends Vue {
 
   get howManyProjectsBeforeYear() {
     let result: number[] = [0]
-    for (let y=0; y < this.$t('projects').length; y++)
+    for (let y = 0; y < this.$t('projects').length; y++)
       result.push(
         // @ts-ignore
-        this.$t('projects')[y].projects.length
-        + (result.length ? result[y] : 0)
-        )
+        this.$t('projects')[y].projects.length + (result.length ? result[y] : 0)
+      )
     return result
   }
 
@@ -165,6 +241,10 @@ export default class Home extends Vue {
     window.setTimeout(() => {
       this.onRealPosChange(0, 0)
     }, 50)
+
+    window.setTimeout(() => {
+      this.svg_path = 0
+    }, 960)
   }
 
   @Watch('realPos')
@@ -342,5 +422,24 @@ p > a.grad-accent {
 }
 hr.v-divider {
   border-color: antiquewhite !important;
+}
+
+
+
+.stop1 {
+  stop-color: var(--gradient-from);
+}
+.stop2 {
+  stop-color: var(--gradient-to);
+}
+
+svg,
+path,
+header#header,
+.v-toolbar__content,
+.transition,
+.stop1,
+.stop2 {
+  transition: 0.85s cubic-bezier(0.52, 0.06, 0.45, 1.03) !important;
 }
 </style>
