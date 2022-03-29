@@ -9,7 +9,7 @@
       ticks='always',
       :tick-labels='ticksLabels',
       step='1',
-      :max='$t("projects").length - 1',
+      :max='projectsWithoutYears.length - 1',
       dark,
       thumb-color='transparent',
       :track-color='dark ? "grey lighten-3" : "grey darken-3"',
@@ -36,21 +36,29 @@
         ) {{ $t("home.showMore") }}
         h1.pt-3.h.grad-accent {{ $t("home.myProjectsTitle") }}
         //- Projects
-        Project(
-          v-for='(project, i) in $t("projects")',
+        div(
+          v-for='(yearProjects, i) in $t("projects")'
           :key='i',
-          :title='project.title',
-          :type='project.type',
-          :link='project.link',
-          :_slides='project.slides',
-          :lazySlides='project.lazySlides',
-          :paragraphs='project.paragraphs',
-          v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
-          :hasDemo='project.hasDemo == true',
-          :embedURL='project.embedURL',
-          :id='"p" + i',
-          :_id='project.id'
         )
+          v-row.mt-8.mb-8
+            v-divider.mt-3.ml-4.mr-4
+            .h.grad-accent {{yearProjects.year}}
+            v-divider.mt-3.ml-4.mr-4
+          Project(
+            v-for='(project, j) in yearProjects.projects',
+            :key='j',
+            :title='project.title',
+            :type='project.type',
+            :link='project.link',
+            :_slides='project.slides',
+            :lazySlides='project.lazySlides',
+            :paragraphs='project.paragraphs',
+            v-intersect='{handler: onIntersect,options: {threshold: 0.7}}',
+            :hasDemo='project.hasDemo == true',
+            :embedURL='project.embedURL',
+            :id='"p" + (howManyProjectsBeforeYear[i] + j)',
+            :_id='project.id'
+            )
 
     v-flex(xs1, sm1, md2)
 
@@ -67,7 +75,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import axios from 'axios'
 import Component from 'vue-class-component'
 import { i18n } from '@/plugins/i18n'
 import { namespace } from 'vuex-class'
@@ -87,13 +94,34 @@ export default class Home extends Vue {
 
   isMyStoryExpanded = false
 
-  sliderPos = this.$t('projects').length as number
+  sliderPos = this.projectsWithoutYears.length
   realPos = 0
   scrollY = 100
   ticksLabels = []
 
   get isMobile() {
     return window.innerWidth <= 800 && window.innerHeight <= 900
+  }
+
+  get projectsWithoutYears() {
+    let result = []
+    for (let y=0; y < this.$t('projects').length; y++)
+      // @ts-ignore
+      for (let j=0; j < this.$t('projects')[y].projects.length; j++)
+        // @ts-ignore
+        result.push(this.$t('projects')[y].projects[j])
+    return result
+  }
+
+  get howManyProjectsBeforeYear() {
+    let result: number[] = [0]
+    for (let y=0; y < this.$t('projects').length; y++)
+      result.push(
+        // @ts-ignore
+        this.$t('projects')[y].projects.length
+        + (result.length ? result[y] : 0)
+        )
+    return result
   }
 
   isScrolling = false
@@ -103,7 +131,7 @@ export default class Home extends Vue {
     window.setTimeout(() => {
       this.isScrolling = false
     }, 450)
-    this.realPos = (this.$t('projects').length as number) - 1 - this.sliderPos
+    this.realPos = this.projectsWithoutYears.length - 1 - this.sliderPos
     this.$vuetify.goTo('#p' + this.realPos.toString(), {
       duration: 320,
       easing: 'easeInOutQuart',
@@ -117,7 +145,7 @@ export default class Home extends Vue {
   ) {
     if (!this.isScrolling && isIntersecting) {
       this.realPos = parseInt(entry[0].target.id.slice(1))
-      this.sliderPos = (this.$t('projects').length as any) - 1 - this.realPos
+      this.sliderPos = this.projectsWithoutYears.length - 1 - this.realPos
     }
   }
 
@@ -125,7 +153,7 @@ export default class Home extends Vue {
     interface proj {
       title: string
     }
-    let projects = this.$t('projects') as any as proj[]
+    let projects = this.projectsWithoutYears as proj[]
     // projects.reverse()
     projects.forEach((el) => {
       this.ticksLabels.push(el.title as never)
@@ -168,7 +196,7 @@ export default class Home extends Vue {
         document.getElementsByClassName('v-slider__tick')[value - 1]
           .firstChild as HTMLElement
       ).classList.add('slider_near')
-    if (value < (this.$t('projects').length as any) - 1)
+    if (value < (this.projectsWithoutYears.length as any) - 1)
       (
         document.getElementsByClassName('v-slider__tick')[value + 1]
           .firstChild as HTMLElement
@@ -283,5 +311,8 @@ export default class Home extends Vue {
 p > a.grad-accent {
   word-break: break-word;
   white-space: pre-wrap;
+}
+hr.v-divider {
+  border-color: antiquewhite !important;
 }
 </style>
