@@ -70,7 +70,8 @@ export default class App extends Vue {
 body,
 p,
 a,
-span {
+span,
+small {
   font-family: 'Inter', sans-serif !important;
   font-weight: 400 !important;
 }

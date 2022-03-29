@@ -57,8 +57,10 @@ v-lazy(
         style='color: white; text-decoration: none',
         :href='link',
         rel='noopener noreferrer',
-        target='_blank'
-      ) {{ title }}
+        target='_blank',
+        v-html='title')
+    .summary.pb-2.pl-3(v-if='summary != undefined')
+      span {{ summary }}
     div(style='position: relative')
       p.pl-3.mb-0.pt-3(
         v-for='(text, i) in paragraphs',
@@ -90,6 +92,9 @@ export default class Project extends Vue {
   public title!: string
 
   @Prop({ required: true })
+  public summary!: string | undefined
+
+  @Prop({ required: true })
   public type!: string
 
   @Prop({})
@@ -107,13 +112,18 @@ export default class Project extends Vue {
   @Prop({})
   public embedURL?: string
 
-  @Prop({ })
+  @Prop({})
   private _slides?: string[] | undefined
 
   get slides() {
-    if (this._slides != undefined && typeof this._slides == typeof [""] && this._slides?.length == 0) return false
+    if (
+      this._slides != undefined &&
+      typeof this._slides == typeof [''] &&
+      this._slides?.length == 0
+    )
+      return false
     if (this.hasDemo)
-     // @ts-ignore
+      // @ts-ignore
       return Array.prototype.concat(this._slides[0], this._slides)
     return this._slides
   }
@@ -191,5 +201,11 @@ export default class Project extends Vue {
 }
 .anchor:hover {
   outline-width: 0;
+}
+.summary {
+  font-size: 80%;
+}
+.summary > span {
+  line-height: 15px;
 }
 </style>

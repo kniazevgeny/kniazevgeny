@@ -34,7 +34,7 @@
           @click='isMyStoryExpanded = true',
           v-if='$t("home.myStory").length - 1 && !isMyStoryExpanded'
         ) {{ $t("home.showMore") }}
-        h1.pt-3.h.grad-accent {{ $t("home.myProjectsTitle") }}
+        h1.pt-12.mb-n6.h.grad-accent {{ $t("home.myProjectsTitle") }}
         //- Projects
         div(
           v-for='(yearProjects, i) in $t("projects")'
@@ -48,6 +48,7 @@
             v-for='(project, j) in yearProjects.projects',
             :key='j',
             :title='project.title',
+            :summary='project.summary',
             :type='project.type',
             :link='project.link',
             :_slides='project.slides',
@@ -237,37 +238,61 @@ export default class Home extends Vue {
     padding-right: 25vw;
   }
   .v-slider {
-    height: 250px;
+    height: 450px;
   }
 }
 
-@media screen and (min-width: 600px) and (max-width: 1300px) {
+@media screen and (min-width: 950px) and (max-width: 1300px) {
   #slider:hover {
     padding-right: 40vw;
   }
   .v-slider {
-    height: 400px;
+    height: 500px;
   }
   .v-slider__tick-label {
     max-width: 35vw !important;
   }
 }
 
+@media screen and (min-width: 800px) and (max-width: 950px) {
+  #slider:hover {
+    padding-right: 47vw;
+  }
+  .v-slider {
+    height: 450px;
+  }
+  .v-slider__tick-label {
+    max-width: 45vw !important;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+  #slider:hover {
+    padding-right: 53vw;
+  }
+  .v-slider {
+    height: 500px;
+  }
+  .v-slider__tick-label {
+    max-width: 50vw !important;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .v-slider {
-    height: 400px;
+    height: 470px;
   }
   #slider {
     padding-left: 8vw;
     right: 18px;
   }
   #slider:hover {
-    padding-right: 270px;
+    padding-right: 330px;
     padding-left: 0;
     right: 0;
   }
   .v-slider__tick-label {
-    max-width: 63vw !important;
+    max-width: 70vw !important;
   }
 }
 
