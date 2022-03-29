@@ -1,13 +1,16 @@
 <template lang="pug">
 .v-container.pa-4
   // Main content
-  #slider
+  #slider(
+    @mouseover='showTickLabels = true',
+    @mouseleave='showTickLabels = false'
+  )
     v-slider(
       vertical,
       v-model='sliderPos',
       @input='setScroll()',
-      ticks='always',
-      :tick-labels='ticksLabels',
+      :ticks='showTickLabels ? "always" : false',
+      :tick-labels='showTickLabels ? ticksLabels : undefined',
       step='1',
       :max='projectsWithoutYears.length - 1',
       dark,
@@ -138,6 +141,7 @@ export default class Home extends Vue {
   realPos = 0
   scrollY = 100
   ticksLabels = []
+  showTickLabels = false
 
   svg_path = 2 // 1 means meduim, 0 small, 2 expanded
 
@@ -250,7 +254,7 @@ export default class Home extends Vue {
   @Watch('realPos')
   onRealPosChange(value: number, oldValue: number) {
     // change styles of tick-labels
-
+    if (!this.showTickLabels) return
     // remove obsolete styles from everywhere
     for (
       let index = 0;
@@ -370,7 +374,7 @@ export default class Home extends Vue {
     right: 18px;
   }
   #slider:hover {
-    padding-right: 330px;
+    padding-right: 71vw;
     padding-left: 0;
     right: 0;
   }
@@ -423,8 +427,6 @@ p > a.grad-accent {
 hr.v-divider {
   border-color: antiquewhite !important;
 }
-
-
 
 .stop1 {
   stop-color: var(--gradient-from);
