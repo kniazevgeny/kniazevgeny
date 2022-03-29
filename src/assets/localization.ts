@@ -68,6 +68,7 @@ export const messages = {
         year: 2021,
         projects: [{
           title: 'Бронирование парковки',
+          summary: '297+ посещений. Прототип помог команде "Честные спекулянты" занять 4 место на всероссийском кейс-чемпионате от ВШЭ (для 10-11 классов)',
           type: 'MVP',
           link: 'https://honestspeculators.github.io/',
           slides: [
@@ -81,12 +82,13 @@ export const messages = {
             require('../assets/honestspeculators-3-l.webp'),
           ],
           paragraphs: [
-            'MVP для проекта "Бронирование парковок". MVP состоит из карты (GMaps), на которой можно выбрать ближайшее место парковки и дальнейших шагов по бронированию.',
+            'MVP для проекта "Бронирование парковок". MVP состоит из карты, на которой можно выбрать ближайшее место парковки и дальнейших шагов по бронированию.',
             'Задача: продемонстрировать, как может быть реализована идея по переоборудованию старых зданий под автоматические парковки, а именно, как она будет выглядеть с точки зрения пользователя.'
           ]
         },
         {
           title: 'Роль сообществ в цифровой экономике',
+          summary: '1200+ просмотров',
           type: 'Аналитический обзор',
           link: 'https://habr.com/ru/post/598567/',
           slides: [
@@ -103,6 +105,7 @@ export const messages = {
         },
         {
           title: 'The Matrix: ЕГЭ',
+          summary: '609+ просмотров',
           type: 'Видео',
           link: 'https://vk.com/video250210451_456239517',
           hasDemo: true,
@@ -150,7 +153,7 @@ export const messages = {
           id: 'keyzu',
           link: null,
           hasDemo: true,
-          embedURL: 'https://www.youtube.com/embed/2FANMskvytA?autoplay=1&',
+          embedURL: 'https://www.youtube-nocookie.com/embed/2FANMskvytA?autoplay=1&',
           slides: [
             require('../assets/keyzu-1-m.webp'),
             require('../assets/keyzu-2-m.webp'),
@@ -162,6 +165,56 @@ export const messages = {
             require('../assets/keyzu-2-l.webp'),
             require('../assets/keyzu-3-l.webp'),
             require('../assets/keyzu-4-l.webp'),
+          ],
+          paragraphs: [
+            '',
+          ]
+        },
+        {
+          title: 'Мониторинг нарушений прав человека в тюрьмах "Знай край"',
+          summary: '',
+          type: 'MVP ➡️ Сервис',
+          id: 'znaikrai',
+          link: 'https://znai-krai.zekovnet.ru',
+          hasDemo: false,
+          slides: [
+            require('../assets/znaikrai-1-.webp'),
+            require('../assets/znaikrai-2-.webp'),
+            require('../assets/znaikrai-3-m.webp'),
+            require('../assets/znaikrai-4-m.webp'),
+          ],
+          lazySlides: [
+            require('../assets/znaikrai-1-l.webp'),
+            require('../assets/znaikrai-2-l.webp'),
+            require('../assets/znaikrai-3-l.webp'),
+            require('../assets/znaikrai-4-l.webp'),
+          ],
+          paragraphs: [
+            '',
+          ]
+        }],
+      },
+      {
+        year: 2019,
+        projects: [{
+          title: 'Трейлер к роману "Отверженные" В. Гюго',
+          summary: '2138+ просмотров',
+          type: 'Видео',
+          id: 'miserables',
+          link: 'https://vk.com/video250210451_456239461',
+          hasDemo: true,
+          embedURL: 'https://vk.com/video_ext.php?oid=250210451&id=456239461&hash=6901386fc6c2f72f&hd=2&autoplay=1',
+          slides: [
+            require('../assets/miserables-1-m.webp'),
+            require('../assets/miserables-2-m.webp'),
+            require('../assets/miserables-3-m.webp'),
+            require('../assets/miserables-4-m.webp'),
+          ],
+          lazySlides: [
+            require('../assets/miserables-1-l.webp'),
+            require('../assets/miserables-2-l.webp'),
+            require('../assets/miserables-3-l.webp'),
+            require('../assets/miserables-4-l.webp'),
           ],
           paragraphs: [
             '',
