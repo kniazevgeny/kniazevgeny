@@ -233,12 +233,15 @@ export default class Home extends Vue {
   }
 }
 
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1300px) {
   #slider:hover {
-    padding-right: 25vw;
+    padding-right: 26vw;
   }
   .v-slider {
     height: 450px;
+  }
+  .v-slider__tick-label {
+    max-width: 25vw !important;
   }
 }
 
