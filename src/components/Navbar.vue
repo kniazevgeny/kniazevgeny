@@ -1,11 +1,6 @@
 <template lang="pug">
 nav
-  v-app-bar#header(
-    dense,
-    flat,
-    height='max-content',
-    :style='isMobile ? "flex-direction:" : ""'
-  ) 
+  v-app-bar#header(dense, flat) 
     v-layout(column)
       v-row.pl-4.pr-4.mt-4
         v-flex.d-flex(style='justify-content: flex-end')
@@ -22,7 +17,6 @@ nav
                 v-list-item-title {{ locale.icon }}
           //- v-btn(text, icon, color='grey', @click='toggleMode')
             v-icon(small) brightness_2
-
 </template>
 
 <script lang="ts">
@@ -63,9 +57,8 @@ export default class Navbar extends Vue {
   changeLanguage(locale: string) {
     i18n.locale = locale
     this.setLanguage(locale)
-    document.title = i18n.t('strippedTitle') as string
+    document.title = i18n.t('title') as string
   }
-
 }
 </script>
 
@@ -90,5 +83,4 @@ header.v-app-bar.v-toolbar.v-sheet#header {
   background-color: transparent;
   backdrop-filter: none;
 }
-
 </style>
