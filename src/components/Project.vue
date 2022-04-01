@@ -12,6 +12,7 @@ v-lazy(
     v-carousel(
       v-if='slides',
       continous,
+      :cycle='!hasDemo',
       hide-delimiters,
       height='auto',
       :interval='interval',
@@ -33,6 +34,7 @@ v-lazy(
           v-else,
           :aspect-ratio='hasDemo ? "1.76" : "1.5"',
           :src='slide',
+          :lazy='lazySlides[i]'
         )
           template(v-slot:placeholder)
             v-row.fill-height.ma-0(align='center', justify='center')
