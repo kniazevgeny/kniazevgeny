@@ -48,8 +48,8 @@
       column,
       :style='"justify-content: center; flex: " + (isMobile ? "2.5" : "3.5")'
     )
-      h1.h.grad-accent(style='font-size: 2.5rem; line-height: 2.5rem') {{ $t("title") }}
-      .mt-4
+      h1.h.grad-accent.pb-1(style='font-size: 2.5rem; line-height: 2.5rem') {{ $t("title") }}
+      .mt-3
         a(href='https://t.me/kniazevgeny')
           img(src='@/assets/telegram.svg')
         a.pl-4(href='https://github.com/kniazevgeny')
@@ -230,12 +230,15 @@ export default class Home extends Vue {
     }
   }
 
+  get locale() {
+    return this.$i18n.locale
+  }
+
   mounted() {
     interface proj {
       title: string
     }
     let projects = this.projectsWithoutYears as proj[]
-    // projects.reverse()
     projects.forEach((el) => {
       this.ticksLabels.push(el.title as never)
     })
@@ -287,6 +290,19 @@ export default class Home extends Vue {
           .firstChild as HTMLElement
       ).classList.add('slider_near')
   }
+
+  @Watch('locale')
+  onLocaleChange() {
+    interface proj {
+      title: string
+    }
+    // update ticket labels
+    let projects = this.projectsWithoutYears as proj[]
+    projects.forEach((el) => {
+      this.ticksLabels.push(el.title as never)
+    })
+    this.ticksLabels.reverse()
+  }
 }
 </script>
 
@@ -294,7 +310,7 @@ export default class Home extends Vue {
 #slider {
   position: fixed;
   right: 20px;
-  padding-left: 10vw;
+  padding-left: 8vw;
   top: 25vh;
   z-index: 1000;
   transition: 50ms;
