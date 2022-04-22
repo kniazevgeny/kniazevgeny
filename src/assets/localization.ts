@@ -29,11 +29,13 @@ export const messages = {
             require('../assets/echarge-1-m.webp'),
             require('../assets/echarge-2-m.webp'),
             require('../assets/echarge-3-m.webp'),
+            require('../assets/echarge-4-m.webp'),
           ],
           lazySlides: [
             require('../assets/echarge-1-l.webp'),
             require('../assets/echarge-2-l.webp'),
             require('../assets/echarge-3-l.webp'),
+            require('../assets/echarge-4-l.webp'),
           ],
           paragraphs: [
             'MVP на тильде и на vue.js для проекта ECharge: зарядные станции для электромобилей в Северной Америке. Проект основан на технологии использования энергии проезжающих автомобилей для зарядки электрокаров. Технология в одних случаях очень рентабельна, а в других — принесет лишь убытки. ',
