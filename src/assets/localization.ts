@@ -38,9 +38,10 @@ export const messages = {
             require('../assets/echarge-4-l.webp'),
           ],
           paragraphs: [
-            'MVP на тильде и на vue.js для проекта ECharge: зарядные станции для электромобилей в Северной Америке. Проект основан на технологии использования энергии проезжающих автомобилей для зарядки электрокаров. Технология в одних случаях очень рентабельна, а в других — принесет лишь убытки. ',
+            'MVP на тильде и на vue.js для проекта ECharge: зарядные станции для электромобилей в Северной Америке. Проект основан на технологии использования энергии проезжающих на шоссе автомобилей для зарядки электрокаров.',
             'Задача: перевести всё с технического описания проекта на язык потребителя; рассказать о том, кому может быть полезен проект ECharge, о технологии и сделать прототип страницы, на которой люди активируют зарядную станцию и следят за прогрессом зарядки (дашборд).',
-            'Work in progress'
+            'В ходе проекта удалось познакомиться с созданием сайтов-визиток на тильде. Оказалось, всё становится очень нагроможденно, как только хочешь выйти за рамки дефолтного функционала, кастомизация оставляет желать лучшего. Так, эмуляция процесса загрузки выполнена на vue.js, 3D модель подгружается со sketchfab, а файлы с расчётами и моделями подгружаются с гугл диска.',
+            'Более того, страница грузится черезчур долго, так как тильда использует устаревший jQuery. Возможно, удобство внутренней CRM и подключения форм перекрывает часть недостатков, но не в моём случае. Вероятно, дальше буду двигаться в сторону vue 3 и react.'
           ]
         },
         {
@@ -264,16 +265,19 @@ export const messages = {
             require('../assets/echarge-1-m.webp'),
             require('../assets/echarge-2-m.webp'),
             require('../assets/echarge-3-m.webp'),
+            require('../assets/echarge-4-m.webp'),
           ],
           lazySlides: [
             require('../assets/echarge-1-l.webp'),
             require('../assets/echarge-2-l.webp'),
             require('../assets/echarge-3-l.webp'),
+            require('../assets/echarge-4-l.webp'),
           ],
           paragraphs: [
-            'MVP build on tilda and vue.js for the ECharge project: charging stations for electric cars in North America. The project is based on the technology of using the energy of passing cars to charge electric cars. The technology is very profitable in some cases, but in others it will only bring losses.',
-            'The task: to translate everything from the technical description of the project into the language of the consumer; talk about who can benefit from the ECharge project, about the technology, and make a prototype page where people activate the charging station and monitor the charging progress (dashboard).',
-            'Work in progress'
+            'MVP on tilda.cc and on vue.js for the ECharge project: charging stations for electric cars in North America. The project is based on the technology of using the energy of passing cars on the highway to charge electric cars.',
+            'The task: to translate everything from the technical description of the project into the language of the consumer; to talk about who can benefit from the ECharge project, about the technology and to make a prototype page where people activate the charging station and follow the charging progress (dashboard).',
+            'In the course of the project, I was able to get acquainted with the creation of business websites on tilda. It turned out that everything becomes very cluttered as soon as you want to go beyond the default functionality, customization leaves much to be desired. So, the loading process is emulated in vue.js, the 3D model is loaded from sketchfab, and the calculation and model files are loaded from google drive.',
+            'Moreover, the page takes too long to load because tilda uses outdated jQuery. Maybe the convenience of internal CRM and form connectivity overrides some of the disadvantages, but not in my case. I\'ll probably move on to vue 3 and react.',
           ]
         },
         {
