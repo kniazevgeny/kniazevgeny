@@ -9,7 +9,9 @@ export const messages = {
       myProjectsTitle: 'Мои проекты',
       thank: 'Спасибо, что дочитали до конца!',
       myStory: [
-        'Привет! Меня зовут Женя и мне интересно делать продукты. Отчасти я программист, отчасти аналитик. Учусь на втором курсе экономического факультета <img style="height: 17px; margin-bottom: -2px" src="' +
+        'Привет! Меня зовут Женя и мне интересно делать продукты. Отчасти я программист, отчасти аналитик. Учусь на первом курсе в <img style="height: 17px; margin-bottom: -2px" src="' +
+        require('@/assets/ULille-nb.svg') +
+        '"/>университете Лилля. Перепоступил сюда после двух лет обучения на экономическом факультете <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/polytech.svg') +
           '"/> Политеха им. Петра (бизнес-информатика)',
         'Мой любимый стек: Vue + Vuetify + Typescript + Python/Node. Для задач машинного обучения использую TensorFlow и PyTorch. Пишу также на C++, C#, знаком с bash.',
@@ -21,10 +23,52 @@ export const messages = {
     },
     projects: [
       {
+        year: 2023,
+        projects: [
+          {
+            title: 'Самолёт+ Аренда',
+            type: 'Web Service',
+            id: 'smlt',
+            link: 'https://arenda.samoletplus.ru/',
+            slides: [
+              require('../assets/smltplus-1-m.webp'),
+            ],
+            lazySlides: [
+              require('../assets/smltplus-1-l.webp'),
+            ],
+            paragraphs: [
+              'Сервис для аренды жилья.',
+              'Работаю над frontend частью сервиса: это и витрина для арендаторов, и ЛК для собственников, агентов, руководителей офисов',
+            ],
+          },
+          {
+            title: 'Исследование банковских продуктов (кейс БСПб)',
+            type: 'JTBD research',
+            id: 'bspb',
+            link: 'https://www.youtube.com/watch?v=SXk6whUHOFM',
+            embedURL:
+              'https://www.youtube-nocookie.com/embed/SXk6whUHOFM?autoplay=1&',
+            hasDemo: true,
+            slides: [
+              require('../assets/bspb-1-m.webp'),
+              require('../assets/bspb-2-m.webp'),
+            ],
+            lazySlides: [
+              require('../assets/bspb-1-l.webp'),
+              require('../assets/bspb-2-l.webp'),
+            ],
+            paragraphs: [
+              'Маркетинговое jtbd-исследование. Изучили, какие задачи самые частые, а какие самые важные.',
+              'Провели серию глубинных интервью и опросили 153 студента из Питера. На основе этих данных разработали концепцию продукта.',
+            ],
+          },
+        ],
+      },
+      {
         year: 2022,
         projects: [
           {
-            title: 'Datasets project',
+            title: 'Ivankov Lab, сервис ProDDG',
             type: 'MVP ➡️ Web Service',
             id: 'ivankovlab',
             link: 'https://ivankovlab.ru/',
@@ -274,7 +318,9 @@ export const messages = {
       openSource: 'open source',
       thank: 'Thanks for scrolling!',
       myStory: [
-        'Hi! My name is Evgeny and I\'m interested in making products. I\'m a half developer, half analyst.I\'m studying on the second grade of economic faculty of <img style="height: 17px; margin-bottom: -2px" src="' +
+        'Hi! My name is Evgeny and I\'m interested in building products. I\'m a half developer, half analyst. I\'m studying on the first grade of the Lille university <img style="height: 17px; margin-bottom: -2px" src="' +
+        require('@/assets/ULille-nb.svg') +
+        '"/>. I re-enrolled at this university after two years of studies on the economic faculty of <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/polytech.svg') +
           '"/> Saint-Petersburg Peter the Great Polytechnical Unviersity (business-informatics)',
         'My favorite stack is: Vue + Vuetify + Typescript + Python/Node. For the machine learning tasks I use TensorFlow or PyTorch. Rarely use C++, C#, am familiar with bash.',
@@ -285,6 +331,27 @@ export const messages = {
       ],
     },
     projects: [
+      {
+        year: 2023,
+        projects: [
+          {
+            title: 'Samolet+ rental',
+            type: 'Web Service',
+            id: 'smlt',
+            link: 'https://arenda.samoletplus.ru/',
+            slides: [
+              require('../assets/smltplus-1-m.webp'),
+            ],
+            lazySlides: [
+              require('../assets/smltplus-1-l.webp'),
+            ],
+            paragraphs: [
+              'Long-term rentals.',
+              'I\'m working on the frontend part of the service. It\'s both dashboards for tenants, and some apartment management tools for landlords, rental agents and office owners',
+            ],
+          },
+        ],
+      },
       {
         year: 2022,
         projects: [
