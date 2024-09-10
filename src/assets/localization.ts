@@ -10,10 +10,11 @@ export const messages = {
       thank: 'Спасибо, что дочитали до конца!',
       myStory: [
         'Привет! Меня зовут Женя и мне интересно делать продукты. Отчасти я программист, отчасти аналитик. Учусь на втором курсе в <img style="height: 17px; margin-bottom: -2px" src="' +
-        require('@/assets/ULille-nb.svg') +
-        '"/>университете Лилля. Перепоступил сюда после двух лет обучения на экономическом факультете <img style="height: 17px; margin-bottom: -2px" src="' +
+          require('@/assets/ULille-nb.svg') +
+          '"/>университете Лилля. Перепоступил сюда после двух лет обучения на экономическом факультете <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/polytech.svg') +
           '"/> Политеха им. Петра (бизнес-информатика)',
+        'Разрабатываю веб-сервисы и MVP. Если нет чёткого видения результата либо есть необходимость провалидировать гипотезы, провожу качественные JTBD исследования. Количественные тоже <a class="grad-accent" href="#bspb">делал</a>, но регулярно не провожу.',
         'Мой любимый стек: Vue + Vuetify + Typescript + Python/Node. Также знаком с MongoDB, Koa, Rollup',
         'У меня бэкграунд программиста: в школе участвовал в олимпиадах по программированию и посещал соответствующие кружки. Тогда же увлекся и разработкой сайтов. Первую страничку с архивом фотографий написал в 2016 году (тогда я впервые связал js с html/css). Спустя несколько лет, попал на образовательную программу, где научился писать ботов в телеграме и делать веб-приложения на vue.js+vuetify. С тех пор к этому стэку прибавились Vuex и другие библиотеки для более сложных приложений. В 2020 со знакомыми создали <a class="grad-accent" href="#keyzu">криптовалютный кошелек</a> — первая крупная работа не для личного использования, а для других людей. Оказалось, мои навыки могут помочь в упрощении использования сервисов и продуктов. К концу обучения в школе заинтересовался машинным обучением и похал в летнюю школу GoTo, после чего выиграл хакатон труда 2 (он про ML и обработку данных).',
         'Параллельно с развитием навыков программирования и верстки, я удовлетворял свое любопытство и в других областях: кружок типографии, где я познакомился с понятием кернинг, Мастерская Исаева, где я сделал свой первый ролик с незнакомыми людьми в кадре, опыт создания которого позволил 3 месяца спустя занять 2-е место на <a class="grad-accent" href="#miserables">конкурсе по созданию трейлеров к французским книгам</a> (приз — стажировка должна была пройти в Париже в апреле 2020).',
@@ -45,6 +46,7 @@ export const messages = {
             paragraphs: [
               'Сервис для аренды жилья.',
               'Работал над frontend частью сервиса: это и витрина для арендаторов, и ЛК для собственников, агентов, руководителей офисов',
+              'На слайдах представлена витрина. По сути это несколько страниц с поиском, есть вид списком и на карте. Также страницы самого объекта, и дальнейшего флоу продвижения по аренде: от подписания документов и сверки состояния имущества и оплаты до управления арендой с, например, возможностью сообщить о страховом случае',
             ],
           },
           {
@@ -325,8 +327,8 @@ export const messages = {
       thank: 'Thanks for scrolling!',
       myStory: [
         'Hi! My name is Evgeny and I\'m interested in building products. I\'m a half developer, half analyst. I\'m  in the 2nd year at the <img style="height: 17px; margin-bottom: -2px" src="' +
-        require('@/assets/ULille-nb.svg') +
-        '"/>University of Lille. I re-enrolled at this university after two years of studies on the economic faculty of <img style="height: 17px; margin-bottom: -2px" src="' +
+          require('@/assets/ULille-nb.svg') +
+          '"/>University of Lille. I re-enrolled at this university after two years of studies on the economic faculty of <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/polytech.svg') +
           '"/> Saint-Petersburg Peter the Great Polytechnical Unviersity (business-informatics)',
         'My favorite stack is: Vue + Vuetify + Typescript + Python/Node. Also familiar with MongoDB, Koa, Rollup, bash.',
@@ -338,6 +340,38 @@ export const messages = {
     },
     projects: [
       {
+        year: 2024,
+        projects: [
+          {
+            title: 'Soulbody.io',
+            type: 'Web Service',
+            id: 'soulbody',
+            link: 'https://soulbody.io/',
+            slides: [
+              require('../assets/soulbody-1-m.webp'),
+              require('../assets/soulbody-2-m.webp'),
+              require('../assets/soulbody-3-m.webp'),
+              require('../assets/soulbody-4-m.webp'),
+              require('../assets/soulbody-5-m.webp'),
+            ],
+            lazySlides: [
+              require('../assets/soulbody-1-l.webp'),
+              require('../assets/soulbody-2-l.webp'),
+              require('../assets/soulbody-3-l.webp'),
+              require('../assets/soulbody-4-l.webp'),
+              require('../assets/soulbody-5-l.webp'),
+            ],
+            paragraphs: [
+              'Soulbody is a platform with video and audio practices for the mental health',
+              'Built and implemented key user flows based on Figma designs, including user sign-in, catalog browsing (without subscription), practice previews, subscriber journey, and checkout with promo codes.',
+              'Developed a flexible admin CMS that allows for the creation and management of practices, integrated with Kinescope (similar to Vimeo), as well as tools for promo code management.',
+              'Introduced a service worker to enable web-push notifications, helping users stay consistent by reminding them of their practice streaks.',
+              'Integrated Kinescope’s video player, ensuring seamless video transitions and allowing non-subscribers to preview 30 seconds of each video, enhancing the overall user experience.',
+            ],
+          },
+        ],
+      },
+      {
         year: 2023,
         projects: [
           {
@@ -347,13 +381,19 @@ export const messages = {
             link: 'https://arenda.samoletplus.ru/',
             slides: [
               require('../assets/smltplus-1-m.webp'),
+              require('../assets/smltplus-2-m.webp'),
+              require('../assets/smltplus-3-m.webp'),
+              require('../assets/smltplus-4-m.webp'),
             ],
             lazySlides: [
               require('../assets/smltplus-1-l.webp'),
+              require('../assets/smltplus-2-l.webp'),
+              require('../assets/smltplus-3-l.webp'),
+              require('../assets/smltplus-4-l.webp'),
             ],
             paragraphs: [
               'Long-term rentals.',
-              'I\'m working on the frontend part of the service. It\'s both dashboards for tenants, and some apartment management tools for landlords, rental agents and office owners',
+              "I was working on the frontend part of the service. It's both dashboards for tenants, and some apartment management tools for landlords, rental agents and office owners",
             ],
           },
         ],
@@ -432,6 +472,11 @@ export const messages = {
               'Presentation and financial model for the semifinals of the McKinsey & HSE Case Club case championship. The team of three analysts analyzed the market of self-employed landlords, segmented the market, worked through initiatives and proposed a 5-year development strategy.',
               'In the course of the analysis we studied documents in sources from the Central Bank of Russia to the Cian IPO papers on sec.gov, talked to the head of lending from Raif, modeled the growth of the user base (through cohorts), calculated WACC and NPV',
               '',
+              // “Umbrella Corporation” is a team of 3: me and 2 HSE students (1st tier Russian university, #305 in QS University Rankings)
+              // - Leaded team to the semifinal of McKinsey & HCC Case Championship and supported colleagues by managing pipeline, organising 1-on-1 calls
+              // - Analysed russian banking sector for self-employed landlords
+              // - Created excel P&L plan, unit-economics metrics and modelled user cohorts growth
+              // - Developed product strategy for neobank to acquire perspective segments
             ],
           },
         ],
