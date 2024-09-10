@@ -32,13 +32,19 @@ export const messages = {
             link: 'https://arenda.samoletplus.ru/',
             slides: [
               require('../assets/smltplus-1-m.webp'),
+              require('../assets/smltplus-2-m.webp'),
+              require('../assets/smltplus-3-m.webp'),
+              require('../assets/smltplus-4-m.webp'),
             ],
             lazySlides: [
               require('../assets/smltplus-1-l.webp'),
+              require('../assets/smltplus-2-l.webp'),
+              require('../assets/smltplus-3-l.webp'),
+              require('../assets/smltplus-4-l.webp'),
             ],
             paragraphs: [
               'Сервис для аренды жилья.',
-              'Работаю над frontend частью сервиса: это и витрина для арендаторов, и ЛК для собственников, агентов, руководителей офисов',
+              'Работал над frontend частью сервиса: это и витрина для арендаторов, и ЛК для собственников, агентов, руководителей офисов',
             ],
           },
           {
@@ -92,30 +98,30 @@ export const messages = {
               'В ходе проекта пришлось глубоко погрузиться в проблемы и задачи академического сообщества, что было достаточно интересно.',
             ],
           },
-          {
-            title: 'ECharge',
-            type: 'MVP',
-            id: 'echarge',
-            link: 'https://echargeenergy.com/',
-            slides: [
-              require('../assets/echarge-1-m.webp'),
-              require('../assets/echarge-2-m.webp'),
-              require('../assets/echarge-3-m.webp'),
-              require('../assets/echarge-4-m.webp'),
-            ],
-            lazySlides: [
-              require('../assets/echarge-1-l.webp'),
-              require('../assets/echarge-2-l.webp'),
-              require('../assets/echarge-3-l.webp'),
-              require('../assets/echarge-4-l.webp'),
-            ],
-            paragraphs: [
-              'MVP на тильде и на vue.js для проекта ECharge: зарядные станции для электромобилей в Северной Америке. Проект основан на технологии использования энергии проезжающих на шоссе автомобилей для зарядки электрокаров.',
-              'Задача: перевести всё с технического описания проекта на язык потребителя; рассказать о том, кому может быть полезен проект ECharge, о технологии и сделать прототип страницы, на которой люди активируют зарядную станцию и следят за прогрессом зарядки (дашборд).',
-              'В ходе проекта удалось познакомиться с созданием сайтов-визиток на тильде. Оказалось, всё становится очень нагроможденно, как только хочешь выйти за рамки дефолтного функционала, кастомизация оставляет желать лучшего. Так, эмуляция процесса загрузки выполнена на vue.js, 3D модель подгружается со sketchfab, а файлы с расчётами и моделями подгружаются с гугл диска.',
-              'Более того, страница грузится черезчур долго, так как тильда использует устаревший jQuery. Возможно, удобство внутренней CRM и подключения форм перекрывает часть недостатков, но не в моём случае. Вероятно, дальше буду двигаться в сторону vue 3 и react.',
-            ],
-          },
+          // {
+          //   title: 'ECharge',
+          //   type: 'MVP',
+          //   id: 'echarge',
+          //   link: 'https://echargeenergy.com/',
+          //   slides: [
+          //     require('../assets/echarge-1-m.webp'),
+          //     require('../assets/echarge-2-m.webp'),
+          //     require('../assets/echarge-3-m.webp'),
+          //     require('../assets/echarge-4-m.webp'),
+          //   ],
+          //   lazySlides: [
+          //     require('../assets/echarge-1-l.webp'),
+          //     require('../assets/echarge-2-l.webp'),
+          //     require('../assets/echarge-3-l.webp'),
+          //     require('../assets/echarge-4-l.webp'),
+          //   ],
+          //   paragraphs: [
+          //     'MVP на тильде и на vue.js для проекта ECharge: зарядные станции для электромобилей в Северной Америке. Проект основан на технологии использования энергии проезжающих на шоссе автомобилей для зарядки электрокаров.',
+          //     'Задача: перевести всё с технического описания проекта на язык потребителя; рассказать о том, кому может быть полезен проект ECharge, о технологии и сделать прототип страницы, на которой люди активируют зарядную станцию и следят за прогрессом зарядки (дашборд).',
+          //     'В ходе проекта удалось познакомиться с созданием сайтов-визиток на тильде. Оказалось, всё становится очень нагроможденно, как только хочешь выйти за рамки дефолтного функционала, кастомизация оставляет желать лучшего. Так, эмуляция процесса загрузки выполнена на vue.js, 3D модель подгружается со sketchfab, а файлы с расчётами и моделями подгружаются с гугл диска.',
+          //     'Более того, страница грузится черезчур долго, так как тильда использует устаревший jQuery. Возможно, удобство внутренней CRM и подключения форм перекрывает часть недостатков, но не в моём случае. Вероятно, дальше буду двигаться в сторону vue 3 и react.',
+          //   ],
+          // },
           {
             title: 'Стратегия развития банка для самозанятых',
             type: 'Кейс',
@@ -145,27 +151,27 @@ export const messages = {
       {
         year: 2021,
         projects: [
-          {
-            title: 'Бронирование парковки',
-            summary:
-              '297+ посещений. Прототип помог команде "Честные спекулянты" занять 4 место на всероссийском кейс-чемпионате от ВШЭ (для 10-11 классов)',
-            type: 'MVP',
-            link: 'https://honestspeculators.github.io/',
-            slides: [
-              require('../assets/honestspeculators-1-m.webp'),
-              require('../assets/honestspeculators-2-m.webp'),
-              require('../assets/honestspeculators-3-m.webp'),
-            ],
-            lazySlides: [
-              require('../assets/honestspeculators-1-l.webp'),
-              require('../assets/honestspeculators-2-l.webp'),
-              require('../assets/honestspeculators-3-l.webp'),
-            ],
-            paragraphs: [
-              'MVP для проекта "Бронирование парковок". MVP состоит из карты, на которой можно выбрать ближайшее место парковки и дальнейших шагов по бронированию.',
-              'Задача: продемонстрировать, как может быть реализована идея по переоборудованию старых зданий под автоматические парковки, а именно, как она будет выглядеть с точки зрения пользователя.',
-            ],
-          },
+          // {
+          //   title: 'Бронирование парковки',
+          //   summary:
+          //     '297+ посещений. Прототип помог команде "Честные спекулянты" занять 4 место на всероссийском кейс-чемпионате от ВШЭ (для 10-11 классов)',
+          //   type: 'MVP',
+          //   link: 'https://honestspeculators.github.io/',
+          //   slides: [
+          //     require('../assets/honestspeculators-1-m.webp'),
+          //     require('../assets/honestspeculators-2-m.webp'),
+          //     require('../assets/honestspeculators-3-m.webp'),
+          //   ],
+          //   lazySlides: [
+          //     require('../assets/honestspeculators-1-l.webp'),
+          //     require('../assets/honestspeculators-2-l.webp'),
+          //     require('../assets/honestspeculators-3-l.webp'),
+          //   ],
+          //   paragraphs: [
+          //     'MVP для проекта "Бронирование парковок". MVP состоит из карты, на которой можно выбрать ближайшее место парковки и дальнейших шагов по бронированию.',
+          //     'Задача: продемонстрировать, как может быть реализована идея по переоборудованию старых зданий под автоматические парковки, а именно, как она будет выглядеть с точки зрения пользователя.',
+          //   ],
+          // },
           {
             title: 'Роль сообществ в цифровой экономике',
             summary: '1200+ просмотров',
@@ -180,36 +186,36 @@ export const messages = {
               'После публикации обзора на сайте альманаха практик будущего и на хабре, закрепили понимание устройства сообществ разбором значимых работ Виктора Слободчикова и Дэвида Макмиллана с Дэвидом Чевисом',
             ],
           },
-          {
-            title: 'The Matrix: ЕГЭ',
-            summary: '609+ просмотров',
-            type: 'Видео',
-            link: 'https://vk.com/video250210451_456239517',
-            hasDemo: true,
-            embedURL:
-              'https://vk.com/video_ext.php?oid=250210451&id=456239517&hash=96cdf72be8c36f77&hd=2&autoplay=1&',
-            slides: [
-              require('../assets/matrix-1-m.webp'),
-              require('../assets/matrix-2-m.webp'),
-              require('../assets/matrix-3-m.webp'),
-              require('../assets/matrix-4-m.webp'),
-              require('../assets/matrix-5-m.webp'),
-              require('../assets/matrix-6-m.webp'),
-            ],
-            lazySlides: [
-              require('../assets/matrix-1-l.webp'),
-              require('../assets/matrix-2-l.webp'),
-              require('../assets/matrix-3-l.webp'),
-              require('../assets/matrix-4-l.webp'),
-              require('../assets/matrix-5-l.webp'),
-              require('../assets/matrix-6-l.webp'),
-            ],
-            paragraphs: [
-              'Фильм, в котором школьник автоматически решает ЕГЭ по информатике и затем уничтожает EGE-Machine',
-              'Приурочили работу к окончанию школы. Показали на "последнем звонке", но видео получилось скорее для одноклассников, чем для учителей. Достаточно много динамики для показа на школьном проекторе.',
-              'Самый запоминающийся момент съемок происходил на остатках заброшенного завода "Красный Треугольник". Чтобы повторить знаменитую сцену уклонения от пуль, взяли отцовскую альпинистскую страховку и пошли искать подходящее место для закрепления. Результатом остались довольны.)',
-            ],
-          },
+          // {
+          //   title: 'The Matrix: ЕГЭ',
+          //   summary: '609+ просмотров',
+          //   type: 'Видео',
+          //   link: 'https://vk.com/video250210451_456239517',
+          //   hasDemo: true,
+          //   embedURL:
+          //     'https://vk.com/video_ext.php?oid=250210451&id=456239517&hash=96cdf72be8c36f77&hd=2&autoplay=1&',
+          //   slides: [
+          //     require('../assets/matrix-1-m.webp'),
+          //     require('../assets/matrix-2-m.webp'),
+          //     require('../assets/matrix-3-m.webp'),
+          //     require('../assets/matrix-4-m.webp'),
+          //     require('../assets/matrix-5-m.webp'),
+          //     require('../assets/matrix-6-m.webp'),
+          //   ],
+          //   lazySlides: [
+          //     require('../assets/matrix-1-l.webp'),
+          //     require('../assets/matrix-2-l.webp'),
+          //     require('../assets/matrix-3-l.webp'),
+          //     require('../assets/matrix-4-l.webp'),
+          //     require('../assets/matrix-5-l.webp'),
+          //     require('../assets/matrix-6-l.webp'),
+          //   ],
+          //   paragraphs: [
+          //     'Фильм, в котором школьник автоматически решает ЕГЭ по информатике и затем уничтожает EGE-Machine',
+          //     'Приурочили работу к окончанию школы. Показали на "последнем звонке", но видео получилось скорее для одноклассников, чем для учителей. Достаточно много динамики для показа на школьном проекторе.',
+          //     'Самый запоминающийся момент съемок происходил на остатках заброшенного завода "Красный Треугольник". Чтобы повторить знаменитую сцену уклонения от пуль, взяли отцовскую альпинистскую страховку и пошли искать подходящее место для закрепления. Результатом остались довольны.)',
+          //   ],
+          // },
           {
             title: 'Сравнение уровня развития ВИЭ в РФ и Канаде',
             type: 'Исследование',
@@ -226,30 +232,30 @@ export const messages = {
       {
         year: 2020,
         projects: [
-          {
-            title: 'Криптовалютный кошелек keyzu.ru',
-            type: 'MVP',
-            id: 'keyzu',
-            link: null,
-            hasDemo: true,
-            embedURL:
-              'https://www.youtube-nocookie.com/embed/2FANMskvytA?autoplay=1&',
-            slides: [
-              require('../assets/keyzu-1-m.webp'),
-              require('../assets/keyzu-2-m.webp'),
-              require('../assets/keyzu-3-m.webp'),
-              require('../assets/keyzu-4-m.webp'),
-            ],
-            lazySlides: [
-              require('../assets/keyzu-1-l.webp'),
-              require('../assets/keyzu-2-l.webp'),
-              require('../assets/keyzu-3-l.webp'),
-              require('../assets/keyzu-4-l.webp'),
-            ],
-            paragraphs: [
-              'Небольшой проект, который вырос в полноценный криптовалютный кошелек. Создавался, как простой продукт для людей, не разбирающихся в крипте. Но никто из создателей не разбирался в маркетинге.',
-            ],
-          },
+          // {
+          //   title: 'Криптовалютный кошелек keyzu.ru',
+          //   type: 'MVP',
+          //   id: 'keyzu',
+          //   link: null,
+          //   hasDemo: true,
+          //   embedURL:
+          //     'https://www.youtube-nocookie.com/embed/2FANMskvytA?autoplay=1&',
+          //   slides: [
+          //     require('../assets/keyzu-1-m.webp'),
+          //     require('../assets/keyzu-2-m.webp'),
+          //     require('../assets/keyzu-3-m.webp'),
+          //     require('../assets/keyzu-4-m.webp'),
+          //   ],
+          //   lazySlides: [
+          //     require('../assets/keyzu-1-l.webp'),
+          //     require('../assets/keyzu-2-l.webp'),
+          //     require('../assets/keyzu-3-l.webp'),
+          //     require('../assets/keyzu-4-l.webp'),
+          //   ],
+          //   paragraphs: [
+          //     'Небольшой проект, который вырос в полноценный криптовалютный кошелек. Создавался, как простой продукт для людей, не разбирающихся в крипте. Но никто из создателей не разбирался в маркетинге.',
+          //   ],
+          // },
           {
             title: 'Мониторинг нарушений прав человека в тюрьмах "Знай край"',
             summary:
@@ -380,30 +386,30 @@ export const messages = {
               'During the project I had to dive deep into the problems and challenges of the academic community, which was quite interesting.',
             ],
           },
-          {
-            title: 'ECharge',
-            type: 'MVP',
-            id: 'echarge',
-            link: 'https://echargeenergy.com/',
-            slides: [
-              require('../assets/echarge-1-m.webp'),
-              require('../assets/echarge-2-m.webp'),
-              require('../assets/echarge-3-m.webp'),
-              require('../assets/echarge-4-m.webp'),
-            ],
-            lazySlides: [
-              require('../assets/echarge-1-l.webp'),
-              require('../assets/echarge-2-l.webp'),
-              require('../assets/echarge-3-l.webp'),
-              require('../assets/echarge-4-l.webp'),
-            ],
-            paragraphs: [
-              'MVP on tilda.cc and on vue.js for the ECharge project: charging stations for electric cars in North America. The project is based on the technology of using the energy of passing cars on the highway to charge electric cars.',
-              'The task: to translate everything from the technical description of the project into the language of the consumer; to talk about who can benefit from the ECharge project, about the technology and to make a prototype page where people activate the charging station and follow the charging progress (dashboard).',
-              'In the course of the project, I was able to get acquainted with the creation of business websites on tilda. It turned out that everything becomes very cluttered as soon as you want to go beyond the default functionality, customization leaves much to be desired. So, the loading process is emulated in vue.js, the 3D model is loaded from sketchfab, and the calculation and model files are loaded from google drive.',
-              "Moreover, the page takes too long to load because tilda uses outdated jQuery. Maybe the convenience of internal CRM and form connectivity overrides some of the disadvantages, but not in my case. I'll probably move on to vue 3 and react.",
-            ],
-          },
+          // {
+          //   title: 'ECharge',
+          //   type: 'MVP',
+          //   id: 'echarge',
+          //   link: 'https://echargeenergy.com/',
+          //   slides: [
+          //     require('../assets/echarge-1-m.webp'),
+          //     require('../assets/echarge-2-m.webp'),
+          //     require('../assets/echarge-3-m.webp'),
+          //     require('../assets/echarge-4-m.webp'),
+          //   ],
+          //   lazySlides: [
+          //     require('../assets/echarge-1-l.webp'),
+          //     require('../assets/echarge-2-l.webp'),
+          //     require('../assets/echarge-3-l.webp'),
+          //     require('../assets/echarge-4-l.webp'),
+          //   ],
+          //   paragraphs: [
+          //     'MVP on tilda.cc and on vue.js for the ECharge project: charging stations for electric cars in North America. The project is based on the technology of using the energy of passing cars on the highway to charge electric cars.',
+          //     'The task: to translate everything from the technical description of the project into the language of the consumer; to talk about who can benefit from the ECharge project, about the technology and to make a prototype page where people activate the charging station and follow the charging progress (dashboard).',
+          //     'In the course of the project, I was able to get acquainted with the creation of business websites on tilda. It turned out that everything becomes very cluttered as soon as you want to go beyond the default functionality, customization leaves much to be desired. So, the loading process is emulated in vue.js, the 3D model is loaded from sketchfab, and the calculation and model files are loaded from google drive.',
+          //     "Moreover, the page takes too long to load because tilda uses outdated jQuery. Maybe the convenience of internal CRM and form connectivity overrides some of the disadvantages, but not in my case. I'll probably move on to vue 3 and react.",
+          //   ],
+          // },
           {
             title: 'Bank development strategy for self-employed landlords',
             type: 'Case',
@@ -433,27 +439,27 @@ export const messages = {
       {
         year: 2021,
         projects: [
-          {
-            title: 'Parking reservations',
-            summary:
-              '297+ views. The prototype helped the "Honest Speculators" team to take 4th place at the All-Russian Case Championship from the Higher School of Economics (for grades 10-11)',
-            type: 'MVP',
-            link: 'https://honestspeculators.github.io/',
-            slides: [
-              require('../assets/honestspeculators-1-m.webp'),
-              require('../assets/honestspeculators-2-m.webp'),
-              require('../assets/honestspeculators-3-m.webp'),
-            ],
-            lazySlides: [
-              require('../assets/honestspeculators-1-l.webp'),
-              require('../assets/honestspeculators-2-l.webp'),
-              require('../assets/honestspeculators-3-l.webp'),
-            ],
-            paragraphs: [
-              'The MVP consists of a map on which you can select the nearest parking space and further steps for booking',
-              "The task: to demonstrate how the idea of retrofitting old buildings for automatic parking can be implemented, specifically how it would look from the user's point of view.",
-            ],
-          },
+          // {
+          //   title: 'Parking reservations',
+          //   summary:
+          //     '297+ views. The prototype helped the "Honest Speculators" team to take 4th place at the All-Russian Case Championship from the Higher School of Economics (for grades 10-11)',
+          //   type: 'MVP',
+          //   link: 'https://honestspeculators.github.io/',
+          //   slides: [
+          //     require('../assets/honestspeculators-1-m.webp'),
+          //     require('../assets/honestspeculators-2-m.webp'),
+          //     require('../assets/honestspeculators-3-m.webp'),
+          //   ],
+          //   lazySlides: [
+          //     require('../assets/honestspeculators-1-l.webp'),
+          //     require('../assets/honestspeculators-2-l.webp'),
+          //     require('../assets/honestspeculators-3-l.webp'),
+          //   ],
+          //   paragraphs: [
+          //     'The MVP consists of a map on which you can select the nearest parking space and further steps for booking',
+          //     "The task: to demonstrate how the idea of retrofitting old buildings for automatic parking can be implemented, specifically how it would look from the user's point of view.",
+          //   ],
+          // },
           {
             title: 'The role of communities in the digital economy',
             summary: '1200+ views',
@@ -468,36 +474,36 @@ export const messages = {
               'After publishing a review on the Almanac of Future Practices website and on hubra, we consolidated our understanding of community organizing by parsing the significant work of Victor Slobodchikov and David McMillan with David Chevis.',
             ],
           },
-          {
-            title: 'The Matrix: EGE',
-            summary: '609+ views',
-            type: 'Video',
-            link: 'https://vk.com/video250210451_456239517',
-            hasDemo: true,
-            embedURL:
-              'https://vk.com/video_ext.php?oid=250210451&id=456239517&hash=96cdf72be8c36f77&hd=2&autoplay=1&',
-            slides: [
-              require('../assets/matrix-1-m.webp'),
-              require('../assets/matrix-2-m.webp'),
-              require('../assets/matrix-3-m.webp'),
-              require('../assets/matrix-4-m.webp'),
-              require('../assets/matrix-5-m.webp'),
-              require('../assets/matrix-6-m.webp'),
-            ],
-            lazySlides: [
-              require('../assets/matrix-1-l.webp'),
-              require('../assets/matrix-2-l.webp'),
-              require('../assets/matrix-3-l.webp'),
-              require('../assets/matrix-4-l.webp'),
-              require('../assets/matrix-5-l.webp'),
-              require('../assets/matrix-6-l.webp'),
-            ],
-            paragraphs: [
-              'A movie in which a high school student automatically solves his EGE in computer science and then destroys the EGE-Machine.',
-              'We did it to coincide with the end of school. We showed it at the "last call", but the video turned out more for classmates than for teachers. There are enough dynamics to show it on the school projector.',
-              "The most memorable moment of filming took place on the remains of the abandoned Red Triangle factory. To repeat the famous dodging bullets scene, we took my father's mountain climbing harness and went looking for a suitable place to secure it. We were happy with the result).",
-            ],
-          },
+          // {
+          //   title: 'The Matrix: EGE',
+          //   summary: '609+ views',
+          //   type: 'Video',
+          //   link: 'https://vk.com/video250210451_456239517',
+          //   hasDemo: true,
+          //   embedURL:
+          //     'https://vk.com/video_ext.php?oid=250210451&id=456239517&hash=96cdf72be8c36f77&hd=2&autoplay=1&',
+          //   slides: [
+          //     require('../assets/matrix-1-m.webp'),
+          //     require('../assets/matrix-2-m.webp'),
+          //     require('../assets/matrix-3-m.webp'),
+          //     require('../assets/matrix-4-m.webp'),
+          //     require('../assets/matrix-5-m.webp'),
+          //     require('../assets/matrix-6-m.webp'),
+          //   ],
+          //   lazySlides: [
+          //     require('../assets/matrix-1-l.webp'),
+          //     require('../assets/matrix-2-l.webp'),
+          //     require('../assets/matrix-3-l.webp'),
+          //     require('../assets/matrix-4-l.webp'),
+          //     require('../assets/matrix-5-l.webp'),
+          //     require('../assets/matrix-6-l.webp'),
+          //   ],
+          //   paragraphs: [
+          //     'A movie in which a high school student automatically solves his EGE in computer science and then destroys the EGE-Machine.',
+          //     'We did it to coincide with the end of school. We showed it at the "last call", but the video turned out more for classmates than for teachers. There are enough dynamics to show it on the school projector.',
+          //     "The most memorable moment of filming took place on the remains of the abandoned Red Triangle factory. To repeat the famous dodging bullets scene, we took my father's mountain climbing harness and went looking for a suitable place to secure it. We were happy with the result).",
+          //   ],
+          // },
           {
             title:
               'Comparison of the level of RES development in Russia and Canada',
@@ -515,30 +521,30 @@ export const messages = {
       {
         year: 2020,
         projects: [
-          {
-            title: 'Cryptocurrency wallet keyzu.ru',
-            type: 'MVP',
-            id: 'keyzu',
-            link: null,
-            hasDemo: true,
-            embedURL:
-              'https://www.youtube-nocookie.com/embed/2FANMskvytA?autoplay=1&',
-            slides: [
-              require('../assets/keyzu-1-m.webp'),
-              require('../assets/keyzu-2-m.webp'),
-              require('../assets/keyzu-3-m.webp'),
-              require('../assets/keyzu-4-m.webp'),
-            ],
-            lazySlides: [
-              require('../assets/keyzu-1-l.webp'),
-              require('../assets/keyzu-2-l.webp'),
-              require('../assets/keyzu-3-l.webp'),
-              require('../assets/keyzu-4-l.webp'),
-            ],
-            paragraphs: [
-              'A pet project that grew into a full-fledged cryptocurrency wallet. It was created as a simple product for people who do not know about crypto. But none of the creators knew anything about marketing.',
-            ],
-          },
+          // {
+          //   title: 'Cryptocurrency wallet keyzu.ru',
+          //   type: 'MVP',
+          //   id: 'keyzu',
+          //   link: null,
+          //   hasDemo: true,
+          //   embedURL:
+          //     'https://www.youtube-nocookie.com/embed/2FANMskvytA?autoplay=1&',
+          //   slides: [
+          //     require('../assets/keyzu-1-m.webp'),
+          //     require('../assets/keyzu-2-m.webp'),
+          //     require('../assets/keyzu-3-m.webp'),
+          //     require('../assets/keyzu-4-m.webp'),
+          //   ],
+          //   lazySlides: [
+          //     require('../assets/keyzu-1-l.webp'),
+          //     require('../assets/keyzu-2-l.webp'),
+          //     require('../assets/keyzu-3-l.webp'),
+          //     require('../assets/keyzu-4-l.webp'),
+          //   ],
+          //   paragraphs: [
+          //     'A pet project that grew into a full-fledged cryptocurrency wallet. It was created as a simple product for people who do not know about crypto. But none of the creators knew anything about marketing.',
+          //   ],
+          // },
           {
             title: 'Monitoring Human Rights Violations in Prisons "Znai Krai"',
             summary:
