@@ -54,7 +54,7 @@ v-lazy(
     // Project name
     h2.pa-3.pb-0.pr-10(style='word-break: break-word')
       a.h(
-        style='color: white; text-decoration: none',
+        style='color: white;',
         :href='link',
         rel='noopener noreferrer',
         target='_blank',
@@ -157,6 +157,12 @@ export default class Project extends Vue {
 }
 </script>
 <style scoped>
+a.h {
+  text-decoration: none;
+}
+a.h:hover {
+  text-decoration: underline;
+}
 .project {
   max-width: calc(60vh * 1.778);
   border-radius: 10px !important;
