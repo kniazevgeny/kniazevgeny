@@ -15,7 +15,7 @@ export const messages = {
           require('@/assets/polytech.svg') +
           '"/> Политеха им. Петра (бизнес-информатика)',
         'Разрабатываю веб-сервисы и MVP. Если нет чёткого видения результата либо есть необходимость провалидировать гипотезы, провожу качественные JTBD исследования. Количественные тоже <a class="grad-accent" href="#bspb">делал</a>, но регулярно не провожу.',
-        'Мой любимый стек: Vue + Vuetify + Typescript + Python/Node. Также знаком с MongoDB, Koa, Rollup',
+        'Мой любимый стек: React + Justgetd (react-aria) + Tailwind + Typescript + Python/Node. Также знаком с MongoDB, Koa, Rollup',
         'У меня бэкграунд программиста: в школе участвовал в олимпиадах по программированию и посещал соответствующие кружки. Тогда же увлекся и разработкой сайтов. Первую страничку с архивом фотографий написал в 2016 году (тогда я впервые связал js с html/css). Спустя несколько лет, попал на образовательную программу, где научился писать ботов в телеграме и делать веб-приложения на vue.js+vuetify. С тех пор к этому стэку прибавились Vuex и другие библиотеки для более сложных приложений. В 2020 со знакомыми создали <a class="grad-accent" href="#keyzu">криптовалютный кошелек</a> — первая крупная работа не для личного использования, а для других людей. Оказалось, мои навыки могут помочь в упрощении использования сервисов и продуктов. К концу обучения в школе заинтересовался машинным обучением и похал в летнюю школу GoTo, после чего выиграл хакатон труда 2 (он про ML и обработку данных).',
         'Параллельно с развитием навыков программирования и верстки, я удовлетворял свое любопытство и в других областях: кружок типографии, где я познакомился с понятием кернинг, Мастерская Исаева, где я сделал свой первый ролик с незнакомыми людьми в кадре, опыт создания которого позволил 3 месяца спустя занять 2-е место на <a class="grad-accent" href="#miserables">конкурсе по созданию трейлеров к французским книгам</a> (приз — стажировка должна была пройти в Париже в апреле 2020).',
         'На этот бэкграунд мне интересно наложить другие слои создания продуктов: поведение пользователей, экономику и системный подход к продуктовой разработке. Это отражается в участии в <a class="grad-accent" href="#mckinsey">продуктовых кейс-чемпионатах</a> и тех <a class="grad-accent" href="#echarge">MVP </a>, что я создаю для своих знакомых — каждый из них это проект по изучению потребностей пользователей, контекста использования сервисов, их "работ" по JTBD.',
@@ -331,7 +331,8 @@ export const messages = {
           '"/>University of Lille. I re-enrolled at this university after two years of studies on the economic faculty of <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/polytech.svg') +
           '"/> Saint-Petersburg Peter the Great Polytechnical Unviersity (business-informatics)',
-        'My favorite stack is: Vue + Vuetify + Typescript + Python/Node. Also familiar with MongoDB, Koa, Rollup, bash.',
+        'My favorite stack is: React + Justgetd (react-aria) + Tailwind + Typescript + Python/Node. Also familiar with MongoDB, Koa, Rollup, bash.',
+        'I develop web services and MVPs. If there is no clear vision of the result or there is a need to validate hypotheses, I conduct qualitative JTBD research. I also <a class="grad-accent" href="#bspb">did</a> quantitative research, but I don\'t do it regularly.',
         'I have a programming background: at school I\'ve taken part in programming contests and attended programming circles. Then I was also interested in web site development. I wrote my first page with an archive of photos in 2016 (then I first linked js with html/css). A few years later, got into an educational program where I learned how to write bots in telegram and make web apps on vue.js+vuetify. Since then Vuex and other libraries have been added to that stack for more complex applications. In 2020 I created a <a class="grad-accent" href="#keyzu">cryptocurrency wallet</a> with friends — the first major work not for personal use, but for other people. It turned out that my skills could help simplify the use of services and products. By the end of the school I was interested in machine learning and went to the GoTo summer school, after which I won the Truda 2 hackathon (it was about ML and data processing).',
         'In parallel with the development of programming and layout skills I satisfied my curiosity in other areas: the typography workshop, where I learned the concept of kerning, Isaev workshop, where I made my first video with strangers in the frame, which experience has allowed 3 months later to take 2nd place in <a class="grad-accent" href="#miserables">the competition to create trailers for French books</a> (the prize - an internship was to be held in Paris in April 2020).',
         'On this background I am interested in layering other layers of product creation: user behavior, economics, and a systems approach to product development. This is reflected in my participation in <a class="grad-accent" href="#mckinsey">product case championships</a> and the <a class="grad-accent" href="#echarge">MVPs I create</a> for my acquaintances - each of them is a project to study user needs, the context of service use, their "jobs" on JTBD.',
@@ -340,8 +341,47 @@ export const messages = {
     },
     projects: [
       {
+        year: 2025,
+        projects: [
+          {
+            title: 'PeerHub',
+            type: 'Telegram Mini-App',
+            id: 'peerhub',
+            link: 'https://t.me/peerhub_bot',
+            slides: [
+              require('../assets/peerhub-1-m.png'),
+            ],
+            lazySlides: [
+              require('../assets/thepakt-1-l.png'),
+            ],
+            paragraphs: [
+              'Basically a business-oriented social network. No "what Clash of Clans taught me about B2B SaaS sales". Just a place to publish requests to the community, reach out to other professionals',
+              'During the development I familiarized myself with the React ecosystem incuding react-aria and justgetd. Tanstack query was used for data fetching and state management. ',
+            ],
+          },
+        ],
+      },
+      {
         year: 2024,
         projects: [
+          {
+            title: '/wip/ Protocol for Agreement Keeper on TON',
+            summary:
+              '1st place at the TON Hackathon\'s Paris bootcamp [2024]',
+            type: 'Web Service',
+            id: 'thepakt',
+            link: 'https://thepakt.com/',
+            slides: [
+              require('../assets/thepakt-1-m.png'),
+            ],
+            lazySlides: [
+              require('../assets/thepakt-1-l.png'),
+            ],
+            paragraphs: [
+              'Protocol for Agreement Keeper on TON',
+              'The project is in the process of development. Open source.',
+            ],
+          },
           {
             title: 'Soulbody.io',
             type: 'Web Service',
@@ -376,6 +416,8 @@ export const messages = {
         projects: [
           {
             title: 'Samolet+ rental',
+            summary:
+              'Long-term rentals by the Samolet+, largest apartment building developer in Russia',
             type: 'Web Service',
             id: 'smlt',
             link: 'https://arenda.samoletplus.ru/',
@@ -392,8 +434,28 @@ export const messages = {
               require('../assets/smltplus-4-l.webp'),
             ],
             paragraphs: [
-              'Long-term rentals.',
               "I was working on the frontend part of the service. It's both dashboards for tenants, and some apartment management tools for landlords, rental agents and office owners",
+            ],
+          },
+          {
+            title: 'Research of banking products (BSPB case)',
+            type: 'JTBD research',
+            id: 'bspb',
+            link: 'https://www.youtube.com/watch?v=SXk6whUHOFM',
+            embedURL:
+              'https://www.youtube-nocookie.com/embed/SXk6whUHOFM?autoplay=1&',
+            hasDemo: true,
+            slides: [
+              require('../assets/bspb-1-m.webp'),
+              require('../assets/bspb-2-m.webp'),
+            ],
+            lazySlides: [
+              require('../assets/bspb-1-l.webp'),
+              require('../assets/bspb-2-l.webp'),
+            ],
+            paragraphs: [
+              'Marketing jobs-to-be-done research. We studied which tasks are most common and which are most important.',
+              'Conducted a series of deep interviews and surveyed 153 students from St. Petersburg. Based on these data, we developed a product concept.',
             ],
           },
         ],
