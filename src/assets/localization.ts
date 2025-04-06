@@ -14,8 +14,8 @@ export const messages = {
           '"/>университете Лилля. Перепоступил сюда после двух лет обучения на экономическом факультете <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/polytech.svg') +
           '"/> Политеха им. Петра (бизнес-информатика)',
-        'Разрабатываю веб-сервисы и MVP. Если нет чёткого видения результата либо есть необходимость провалидировать гипотезы, провожу качественные JTBD исследования. Количественные тоже <a class="grad-accent" href="#bspb">делал</a>, но регулярно не провожу.',
-        'Мой любимый стек: React + Justgetd (react-aria) + Tailwind + Typescript + Python/Node. Также знаком с MongoDB, Koa, Rollup',
+        'Занимаюсь разработкой веб-сервисов и MVP. Люблю находить простые решения для сложных задач, создавая удобные и масштабируемые продукты. Мне важно, чтобы технологии работали на пользователя, а не наоборот. Когда нет ясного представления о конечном результате или нужно проверить гипотезы, провожу JTBD-исследования. С количественными исследованиями тоже <a class="grad-accent" href="#bspb">знаком</a>, хотя использую их реже.',
+        'Мой любимый стек: React + getjustd (react-aria) + Tailwind + Typescript + Python/Node. Также знаком с MongoDB, Koa, Rollup',
         'У меня бэкграунд программиста: в школе участвовал в олимпиадах по программированию и посещал соответствующие кружки. Тогда же увлекся и разработкой сайтов. Первую страничку с архивом фотографий написал в 2016 году (тогда я впервые связал js с html/css). Спустя несколько лет, попал на образовательную программу, где научился писать ботов в телеграме и делать веб-приложения на vue.js+vuetify. С тех пор к этому стэку прибавились Vuex и другие библиотеки для более сложных приложений. В 2020 со знакомыми создали <a class="grad-accent" href="#keyzu">криптовалютный кошелек</a> — первая крупная работа не для личного использования, а для других людей. Оказалось, мои навыки могут помочь в упрощении использования сервисов и продуктов. К концу обучения в школе заинтересовался машинным обучением и похал в летнюю школу GoTo, после чего выиграл хакатон труда 2 (он про ML и обработку данных).',
         'Параллельно с развитием навыков программирования и верстки, я удовлетворял свое любопытство и в других областях: кружок типографии, где я познакомился с понятием кернинг, Мастерская Исаева, где я сделал свой первый ролик с незнакомыми людьми в кадре, опыт создания которого позволил 3 месяца спустя занять 2-е место на <a class="grad-accent" href="#miserables">конкурсе по созданию трейлеров к французским книгам</a> (приз — стажировка должна была пройти в Париже в апреле 2020).',
         'На этот бэкграунд мне интересно наложить другие слои создания продуктов: поведение пользователей, экономику и системный подход к продуктовой разработке. Это отражается в участии в <a class="grad-accent" href="#mckinsey">продуктовых кейс-чемпионатах</a> и тех <a class="grad-accent" href="#echarge">MVP </a>, что я создаю для своих знакомых — каждый из них это проект по изучению потребностей пользователей, контекста использования сервисов, их "работ" по JTBD.',
@@ -23,6 +23,80 @@ export const messages = {
       ],
     },
     projects: [
+      {
+        year: 2025,
+        projects: [
+          {
+            title: 'Munk',
+            type: 'Web service',
+            id: 'munk',
+            link: 'https://munk.ru/',
+            slides: [require('../assets/munk-1-m.webp')],
+            lazySlides: [require('../assets/munk-1-l.webp')],
+            paragraphs: [
+              'Фанаты отправляют донаты, а авторы отвечают видео/аудио сообщениями',
+              'Реализовал запись видео в браузере с использованием MediaRecorder API; использовал Plyr для плеера, кастомные React хуки для записи контента',
+            ],
+          },
+          {
+            title: 'PeerHub',
+            type: 'Telegram Mini-App',
+            id: 'peerhub',
+            link: 'https://t.me/peerhub_bot',
+            slides: [require('../assets/peerhub-1-m.png')],
+            lazySlides: [require('../assets/thepakt-1-l.png')],
+            paragraphs: [
+              'Социальная сеть с фокусом на решение бизнесовых задач. Никаких "чему Clash of Clans меня научил о продажах B2B SaaS". Просто место для публикации запросов сообществу и связи с другими профессионалами',
+              'В ходе разработки я освоил экосистему React, включая react-aria и getjustd. Для получения данных и управления состоянием использовался Tanstack query.',
+            ],
+          },
+        ],
+      },
+      {
+        year: 2024,
+        projects: [
+          {
+            title: '/wip/ Протокол для хранения соглашений на TON',
+            summary: '1-е место на парижском буткемпе TON Hackathon [2024]',
+            type: 'Web Service',
+            id: 'thepakt',
+            link: 'https://thepakt.com/',
+            slides: [require('../assets/thepakt-1-m.png')],
+            lazySlides: [require('../assets/thepakt-1-l.png')],
+            paragraphs: [
+              'Протокол для хранения соглашений на TON',
+              'Проект находится в процессе разработки. С открытым исходным кодом.',
+            ],
+          },
+          {
+            title: 'Soulbody.io',
+            type: 'Web Service',
+            id: 'soulbody',
+            link: 'https://soulbody.io/',
+            slides: [
+              require('../assets/soulbody-1-m.webp'),
+              require('../assets/soulbody-2-m.webp'),
+              require('../assets/soulbody-3-m.webp'),
+              require('../assets/soulbody-4-m.webp'),
+              require('../assets/soulbody-5-m.webp'),
+            ],
+            lazySlides: [
+              require('../assets/soulbody-1-l.webp'),
+              require('../assets/soulbody-2-l.webp'),
+              require('../assets/soulbody-3-l.webp'),
+              require('../assets/soulbody-4-l.webp'),
+              require('../assets/soulbody-5-l.webp'),
+            ],
+            paragraphs: [
+              'Soulbody — это платформа с видео и аудио практиками для ментального здоровья',
+              'Создал и реализовал ключевые пользовательские сценарии на основе дизайнов Figma, включая вход пользователей, просмотр каталога (без подписки), предпросмотр практик, путь подписчика и оформление заказа с промокодами.',
+              'Разработал гибкую административную CMS, которая позволяет создавать и управлять практиками, интегрированную с Kinescope (аналог Vimeo), а также инструменты для управления промокодами.',
+              'Внедрил сервис-воркер для включения веб-push уведомлений, помогающих пользователям поддерживать регулярность, напоминая им о сериях практик.',
+              'Интегрировал видеоплеер Kinescope, обеспечивая плавные переходы видео и позволяя не подписчикам просматривать 30 секунд каждого видео, улучшая общий пользовательский опыт.',
+            ],
+          },
+        ],
+      },
       {
         year: 2023,
         projects: [
@@ -331,8 +405,8 @@ export const messages = {
           '"/>University of Lille. I re-enrolled at this university after two years of studies on the economic faculty of <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/polytech.svg') +
           '"/> Saint-Petersburg Peter the Great Polytechnical Unviersity (business-informatics)',
-        'My favorite stack is: React + Justgetd (react-aria) + Tailwind + Typescript + Python/Node. Also familiar with MongoDB, Koa, Rollup, bash.',
-        'I develop web services and MVPs. If there is no clear vision of the result or there is a need to validate hypotheses, I conduct qualitative JTBD research. I also <a class="grad-accent" href="#bspb">did</a> quantitative research, but I don\'t do it regularly.',
+        'I develop web services and MVPs. Excel at turning complex challenges into scalable, responsive solutions. Passionate about creating meaningful products that blend technology and human insight. If there is no clear vision of the result or there is a need to validate hypotheses, I conduct qualitative JTBD research. I also <a class="grad-accent" href="#bspb">did</a> quantitative research, but I don\'t do it regularly.',
+        'My favorite stack is: React + getjustd (react-aria) + Tailwind + Typescript + Python/Node. Also familiar with MongoDB, Koa, Rollup, bash.',
         'I have a programming background: at school I\'ve taken part in programming contests and attended programming circles. Then I was also interested in web site development. I wrote my first page with an archive of photos in 2016 (then I first linked js with html/css). A few years later, got into an educational program where I learned how to write bots in telegram and make web apps on vue.js+vuetify. Since then Vuex and other libraries have been added to that stack for more complex applications. In 2020 I created a <a class="grad-accent" href="#keyzu">cryptocurrency wallet</a> with friends — the first major work not for personal use, but for other people. It turned out that my skills could help simplify the use of services and products. By the end of the school I was interested in machine learning and went to the GoTo summer school, after which I won the Truda 2 hackathon (it was about ML and data processing).',
         'In parallel with the development of programming and layout skills I satisfied my curiosity in other areas: the typography workshop, where I learned the concept of kerning, Isaev workshop, where I made my first video with strangers in the frame, which experience has allowed 3 months later to take 2nd place in <a class="grad-accent" href="#miserables">the competition to create trailers for French books</a> (the prize - an internship was to be held in Paris in April 2020).',
         'On this background I am interested in layering other layers of product creation: user behavior, economics, and a systems approach to product development. This is reflected in my participation in <a class="grad-accent" href="#mckinsey">product case championships</a> and the <a class="grad-accent" href="#echarge">MVPs I create</a> for my acquaintances - each of them is a project to study user needs, the context of service use, their "jobs" on JTBD.',
@@ -344,16 +418,24 @@ export const messages = {
         year: 2025,
         projects: [
           {
+            title: 'Munk',
+            type: 'Web service',
+            id: 'munk',
+            link: 'https://munk.ru/',
+            slides: [require('../assets/munk-1-m.webp')],
+            lazySlides: [require('../assets/munk-1-l.webp')],
+            paragraphs: [
+              'Fans send donations, and authors respond with video/audio messages',
+              'Implemented video recording in the browser using the MediaRecorder API; used Plyr for the player, custom React hooks for recording content',
+            ],
+          },
+          {
             title: 'PeerHub',
             type: 'Telegram Mini-App',
             id: 'peerhub',
             link: 'https://t.me/peerhub_bot',
-            slides: [
-              require('../assets/peerhub-1-m.png'),
-            ],
-            lazySlides: [
-              require('../assets/thepakt-1-l.png'),
-            ],
+            slides: [require('../assets/peerhub-1-m.png')],
+            lazySlides: [require('../assets/thepakt-1-l.png')],
             paragraphs: [
               'Basically a business-oriented social network. No "what Clash of Clans taught me about B2B SaaS sales". Just a place to publish requests to the community, reach out to other professionals',
               'During the development I familiarized myself with the React ecosystem incuding react-aria and justgetd. Tanstack query was used for data fetching and state management. ',
@@ -366,17 +448,12 @@ export const messages = {
         projects: [
           {
             title: '/wip/ Protocol for Agreement Keeper on TON',
-            summary:
-              '1st place at the TON Hackathon\'s Paris bootcamp [2024]',
+            summary: "1st place at the TON Hackathon's Paris bootcamp [2024]",
             type: 'Web Service',
             id: 'thepakt',
             link: 'https://thepakt.com/',
-            slides: [
-              require('../assets/thepakt-1-m.png'),
-            ],
-            lazySlides: [
-              require('../assets/thepakt-1-l.png'),
-            ],
+            slides: [require('../assets/thepakt-1-m.png')],
+            lazySlides: [require('../assets/thepakt-1-l.png')],
             paragraphs: [
               'Protocol for Agreement Keeper on TON',
               'The project is in the process of development. Open source.',
