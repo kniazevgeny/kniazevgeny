@@ -54,8 +54,8 @@ export default class App extends Vue {
   mounted() {
     let gradients = [
       ['rgb(226, 190, 170)', 'rgb(240, 77, 65)', 'rgb(248, 164, 85)'],
-      ['rgb(219, 112, 144)', 'rgb(223, 173, 153)', 'rgb(139, 228, 198)'],
-      ['rgb(169, 151, 252)', 'rgb(241, 174, 138)', 'rgb(225, 123, 245)'],
+      ['rgb(54 54 162)', 'rgb(194 198 230)', 'rgb(94 237 189)'],
+      ['rgb(80 28 209)', 'rgb(241, 174, 138)', 'rgb(236 158 91)'],
       ['rgb(243, 78, 174)', 'rgb(223, 102, 66)', 'rgb(245, 188, 123)'],
     ]
     let i = Math.round(Math.random() * (gradients.length - 1))
