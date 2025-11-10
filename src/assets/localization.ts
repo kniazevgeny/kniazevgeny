@@ -9,7 +9,7 @@ export const messages = {
       myProjectsTitle: 'Мои проекты',
       thank: 'Спасибо, что дочитали до конца!',
       myStory: [
-        'Привет! Меня зовут Женя и мне интересно делать продукты. Отчасти я программист, отчасти аналитик. Учусь на втором курсе в <img style="height: 17px; margin-bottom: -2px" src="' +
+        'Привет! Меня зовут Женя и мне интересно делать продукты. Отчасти я программист, отчасти аналитик. Учусь на третьем курсе в <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/ULille-nb.svg') +
           '"/>университете Лилля. Перепоступил сюда после двух лет обучения на экономическом факультете <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/polytech.svg') +
@@ -26,6 +26,21 @@ export const messages = {
       {
         year: 2025,
         projects: [
+          {
+            title: 'Easytix',
+            type: 'Web service',
+            id: 'easytix',
+            link: 'https://easytix.ru/',
+            slides: [require('../assets/easytix-1-m.webp')],
+            lazySlides: [require('../assets/easytix-1-l.webp')],
+            paragraphs: [
+              'Easytix — горящие скидки на услуги и занятия в Москве. Студии йоги, фитнес-залы, салоны красоты и многое другое недалеко от вас. Помогаем бизнесу заполнять свободные слоты — а пользователям помогаем найти ближайшие предложения.',
+              'Стек: React, Tailwind, TypeScript, Tanstack Query, React Aria, Vite, ESLint, а еще Vite-ssr для основного приложения.',
+              'Интегрировал Яндекс.Карты для поиска и отображения локаций на карте.',
+              'Особое удовольствие получил, пока разбирался с формулой haversine для расчета расстояния между пользователем и локациями компаний — как настоящий мореплаватель!',
+              'Еще кайфанул от анимаций: анимация clip-path для открытия карты и микро-анимации на движке `motion` работают плавно и выглядят классно',
+            ],
+          },
           {
             title: 'Munk',
             type: 'Web service',
@@ -400,7 +415,7 @@ export const messages = {
       openSource: 'open source',
       thank: 'Thanks for scrolling!',
       myStory: [
-        'Hi! My name is Evgeny and I\'m interested in building products. I\'m a half developer, half analyst. I\'m  in the 2nd year at the <img style="height: 17px; margin-bottom: -2px" src="' +
+        'Hi! My name is Evgeny and I\'m interested in building products. I\'m a half developer, half analyst. I\'m  in the 3rd year at the <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/ULille-nb.svg') +
           '"/>University of Lille. I re-enrolled at this university after two years of studies on the economic faculty of <img style="height: 17px; margin-bottom: -2px" src="' +
           require('@/assets/polytech.svg') +
@@ -417,6 +432,21 @@ export const messages = {
       {
         year: 2025,
         projects: [
+          {
+            title: 'Easytix',
+            type: 'Web service',
+            id: 'easytix',
+            link: 'https://easytix.ru/',
+            slides: [require('../assets/easytix-1-m.webp')],
+            lazySlides: [require('../assets/easytix-1-l.webp')],
+            paragraphs: [
+              'Easytix is a platform for accessing last-minute sales of spots for services (e.g. yoga classes, fitness sessions, etc.) and beauty services (e.g. hair salons, nail salons, etc.)',
+              'I was responsible for the frontend part of the project. Tech stack: React, Tailwind, TypeScript, Tanstack Query, React Aria, Vite, ESLint. Vite-ssr for the main app.',
+              'Integrated Yandex Maps API for location search and displaying on the map.',
+              'The fun part was calculating harvesine distance between user location and business location. In a way inspired by the maritime navigators who have had to calculate the distance to the shore. At least I found it fun.',
+              'Another joyful part was implementing micro-animations. The clip-path expansion of the maps without performance issues and `motion`-led animations look really cool.',
+            ],
+          },
           {
             title: 'Munk',
             type: 'Web service',
