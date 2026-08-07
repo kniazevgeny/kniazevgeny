@@ -1,0 +1,146 @@
+
+@media (max-width: 480px) {
+  .hero {
+    --hero-field-opacity: 0.52;
+  }
+
+  .education-list {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    width: 100%;
+  }
+
+  .inline-links {
+    gap: 0.9rem;
+  }
+
+  .inline-links a {
+    padding-inline: 0.55rem;
+  }
+
+  .hero-context__trigger {
+    margin-inline: auto;
+  }
+
+  .toggle-label__more {
+    display: none;
+  }
+
+  .toggle-label__less {
+    display: none !important;
+  }
+
+  .toggle-label {
+    min-width: 2.1rem;
+    width: 2.1rem;
+    overflow: hidden;
+    color: transparent;
+  }
+
+  .toggle-label::before {
+    color: var(--ink);
+    content: '+';
+  }
+
+  details[open] > summary .toggle-label::before {
+    color: white;
+    content: '−';
+  }
+
+  .project-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .archive-year[open] {
+    margin-inline: 0;
+  }
+
+  .archive-year > summary {
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+    gap: 0.5rem;
+  }
+
+  .toggle-label {
+    min-width: 2.1rem;
+    width: 2.1rem;
+    overflow: hidden;
+    color: transparent;
+  }
+
+  .toggle-label::before {
+    color: var(--ink);
+    content: '+';
+  }
+
+  details[open] > summary .toggle-label::before {
+    color: white;
+    content: '−';
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+
+  .project-media {
+    clip-path: none !important;
+    filter: none !important;
+    transform: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+
+  .media-effect-canvas,
+  .hero-black-hole-canvas,
+  .incision-layer,
+  .delayed-contour,
+  .anamorphic-flare,
+  .prism-frame,
+  .stage-wordmark {
+    display: none !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --muted: #34342f;
+    --line: #66645d;
+  }
+
+  .hero-organic-line,
+  .hero::before {
+    opacity: 0.35;
+  }
+}
+
+@media (forced-colors: active) {
+  .hero-notch,
+  .calibration-mark,
+  .stage-artifact,
+  .project-cells a[aria-current='location'] {
+    forced-color-adjust: auto;
+  }
+
+  .media-effect-canvas,
+  .hero-black-hole-canvas,
+  .incision-layer,
+  .anamorphic-flare,
+  .prism-frame {
+    display: none;
+  }
+
+  .hero-organic-line {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}

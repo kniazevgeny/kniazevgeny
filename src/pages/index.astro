@@ -1,0 +1,28 @@
+---
+import { Portfolio } from '../components/Portfolio'
+import { getSiteContent } from '../data/site'
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const content = getSiteContent('en')
+---
+
+<BaseLayout
+  title={content.meta.title}
+  description={content.meta.description}
+  locale="en"
+  canonicalPath="/"
+>
+  <Portfolio client:load content={content} locale="en" />
+</BaseLayout>
+
+<script is:inline>
+  const requestedLanguage =
+    navigator.languages?.[0] ?? navigator.language ?? ''
+  const prefersRussian = requestedLanguage.toLowerCase().startsWith('ru')
+  const explicitlyEnglish =
+    new URLSearchParams(window.location.search).get('lang') === 'en'
+
+  if (prefersRussian && !explicitlyEnglish) {
+    window.location.replace('/ru/')
+  }
+</script>

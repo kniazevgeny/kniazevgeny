@@ -1,0 +1,33 @@
+---
+import '../styles/main.scss'
+import type { Locale } from '../data/site'
+
+type Props = {
+  title: string
+  description: string
+  locale: Locale
+  canonicalPath: string
+}
+
+const { title, description, locale, canonicalPath } = Astro.props
+const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://kniazevgeny.github.io')
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f1e8" />
+    <link rel="canonical" href={canonicalUrl.toString()} />
+    <link rel="alternate" href={new URL('/', Astro.site ?? 'https://kniazevgeny.github.io').toString()} hreflang="en" />
+    <link rel="alternate" href={new URL('/ru/', Astro.site ?? 'https://kniazevgeny.github.io').toString()} hreflang="ru" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
