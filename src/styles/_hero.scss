@@ -1,0 +1,528 @@
+
+.media-effect-canvas {
+  z-index: 7;
+  opacity: 0;
+}
+
+.media-effect-canvas[data-active='true'] {
+  opacity: 1;
+}
+
+.incision-layer {
+  z-index: 8;
+  overflow: visible;
+}
+
+.incision-layer polygon {
+  fill: none;
+  stroke: var(--pink);
+  stroke-width: 1.5;
+  stroke-dasharray: 230;
+  stroke-dashoffset: 0;
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+
+.incision-layer polygon:nth-child(n + 2) {
+  display: none;
+}
+
+html[data-motion-mode='overdrive'] .is-revealing.effect-incision .incision-layer polygon {
+  stroke: rgb(255 170 235 / 98%);
+  stroke-width: calc(1.5px * var(--motion-power, 1));
+  filter:
+    drop-shadow(0 0 0.18rem rgb(241 82 189 / 80%))
+    drop-shadow(0 0 0.42rem rgb(77 114 255 / 42%));
+  animation-name: incision-line-overdrive;
+}
+
+html[data-motion-mode='overdrive'] .is-revealing.effect-incision .incision-layer polygon:nth-child(2) {
+  stroke: rgb(255 241 165 / 96%);
+  filter:
+    drop-shadow(0 0 0.2rem rgb(255 213 74 / 72%))
+    drop-shadow(0 0 0.48rem rgb(255 126 36 / 36%));
+}
+
+html[data-motion-mode='overdrive'] .is-revealing.effect-incision .incision-layer polygon:nth-child(3) {
+  stroke: rgb(164 232 255 / 94%);
+  filter:
+    drop-shadow(0 0 0.2rem rgb(0 190 255 / 72%))
+    drop-shadow(0 0 0.48rem rgb(77 114 255 / 38%));
+}
+
+html[data-motion-mode='overdrive'] .is-revealing.effect-incision .incision-layer polygon:nth-child(n + 2) {
+  display: block;
+}
+
+.delayed-contour {
+  z-index: 4;
+  border: 1px solid var(--ink);
+  opacity: 0;
+}
+
+.anamorphic-flare {
+  top: 50%;
+  right: 0;
+  left: 0;
+  width: auto;
+  height: 1px;
+  background: white;
+  box-shadow: 0 0 0.8rem 0.18rem rgb(90 183 255 / 72%);
+  opacity: 0;
+}
+
+.prism-frame {
+  inset: -3px;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  overflow: visible;
+  border: 0;
+  opacity: 0;
+}
+
+.prism-edge {
+  fill: none;
+  stroke-width: 2.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.prism-edge--pink { stroke: var(--pink); }
+.prism-edge--blue { stroke: #00bfff; }
+.prism-edge--yellow { stroke: var(--yellow); }
+
+.stage-wordmark {
+  position: absolute;
+  right: -4%;
+  bottom: 5%;
+  left: -4%;
+  z-index: 9;
+  overflow: hidden;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(3.4rem, 7vw, 7.4rem);
+  font-style: italic;
+  line-height: 0.72;
+  letter-spacing: -0.085em;
+  text-align: center;
+  text-overflow: clip;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stage-artifact {
+  position: absolute;
+  right: 4%;
+  bottom: 7%;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  width: 3.8rem;
+  height: 3.8rem;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--yellow);
+  font-size: 1.45rem;
+  transform: rotate(9deg);
+}
+
+.calibration-mark {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 10;
+  display: flex;
+}
+
+.calibration-mark i {
+  width: 0.85rem;
+  height: 0.55rem;
+  background: var(--pink);
+}
+
+.calibration-mark i:nth-child(2) {
+  background: var(--green);
+}
+
+.calibration-mark i:nth-child(3) {
+  background: var(--blue);
+}
+
+.is-revealing.effect-incision .project-media:not(.project-video__source) {
+  animation: incision-reveal calc(1200ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+.is-armed.effect-incision .project-media:not(.project-video__source) {
+  clip-path: polygon(
+    39% 43%,
+    47% 31%,
+    58% 39%,
+    68% 35%,
+    64% 51%,
+    75% 61%,
+    61% 67%,
+    52% 78%,
+    43% 65%,
+    30% 70%,
+    35% 54%,
+    25% 45%
+  );
+  filter: saturate(0.88);
+  transform: scale(0.96);
+}
+
+.is-revealing.effect-incision .incision-layer polygon {
+  animation: incision-line calc(1200ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+.is-revealing.effect-incision .incision-layer polygon:nth-child(2) {
+  animation-delay: 90ms;
+  stroke: var(--yellow);
+  opacity: 0.72;
+}
+
+.is-revealing.effect-incision .incision-layer polygon:nth-child(3) {
+  animation-delay: 170ms;
+  stroke: var(--blue);
+  opacity: 0.48;
+}
+
+.is-revealing.effect-incision .delayed-contour {
+  animation: contour-catch calc(1200ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+.is-revealing.effect-anamorphic .project-media:not(.project-video__source) {
+  animation: anamorphic-reveal calc(1300ms * var(--motion-time-scale, 1)) var(--ease-in-out) both;
+}
+
+.is-revealing.effect-anamorphic .media-effect-canvas[data-active='true'] {
+  animation: anamorphic-reveal calc(1300ms * var(--motion-time-scale, 1)) var(--ease-in-out) both;
+}
+
+html[data-motion-mode='overdrive'] .is-revealing.effect-anamorphic .project-media:not(.project-video__source),
+html[data-motion-mode='overdrive'] .is-revealing.effect-anamorphic .media-effect-canvas[data-active='true'] {
+  animation-name: anamorphic-reveal-overdrive;
+}
+
+html[data-motion-mode='overdrive'] .is-revealing.effect-anamorphic .anamorphic-flare {
+  animation-name: anamorphic-flare-overdrive;
+}
+
+html[data-motion-mode='overdrive'] .is-revealing.effect-anamorphic .prism-frame {
+  animation-name: anamorphic-chroma-overdrive;
+}
+
+.is-armed.effect-anamorphic .project-media:not(.project-video__source) {
+  clip-path: inset(0 23% 0 23% round 2%);
+  filter: saturate(0.86);
+  transform: scale(0.96);
+}
+
+.is-revealing.effect-anamorphic .anamorphic-flare {
+  animation: lens-streak calc(1300ms * var(--motion-time-scale, 1)) var(--ease-in-out) both;
+}
+
+.is-revealing.effect-anamorphic .prism-frame {
+  animation: anamorphic-chroma-edge calc(1300ms * var(--motion-time-scale, 1)) var(--ease-in-out) both;
+}
+
+.effect-anamorphic .media-frame::after {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  background:
+    repeating-radial-gradient(
+      circle at 22% 34%,
+      rgb(255 255 255 / 16%) 0 1px,
+      transparent 1px 4px
+    ),
+    repeating-linear-gradient(
+      102deg,
+      rgb(255 35 118 / 10%) 0 1px,
+      transparent 1px 5px,
+      rgb(0 190 255 / 10%) 5px 6px,
+      transparent 6px 10px
+    );
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+.is-revealing.effect-anamorphic .media-frame::after {
+  animation: anamorphic-noise calc(1150ms * var(--motion-time-scale, 1)) var(--ease-in-out) both;
+}
+
+html[data-motion-mode='overdrive'] .is-revealing.effect-anamorphic .media-frame::after {
+  animation-name: anamorphic-noise-overdrive;
+}
+
+.is-revealing.effect-organic-matte .project-media:not(.project-video__source) {
+  -webkit-mask-image:
+    radial-gradient(circle at 48% 45%, #000 0 48%, transparent 51%),
+    radial-gradient(circle at 31% 62%, #000 0 48%, transparent 51%),
+    radial-gradient(circle at 69% 61%, #000 0 48%, transparent 51%);
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-image:
+    radial-gradient(circle at 48% 45%, #000 0 48%, transparent 51%),
+    radial-gradient(circle at 31% 62%, #000 0 48%, transparent 51%),
+    radial-gradient(circle at 69% 61%, #000 0 48%, transparent 51%);
+  mask-position: center;
+  mask-repeat: no-repeat;
+}
+
+.is-armed.effect-organic-matte .project-media:not(.project-video__source) {
+  -webkit-mask-image:
+    radial-gradient(circle at 48% 45%, #000 0 48%, transparent 51%),
+    radial-gradient(circle at 31% 62%, #000 0 48%, transparent 51%),
+    radial-gradient(circle at 69% 61%, #000 0 48%, transparent 51%);
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-image:
+    radial-gradient(circle at 48% 45%, #000 0 48%, transparent 51%),
+    radial-gradient(circle at 31% 62%, #000 0 48%, transparent 51%),
+    radial-gradient(circle at 69% 61%, #000 0 48%, transparent 51%);
+  mask-position: center;
+  mask-repeat: no-repeat;
+}
+
+.is-revealing.effect-organic-matte .project-media:not(.project-video__source) {
+  animation: organic-matte-reveal calc(1300ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+.is-revealing.effect-organic-matte[data-project-id='loto-art']
+  .project-media:not(.project-video__source) {
+  mask-mode: alpha;
+  -webkit-mask-image:
+    radial-gradient(ellipse at 39% 40%, rgb(0 0 0 / 45%) 0 37%, transparent 39%),
+    radial-gradient(ellipse 42% 27% at 66% 34%, rgb(0 0 0 / 45%) 0 54%, transparent 60%),
+    radial-gradient(ellipse at 72% 66%, rgb(0 0 0 / 45%) 0 34%, transparent 38%),
+    radial-gradient(ellipse 38% 24% at 40% 73%, rgb(0 0 0 / 45%) 0 52%, transparent 60%),
+    radial-gradient(ellipse at 24% 52%, rgb(0 0 0 / 82%) 0 33%, transparent 38%),
+    radial-gradient(ellipse 31% 19% at 57% 21%, rgb(0 0 0 / 45%) 0 51%, transparent 61%),
+    radial-gradient(ellipse at 82% 44%, rgb(0 0 0 / 45%) 0 35%, transparent 39%),
+    radial-gradient(ellipse 27% 35% at 17% 31%, rgb(0 0 0 / 45%) 0 50%, transparent 61%),
+    radial-gradient(ellipse 43% 21% at 34% 84%, rgb(0 0 0 / 45%) 0 53%, transparent 62%),
+    radial-gradient(ellipse 17% 13% at 92% 11%, rgb(0 0 0 / 45%) 0 42%, transparent 51%),
+    radial-gradient(ellipse at 84% 79%, rgb(0 0 0 / 45%) 0 33%, transparent 38%),
+    radial-gradient(ellipse 16% 12% at 7% 13%, rgb(0 0 0 / 45%) 0 44%, transparent 51%),
+    radial-gradient(ellipse 14% 18% at 11% 88%, rgb(0 0 0 / 45%) 0 43%, transparent 51%),
+    radial-gradient(ellipse 13% 20% at 91% 89%, rgb(0 0 0 / 45%) 0 43%, transparent 52%);
+  mask-image:
+    radial-gradient(ellipse at 39% 40%, rgb(0 0 0 / 45%) 0 37%, transparent 39%),
+    radial-gradient(ellipse 42% 27% at 66% 34%, rgb(0 0 0 / 45%) 0 54%, transparent 60%),
+    radial-gradient(ellipse at 72% 66%, rgb(0 0 0 / 45%) 0 34%, transparent 38%),
+    radial-gradient(ellipse 38% 24% at 40% 73%, rgb(0 0 0 / 45%) 0 52%, transparent 60%),
+    radial-gradient(ellipse at 24% 52%, rgb(0 0 0 / 45%) 0 33%, transparent 38%),
+    radial-gradient(ellipse 31% 19% at 57% 21%, rgb(0 0 0 / 45%) 0 51%, transparent 61%),
+    radial-gradient(ellipse at 82% 44%, rgb(0 0 0 / 45%) 0 35%, transparent 39%),
+    radial-gradient(ellipse 27% 35% at 17% 31%, rgb(0 0 0 / 45%) 0 50%, transparent 61%),
+    radial-gradient(ellipse 43% 21% at 34% 84%, rgb(0 0 0 / 45%) 0 53%, transparent 62%),
+    radial-gradient(ellipse 17% 13% at 92% 11%, rgb(0 0 0 / 45%) 0 42%, transparent 51%),
+    radial-gradient(ellipse at 84% 79%, rgb(0 0 0 / 45%) 0 33%, transparent 38%),
+    radial-gradient(ellipse 16% 12% at 7% 13%, rgb(0 0 0 / 45%) 0 44%, transparent 51%),
+    radial-gradient(ellipse 14% 18% at 11% 88%, rgb(0 0 0 / 45%) 0 43%, transparent 51%),
+    radial-gradient(ellipse 13% 20% at 91% 89%, rgb(0 0 0 / 45%) 0 43%, transparent 52%);
+  -webkit-mask-composite: source-over;
+  mask-composite: add;
+  -webkit-mask-position:
+    36% 42%, 62% 40%, 65% 62%, 38% 64%, 30% 52%, 52% 28%, 70% 48%, 28% 36%,
+    40% 72%, 68% 70%, 50% 50%, 92% 11%, 11% 88%, 91% 89%;
+  mask-position:
+    18% 30%, 76% 28%, 78% 72%, 26% 76%, 8% 52%, 52% 6%, 96% 44%, 4% 20%,
+    24% 100%, 96% 92%, 50% 50%, 92% 11%, 11% 88%, 91% 89%;
+  animation: loto-ink-reveal calc(1300ms * var(--motion-time-scale, 1)) linear both;
+}
+
+.is-armed.effect-organic-matte[data-project-id='loto-art']
+  .project-media:not(.project-video__source) {
+  mask-mode: alpha;
+  -webkit-mask-image:
+    radial-gradient(ellipse at 39% 40%, rgb(0 0 0 / 45%) 0 37%, transparent 39%),
+    radial-gradient(ellipse 42% 27% at 66% 34%, rgb(0 0 0 / 45%) 0 54%, transparent 60%),
+    radial-gradient(ellipse at 72% 66%, rgb(0 0 0 / 45%) 0 34%, transparent 38%),
+    radial-gradient(ellipse 38% 24% at 40% 73%, rgb(0 0 0 / 45%) 0 52%, transparent 60%),
+    radial-gradient(ellipse at 24% 52%, rgb(0 0 0 / 82%) 0 33%, transparent 38%),
+    radial-gradient(ellipse 31% 19% at 57% 21%, rgb(0 0 0 / 45%) 0 51%, transparent 61%),
+    radial-gradient(ellipse at 82% 44%, rgb(0 0 0 / 45%) 0 35%, transparent 39%),
+    radial-gradient(ellipse 27% 35% at 17% 31%, rgb(0 0 0 / 45%) 0 50%, transparent 61%),
+    radial-gradient(ellipse 43% 21% at 34% 84%, rgb(0 0 0 / 45%) 0 53%, transparent 62%),
+    radial-gradient(ellipse 17% 13% at 92% 11%, rgb(0 0 0 / 45%) 0 42%, transparent 51%),
+    radial-gradient(ellipse at 84% 79%, rgb(0 0 0 / 45%) 0 33%, transparent 38%),
+    radial-gradient(ellipse 16% 12% at 7% 13%, rgb(0 0 0 / 45%) 0 44%, transparent 51%),
+    radial-gradient(ellipse 14% 18% at 11% 88%, rgb(0 0 0 / 45%) 0 43%, transparent 51%),
+    radial-gradient(ellipse 13% 20% at 91% 89%, rgb(0 0 0 / 45%) 0 43%, transparent 52%);
+  -webkit-mask-position:
+    36% 42%, 62% 40%, 65% 62%, 38% 64%, 30% 52%, 52% 28%, 70% 48%, 28% 36%,
+    40% 72%, 68% 70%, 50% 50%, 92% 11%, 11% 88%, 91% 89%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size:
+    16% 21%,
+    20% 17%,
+    17% 20%,
+    22% 16%,
+    15% 19%,
+    13% 15%,
+    14% 18%,
+    12% 16%,
+    16% 13%,
+    13% 17%,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  mask-image:
+    radial-gradient(ellipse at 39% 40%, rgb(0 0 0 / 45%) 0 37%, transparent 39%),
+    radial-gradient(ellipse 42% 27% at 66% 34%, rgb(0 0 0 / 45%) 0 54%, transparent 60%),
+    radial-gradient(ellipse at 72% 66%, rgb(0 0 0 / 45%) 0 34%, transparent 38%),
+    radial-gradient(ellipse 38% 24% at 40% 73%, rgb(0 0 0 / 45%) 0 52%, transparent 60%),
+    radial-gradient(ellipse at 24% 52%, rgb(0 0 0 / 82%) 0 33%, transparent 38%),
+    radial-gradient(ellipse 31% 19% at 57% 21%, rgb(0 0 0 / 45%) 0 51%, transparent 61%),
+    radial-gradient(ellipse at 82% 44%, rgb(0 0 0 / 45%) 0 35%, transparent 39%),
+    radial-gradient(ellipse 27% 35% at 17% 31%, rgb(0 0 0 / 45%) 0 50%, transparent 61%),
+    radial-gradient(ellipse 43% 21% at 34% 84%, rgb(0 0 0 / 45%) 0 53%, transparent 62%),
+    radial-gradient(ellipse 17% 13% at 92% 11%, rgb(0 0 0 / 45%) 0 42%, transparent 51%),
+    radial-gradient(ellipse at 84% 79%, rgb(0 0 0 / 45%) 0 33%, transparent 38%),
+    radial-gradient(ellipse 16% 12% at 7% 13%, rgb(0 0 0 / 45%) 0 44%, transparent 51%),
+    radial-gradient(ellipse 14% 18% at 11% 88%, rgb(0 0 0 / 45%) 0 43%, transparent 51%),
+    radial-gradient(ellipse 13% 20% at 91% 89%, rgb(0 0 0 / 45%) 0 43%, transparent 52%);
+  mask-position:
+    18% 30%, 76% 28%, 78% 72%, 26% 76%, 8% 52%, 52% 6%, 96% 44%, 4% 20%,
+    24% 100%, 96% 92%, 50% 50%, 92% 11%, 11% 88%, 91% 89%;
+  mask-repeat: no-repeat;
+  mask-size:
+    16% 21%,
+    20% 17%,
+    17% 20%,
+    22% 16%,
+    15% 19%,
+    13% 15%,
+    14% 18%,
+    12% 16%,
+    16% 13%,
+    13% 17%,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  filter: saturate(0.78) contrast(1.08);
+  transform: scale(0.94) rotate(-1deg);
+}
+
+.is-revealing.effect-iris-gate .project-media:not(.project-video__source) {
+  animation: iris-gate-reveal calc(1300ms * var(--motion-time-scale, 1)) var(--ease-in-out) both;
+}
+
+.is-revealing.effect-iris-gate .media-effect-canvas[data-active='true'] {
+  animation: iris-gate-reveal calc(1300ms * var(--motion-time-scale, 1)) var(--ease-in-out) both;
+}
+
+.is-revealing.effect-iris-gate .media-frame::after {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  content: '';
+  background:
+    repeating-radial-gradient(
+      circle at 24% 36%,
+      rgb(255 255 255 / 16%) 0 1px,
+      transparent 1px 5px
+    ),
+    repeating-linear-gradient(
+      117deg,
+      rgb(17 17 15 / 10%) 0 1px,
+      transparent 1px 7px,
+      rgb(255 255 255 / 9%) 7px 8px,
+      transparent 8px 13px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0;
+  clip-path: circle(18% at 50% 50%);
+  animation: iris-gate-noise calc(1300ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+html[data-motion-mode='overdrive'] .is-revealing .media-frame {
+  animation: media-frame-overdrive calc(1300ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+/* The featured chromatic iris gets a stronger atmosphere in Max mode;
+   keep the image geometry nearly fixed and let the noise layer carry it. */
+html[data-motion-mode='overdrive'] .featured-stage.is-revealing.effect-iris-gate.accent-chromatic .media-frame::after {
+  animation-name: iris-gate-noise-overdrive;
+}
+
+.is-armed.effect-iris-gate .project-media:not(.project-video__source) {
+  clip-path: circle(18% at 50% 50%);
+  filter: saturate(0.82);
+  transform: scale(0.96);
+}
+
+.is-revealing.accent-prism .prism-frame {
+  animation: prism-visibility calc(940ms * var(--motion-time-scale, 1)) linear both;
+}
+
+.is-revealing.accent-prism .prism-edge--pink {
+  animation: prism-pink calc(940ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+.is-revealing.accent-prism .prism-edge--blue {
+  animation: prism-blue calc(940ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+.is-revealing.accent-prism .prism-edge--yellow {
+  animation: prism-yellow calc(940ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+.is-revealing .stage-wordmark {
+  animation: type-squeeze calc(1200ms * var(--motion-time-scale, 1)) var(--ease-out) both;
+}
+
+.is-revealing.accent-halation .anamorphic-flare {
+  animation: lens-streak calc(1150ms * var(--motion-time-scale, 1)) var(--ease-in-out) both;
+}
+
+@keyframes incision-reveal {
+  0% {
+    clip-path: polygon(
+      39% 43%,
+      47% 31%,
+      58% 39%,
+      68% 35%,
+      64% 51%,
+      75% 61%,
+      61% 67%,
+      52% 78%,
+      43% 65%,
+      30% 70%,
+      35% 54%,
+      25% 45%
+    );
+    filter: saturate(0.88);
+    transform: scale(0.96);
+  }
+  72% {
+    clip-path: polygon(
+      -1% -1%,
+      24% 0,
+      51% -1%,
+      76% 0,
+      101% -1%,
+      100% 51%,
+      101% 101%,
+      75% 100%,
+      49% 101%,
+      24% 100%,
+      -1% 101%,
+      0 49%
+    );
+    filter: saturate(1.02);
+    transform: scale(1.01);
+  }
+  100% {
+    clip-path: inset(0);
+    filter: none;
+    transform: none;
+  }
+}
