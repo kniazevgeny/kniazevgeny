@@ -261,8 +261,21 @@ dd {
   text-decoration: none;
 }
 
-.language-switcher a + a {
+.language-switcher a + a,
+.language-switcher .is-disabled {
   border-left: 1px solid var(--ink);
+}
+
+.language-switcher .is-disabled {
+  display: block;
+  min-width: 2.7rem;
+  padding: 0.42rem 0.6rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-align: center;
+  cursor: not-allowed;
+  opacity: 0.52;
 }
 
 .language-switcher .is-active {

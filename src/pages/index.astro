@@ -14,15 +14,3 @@ const content = getSiteContent('en')
 >
   <Portfolio client:load content={content} locale="en" />
 </BaseLayout>
-
-<script is:inline>
-  const requestedLanguage =
-    navigator.languages?.[0] ?? navigator.language ?? ''
-  const prefersRussian = requestedLanguage.toLowerCase().startsWith('ru')
-  const explicitlyEnglish =
-    new URLSearchParams(window.location.search).get('lang') === 'en'
-
-  if (prefersRussian && !explicitlyEnglish) {
-    window.location.replace('/ru/')
-  }
-</script>

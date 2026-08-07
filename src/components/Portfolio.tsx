@@ -292,16 +292,22 @@ export const Portfolio = ({ content, locale }: PortfolioProps) => {
           aria-hidden="true"
         />
         <nav className="language-switcher" aria-label={content.language.label}>
-          {(['en', 'ru'] as const).map((language) => (
-            <a
-              key={language}
-              className={language === locale ? 'is-active' : undefined}
-              href={localePath(language)}
-              aria-current={language === locale ? 'page' : undefined}
-            >
-              {content.language[language]}
-            </a>
-          ))}
+          {(['en', 'ru'] as const).map((language) =>
+            language === 'ru' ? (
+              <span key={language} className="is-disabled" aria-disabled="true">
+                {content.language[language]}
+              </span>
+            ) : (
+              <a
+                key={language}
+                className={language === locale ? 'is-active' : undefined}
+                href={localePath(language)}
+                aria-current={language === locale ? 'page' : undefined}
+              >
+                {content.language[language]}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="hero__content">
