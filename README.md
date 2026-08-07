@@ -1,18 +1,20 @@
-# Frontend code template
+# kniazevgeny.github.io
 
-This template to be used for frontend applications. Written in Vue.js with Vuetify and Vuex set up it is ready to be used. Facebook. Google and Telegram login is included.
+Personal website built as a static Astro site with React-rendered components and SCSS.
 
-## Project setup
-```
-yarn install
+Core portfolio content is prerendered into HTML, so the site remains readable with JavaScript disabled. Interactive sections use native HTML elements such as `<details>`.
+
+## Development
+
+```sh
+npm install
+npm run dev
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+## Build
+
+```sh
+npm run build
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+The static output is generated in `dist/`.

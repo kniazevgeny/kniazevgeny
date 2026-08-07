@@ -1,0 +1,16 @@
+---
+import { Portfolio } from '../../components/Portfolio'
+import { getSiteContent } from '../../data/site'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+const content = getSiteContent('ru')
+---
+
+<BaseLayout
+  title={content.meta.title}
+  description={content.meta.description}
+  locale="ru"
+  canonicalPath="/ru/"
+>
+  <Portfolio client:load content={content} locale="ru" />
+</BaseLayout>
