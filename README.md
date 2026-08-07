@@ -1,16 +1,20 @@
-### Hi there 👋
+# kniazevgeny.github.io
 
-<!--
-**kniazevgeny/kniazevgeny** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Personal website built as a static Astro site with React-rendered components and SCSS.
 
-Here are some ideas to get you started:
+Core portfolio content is prerendered into HTML, so the site remains readable with JavaScript disabled. Interactive sections use native HTML elements such as `<details>`.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Development
+
+```sh
+npm install
+npm run dev
+```
+
+## Build
+
+```sh
+npm run build
+```
+
+The static output is generated in `dist/`.
