@@ -190,7 +190,6 @@ const ArchiveYear = ({
         <span className="archive-year__count">
           {year.projects.length} {pluralizeProject(year.projects.length, locale)}
         </span>
-        <span className="archive-year__types">{year.types.join(' / ')}</span>
       </div>
       <div className="archive-year__projects">
         {year.projects.map((project, index) => (

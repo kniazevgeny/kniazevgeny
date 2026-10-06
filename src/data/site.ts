@@ -62,7 +62,6 @@ export type ProjectTag = 'molecule' | 'globe' | 'discount' | 'building'
 export type ProjectYear = {
   year: number
   projects: Project[]
-  types: string[]
 }
 
 type RawProject = {
@@ -143,8 +142,8 @@ const copy = {
     },
     story: {
       paragraphs: [
-        'I work across frontend engineering, product analytics, and discovery, using small interfaces to test risky assumptions. My current tools are React, TypeScript, Vite, and the backend work needed to make products real.',
-        'I have built rental and location-based platforms, IoT tools, and drug discovery systems; now I am moving toward research software and computational biology. Alongside engineering, I do JTBD interviews, quantitative research, and MVPs.',
+        'I work across full-stack engineering and product discovery. My current tools are React, TypeScript, Vite, PostgreSQL, Qdrant, and Codex.',
+        'I have built rental and location-based platforms, IoT tools, and drug discovery systems; now I am moving toward research software and computational biology. I also conduct user interviews and quantitative research.',
       ],
     },
     sections: {
@@ -336,7 +335,6 @@ const normalizeYears = (locale: Locale): ProjectYear[] => {
     return {
       year: yearGroup.year,
       projects,
-      types: [...new Set(projects.map((project) => project.type))],
     }
   })
 }
@@ -502,13 +500,6 @@ export const getSiteContent = (locale: Locale) => {
     .map((year) => ({
       ...year,
       projects: year.projects.filter((project) => !excludedIds.has(project.id)),
-      types: [
-        ...new Set(
-          year.projects
-            .filter((project) => !excludedIds.has(project.id))
-            .map((project) => project.type)
-        ),
-      ],
     }))
     .filter((year) => year.projects.length > 0)
 

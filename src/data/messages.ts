@@ -279,34 +279,6 @@ export const messages = {
       {
         year: 2021,
         projects: [
-          {
-            title: 'sPawn',
-            type: 'Chemistry · UE4 / C++',
-            id: 'spawn',
-            link: 'https://drive.google.com/file/d/1Zxyu25WU_9ldc1JPSDnOwUOq7Rg2csuc/view?usp=sharing',
-            linkLabel: 'Скачать APK',
-            links: [
-              {
-                href: 'https://github.com/kniazevgeny/chem',
-                label: 'Репозиторий',
-                kind: 'repo',
-              },
-              {
-                href: 'https://github.com/kniazevgeny/chem/blob/master/Source/sPawn/ParseMolecule.cpp',
-                label: 'Парсер молекул',
-                kind: 'repo',
-              },
-            ],
-            slides: [
-              asset('spawn-4.webp'),
-              asset('spawn-1.webp'),
-              asset('spawn-2.webp'),
-              asset('spawn-3.webp'),
-            ],
-            paragraphs: [
-              'Кроссплатформенное мобильное приложение с интерфейсом на UE4 и парсером молекул на C++, который превращает формулы неорганических веществ из школьной программы в 3D-модели.',
-            ],
-          },
           // {
           //   title: 'Бронирование парковки',
           //   summary:
@@ -340,6 +312,34 @@ export const messages = {
               'Сперва рассмотрели тексты Майка Монтейро, Пола Грэма, Дэвида Гребера, Джеймса Уильямса, Ваннкартеша Рао, Роберта Солоу и других, чтобы определить основные точки зрения на цифровую экономику. В результате удалось выделить позиции с помощью категорий Оптимизм-Скептицизм и Личная Выгода-Общественное развитие',
               'Затем перешли к анализу феномена цифровых сообществ. Нас заинтересовало, как можно связать размер сообщества (степень влияния) с видом деятельности. В этом помогли категории Процесс-Продукт. Оказалось, что чем глобальнее сообщество, тем более вероятно, что оно имеет целью деятельности создание продукта. Сюда относятся Википедия, moz://a, python. Более локальные известные сообщества скорее про процесс: сообщества выпускников — хороший пример.',
               'После публикации обзора на сайте альманаха практик будущего и на хабре, закрепили понимание устройства сообществ разбором значимых работ Виктора Слободчикова и Дэвида Макмиллана с Дэвидом Чевисом',
+            ],
+          },
+          {
+            title: 'sPawn',
+            type: 'Chemistry · UE4 / C++',
+            id: 'spawn',
+            link: 'https://drive.google.com/file/d/1Zxyu25WU_9ldc1JPSDnOwUOq7Rg2csuc/view?usp=sharing',
+            linkLabel: 'Скачать APK',
+            links: [
+              {
+                href: 'https://github.com/kniazevgeny/chem',
+                label: 'Репозиторий',
+                kind: 'repo',
+              },
+              {
+                href: 'https://github.com/kniazevgeny/chem/blob/master/Source/sPawn/ParseMolecule.cpp',
+                label: 'Парсер молекул',
+                kind: 'repo',
+              },
+            ],
+            slides: [
+              asset('spawn-4.webp'),
+              asset('spawn-1.webp'),
+              asset('spawn-2.webp'),
+              asset('spawn-3.webp'),
+            ],
+            paragraphs: [
+              'Кроссплатформенное мобильное приложение с интерфейсом на UE4 и парсером молекул на C++, который превращает формулы неорганических веществ из школьной программы в 3D-модели.',
             ],
           },
           // {
@@ -743,34 +743,6 @@ export const messages = {
       {
         year: 2021,
         projects: [
-          {
-            title: 'sPawn',
-            type: 'Chemistry · UE4 / C++',
-            id: 'spawn',
-            link: 'https://drive.google.com/file/d/1Zxyu25WU_9ldc1JPSDnOwUOq7Rg2csuc/view?usp=sharing',
-            linkLabel: 'Download APK',
-            links: [
-              {
-                href: 'https://github.com/kniazevgeny/chem',
-                label: 'Repository',
-                kind: 'repo',
-              },
-              {
-                href: 'https://github.com/kniazevgeny/chem/blob/master/Source/sPawn/ParseMolecule.cpp',
-                label: 'Molecule parser',
-                kind: 'repo',
-              },
-            ],
-            slides: [
-              asset('spawn-4.webp'),
-              asset('spawn-1.webp'),
-              asset('spawn-2.webp'),
-              asset('spawn-3.webp'),
-            ],
-            paragraphs: [
-              'A cross-platform mobile app with a UE4 interface and a C++ molecule parser that turns inorganic formulas from the school curriculum into 3D models.',
-            ],
-          },
           // {
           //   title: 'Parking reservations',
           //   summary:
@@ -804,6 +776,34 @@ export const messages = {
               'We first looked at texts by Mike Monteiro, Paul Graham, David Graeber, James Williams, Wannkartesh Rao, Robert Solow, and others to identify key perspectives on the digital economy. As a result, we were able to identify positions through the categories Optimism-Skepticism and Personal Benefit-Public Development.',
               'Then we moved on to an analysis of the phenomenon of digital communities. We were interested in how we could relate the size of the community (degree of influence) to the type of activity. The Process-Product categories helped in this. It turned out that the more global a community is, the more likely it is that it has the purpose of the activity to create a product. This includes Wikipedia, moz://a, python. The more local well-known communities are more about process: alumni communities are a good example.',
               'After publishing a review on the Almanac of Future Practices website and on hubra, we consolidated our understanding of community organizing by parsing the significant work of Victor Slobodchikov and David McMillan with David Chevis.',
+            ],
+          },
+          {
+            title: 'sPawn',
+            type: 'Chemistry · UE4 / C++',
+            id: 'spawn',
+            link: 'https://drive.google.com/file/d/1Zxyu25WU_9ldc1JPSDnOwUOq7Rg2csuc/view?usp=sharing',
+            linkLabel: 'Download APK',
+            links: [
+              {
+                href: 'https://github.com/kniazevgeny/chem',
+                label: 'Repository',
+                kind: 'repo',
+              },
+              {
+                href: 'https://github.com/kniazevgeny/chem/blob/master/Source/sPawn/ParseMolecule.cpp',
+                label: 'Molecule parser',
+                kind: 'repo',
+              },
+            ],
+            slides: [
+              asset('spawn-4.webp'),
+              asset('spawn-1.webp'),
+              asset('spawn-2.webp'),
+              asset('spawn-3.webp'),
+            ],
+            paragraphs: [
+              'A cross-platform mobile app with a UE4 interface and a C++ molecule parser that turns inorganic formulas from the school curriculum into 3D models.',
             ],
           },
           // {

@@ -51,6 +51,10 @@ test('sPawn appears in the 2021 archive with its project link and previews', asy
     'utf8'
   )
   const spawn = html.slice(html.indexOf('id="spawn"'))
+  const year2021 = html.slice(html.indexOf('id="archive-year-2021"'))
+  const archiveTitles = [...year2021.matchAll(/class="project-title">([^<]+)/g)]
+    .slice(0, 3)
+    .map((match) => match[1])
 
   assert.ok(html.includes('id="spawn"'))
   assert.match(spawn, /sPawn/)
@@ -62,4 +66,10 @@ test('sPawn appears in the 2021 archive with its project link and previews', asy
   assert.match(spawn, /https:\/\/github\.com\/kniazevgeny\/chem(?:\"|\/)/)
   assert.match(spawn, /https:\/\/github\.com\/kniazevgeny\/chem\/blob\/master\/Source\/sPawn\/ParseMolecule\.cpp/)
   assert.match(spawn, /spawn-4\.[^" ]+\.webp/)
+  assert.doesNotMatch(html, /class="archive-year__types"/)
+  assert.deepEqual(archiveTitles, [
+    'The role of communities in the digital economy',
+    'sPawn',
+    'Comparison of the level of RES development in Russia and Canada',
+  ])
 })
