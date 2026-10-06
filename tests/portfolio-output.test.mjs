@@ -28,6 +28,19 @@ test('English page renders the approved information hierarchy', async () => {
   assert.match(html, /class="hero-black-hole-canvas"/)
   assert.match(html, /aria-hidden="true"/)
   assert.match(html, /hero-organic-line hero-organic-line--right/)
-  assert.match(html, /class="work-card__details"/)
+  assert.match(html, /class="work-card__body"/)
   assert.match(html, /soulbody-1-m\.[^" ]+\.webp/)
+})
+
+test('archive opens its first project and keeps other rows label-free', async () => {
+  const html = await readFile(
+    new URL('../dist/index.html', import.meta.url),
+    'utf8'
+  )
+  const archive = html.slice(html.indexOf('id="archive"'))
+  const entries = [...archive.matchAll(/<details\b[^>]*class="project-details[^>]*>/g)]
+
+  assert.ok(entries.length > 1)
+  assert.match(entries[0][0], /\sopen(?:\s|=|>)/)
+  assert.doesNotMatch(archive, /class="toggle-label"/)
 })

@@ -29,9 +29,6 @@ export type Project = {
   featured: boolean
   section: ProjectSection
   media: FeaturedMedia
-  role: string
-  state: string
-  output: string
   effectOverride?: Partial<EffectProfile>
   tag?: ProjectTag
   artwork?: 'logo'
@@ -45,6 +42,7 @@ export type FeaturedMedia =
       src: string
       alt: string
       aspect: 'square' | 'wide'
+      fit?: 'cover' | 'contain'
     }
   | {
       kind: 'video'
@@ -96,7 +94,7 @@ const projectTags: Partial<Record<string, ProjectTag>> = {
   smlt: 'building',
 }
 
-const workIds = ['lip', 'easytix', 'soulbody', 'smlt', 'munk'] as const
+const workIds = ['lip', 'easytix', 'smlt'] as const
 
 const cvHref = 'https://kniazevgeny.github.io/docs/CV%20Kniazev%20-%202026.pdf'
 
@@ -113,18 +111,19 @@ const copy = {
       ru: 'RU',
     },
     hero: {
-      role: 'fullstack engineer',
       education: [
         {
           icon: 'ulille',
           text: 'University of Lille',
-          details:
-            'Master in bioinformatics · 2026 →\nLicence MIASHS (applied maths & CS for social and life sciences) · 2023 → 2026',
+          details: [
+            { program: 'Master in bioinformatics', years: '2026 →' },
+            { program: 'Licence MIASHS (applied maths & CS)', years: '2023 → 2026' },
+          ],
         },
         {
           icon: 'polytech',
           text: 'Peter the Great St. Petersburg Polytechnic University',
-          details: 'Business Informatics · 2021 → 2023',
+          details: [{ program: 'Business Informatics', years: '2021 → 2023' }],
         },
       ],
       intro: [
@@ -141,16 +140,9 @@ const copy = {
       ],
     },
     story: {
-      title: 'My Story',
-      intro: [
-        'I work somewhere between frontend engineering, product analytics, and early-stage discovery. The common thread is simple: understand what job the product has to do, make the risky assumptions about why it might work explicit, then test them with the smallest interface that can produce useful evidence.',
-        'My current stack is React, TypeScript, Vite, React Aria/getjustd, and whatever backend/API work is needed to make the product real.',
-      ],
-      detailsLabel: 'Show more',
-      details: [
-        'My work has moved from rental and location-based platforms to IoT tools and drug discovery systems, with research software and computational biology becoming the next direction.',
-        'I started with programming contests and small websites, then moved into Telegram bots, Vue/Vuetify apps, and later React products. That path made me comfortable with both the interface layer and the messy product questions around it.',
-        'Alongside engineering, I have done JTBD interviews, quantitative research, case championships, and MVPs for teams that needed a product direction before they needed a larger system.',
+      paragraphs: [
+        'I work across frontend engineering, product analytics, and discovery, using small interfaces to test risky assumptions. My current tools are React, TypeScript, Vite, and the backend work needed to make products real.',
+        'I have built rental and location-based platforms, IoT tools, and drug discovery systems; now I am moving toward research software and computational biology. Alongside engineering, I do JTBD interviews, quantitative research, and MVPs.',
       ],
     },
     sections: {
@@ -197,18 +189,19 @@ const copy = {
       ru: 'RU',
     },
     hero: {
-      role: 'фулстек-разработчик',
       education: [
         {
           icon: 'ulille',
           text: 'Университет Лилля',
-          details:
-            'Магистратура по биоинформатике · 2026 →\nЛиценциат MIASHS (прикладная математика и информатика для социальных и естественных наук) · 2023 → 2026',
+          details: [
+            { program: 'Магистратура по биоинформатике', years: '2026 →' },
+            { program: 'Лиценциат MIASHS (прикладная математика и информатика для социальных и естественных наук)', years: '2023 → 2026' },
+          ],
         },
         {
           icon: 'polytech',
           text: 'СПбПУ Петра Великого',
-          details: 'Бизнес-информатика · 2021 → 2023',
+          details: [{ program: 'Бизнес-информатика', years: '2021 → 2023' }],
         },
       ],
       intro: [
@@ -225,17 +218,9 @@ const copy = {
       ],
     },
     story: {
-      title: 'Обо мне',
-      intro: [
-        'Я работаю на стыке фронтенд-разработки, продуктовой аналитики и раннего discovery. Общая идея простая: понять, какую работу должен выполнять продукт, а затем собрать минимальный интерфейс, который это проверит.',
-        'Мой текущий стек: React, TypeScript, Vite, React Aria/getjustd и ровно столько backend/API-работы, сколько нужно, чтобы продукт заработал.',
-      ],
-      detailsLabel: 'Показать ещё',
-      details: [
-        'Я работал над сервисами аренды и геолокационными платформами, а затем перешёл к IoT-инструментам и системам для поиска лекарств. Сейчас хочу развиваться в области исследовательского ПО и вычислительной биологии.',
-        'Я начинал с олимпиадного программирования и небольших сайтов, потом делал Telegram-ботов, приложения на Vue/Vuetify и уже после этого React-продукты. Этот путь помог спокойно работать и с интерфейсом, и с продуктовыми вопросами вокруг него.',
-        'Помимо разработки, я проводил JTBD-интервью, делал количественные исследования, участвовал в кейс-чемпионатах и собирал MVP для команд, которым сначала нужно было понять продуктовый вектор.',
-        'Поэтому для меня интерфейс — это не просто экран, а инструмент продукта: он должен показывать правильные ограничения, помогать пользователю принимать решения и оставаться поддерживаемым для команды.',
+      paragraphs: [
+        'Я работаю на стыке фронтенд-разработки, продуктовой аналитики и discovery, собирая небольшие интерфейсы для проверки рискованных гипотез. Использую React, TypeScript, Vite и backend-инструменты, нужные для запуска продукта.',
+        'Я работал с сервисами аренды и геолокационными платформами, IoT-инструментами и системами для поиска лекарств. Сейчас развиваюсь в сфере исследовательского ПО и вычислительной биологии; также провожу JTBD-интервью, количественные исследования и собираю MVP.',
       ],
     },
     sections: {
@@ -333,9 +318,6 @@ const normalizeProject = (
           alt: project.title,
           aspect: 'wide',
         },
-    role: project.type,
-    state: locale === 'en' ? 'Archive record' : 'Запись архива',
-    output: project.type,
     tag: projectTags[id],
     artwork: project.artwork,
   }
@@ -364,9 +346,6 @@ const personalPresentation = {
       type: 'Generative tool',
       summary:
         'A generator of loto tiles with artwork placed into selected cells.',
-      role: 'Concept and development',
-      state: 'In progress',
-      output: 'Tile generator',
     },
     atmosphere: {
       title: 'Atmosphere-Aware Place Discovery',
@@ -376,23 +355,12 @@ const personalPresentation = {
         'Architected and built a multimodal enrichment pipeline leveraging Qwen3-VL embeddings.',
         'Applied PCA and Leiden micro-clustering to partition the graph into fine-grained review themes.',
       ],
-      role: 'Multimodal enrichment and graph analysis',
-      state: 'Published 2026',
-      output: 'Research paper',
-    },
-    whimbean: {
-      role: 'Product and full-stack development',
-      state: 'Live',
-      output: 'Web product',
     },
     ter: {
       title: 'Graph-based methods for analyzing and interpreting genomic data',
       type: 'Research',
       summary:
         'Algorithmic graph-based methods for analyzing and interpreting genomic data.',
-      role: 'Research',
-      state: 'Current edition',
-      output: 'Research material',
     },
   },
   ru: {
@@ -401,9 +369,6 @@ const personalPresentation = {
       type: 'Генеративный инструмент',
       summary:
         'Генератор карточек лото, где в выбранных клетках появляется искусство.',
-      role: 'Концепция и разработка',
-      state: 'В работе',
-      output: 'Генератор карточек',
     },
     atmosphere: {
       title: 'Atmosphere-Aware Place Discovery',
@@ -413,23 +378,12 @@ const personalPresentation = {
         'Спроектировал и создал мультимодальный конвейер обогащения данных на основе эмбеддингов Qwen3-VL.',
         'Применил PCA и микрокластеризацию Leiden, чтобы разделить граф на детализированные темы отзывов.',
       ],
-      role: 'Мультимодальное обогащение и анализ графа',
-      state: 'Опубликовано в 2026',
-      output: 'Научная статья',
-    },
-    whimbean: {
-      role: 'Продукт и full-stack разработка',
-      state: 'Запущен',
-      output: 'Веб-продукт',
     },
     ter: {
       title: 'Графовые методы анализа и интерпретации геномных данных',
       type: 'Исследование',
       summary:
         'Алгоритмические методы на основе графов для анализа и интерпретации геномных данных.',
-      role: 'Исследование',
-      state: 'Текущая версия',
-      output: 'Материал исследования',
     },
   },
 } as const
@@ -462,9 +416,6 @@ const getPersonalProjects = (
         alt: presentation.loto.title,
         aspect: 'wide',
       },
-      role: presentation.loto.role,
-      state: presentation.loto.state,
-      output: presentation.loto.output,
       effectOverride: { major: 'organic-matte' },
     },
     {
@@ -473,7 +424,7 @@ const getPersonalProjects = (
       title: presentation.atmosphere.title,
       type: presentation.atmosphere.type,
       summary: presentation.atmosphere.summary,
-      paragraphs: presentation.atmosphere.paragraphs,
+      paragraphs: [...presentation.atmosphere.paragraphs],
       slides: [],
       links: [{ href: 'https://doi.org/10.1145/3841645.3843038', label: copy[locale].projectLinks.paper, kind: 'paper' }],
       featured: true,
@@ -483,10 +434,8 @@ const getPersonalProjects = (
         src: atmospherePaperUrl,
         alt: presentation.atmosphere.title,
         aspect: 'wide',
+        fit: 'contain',
       },
-      role: presentation.atmosphere.role,
-      state: presentation.atmosphere.state,
-      output: presentation.atmosphere.output,
       effectOverride: { major: 'iris-gate', accent: 'chromatic' },
     },
     {
@@ -500,9 +449,6 @@ const getPersonalProjects = (
         alt: `${whimbean.title} preview`,
         aspect: 'wide',
       },
-      role: presentation.whimbean.role,
-      state: presentation.whimbean.state,
-      output: presentation.whimbean.output,
       effectOverride: { major: 'incision' },
     },
     {
@@ -528,30 +474,10 @@ const getPersonalProjects = (
         alt: `${presentation.ter.title} preview`,
         aspect: 'wide',
       },
-      role: presentation.ter.role,
-      state: presentation.ter.state,
-      output: presentation.ter.output,
       effectOverride: { major: 'iris-gate' },
     },
   ]
 }
-
-const workRoles = {
-  en: {
-    lip: 'Full-stack product development',
-    easytix: 'Frontend development',
-    soulbody: 'Frontend and CMS development',
-    smlt: 'Frontend development',
-    munk: 'Frontend development',
-  },
-  ru: {
-    lip: 'Full-stack разработка продукта',
-    easytix: 'Frontend-разработка',
-    soulbody: 'Frontend и разработка CMS',
-    smlt: 'Frontend-разработка',
-    munk: 'Frontend-разработка',
-  },
-} as const
 
 export const getSiteContent = (locale: Locale) => {
   const years = normalizeYears(locale)
@@ -564,9 +490,6 @@ export const getSiteContent = (locale: Locale) => {
     return {
       ...project,
       section: 'work' as const,
-      role: workRoles[locale][id],
-      state: locale === 'en' ? 'Selected work' : 'Избранная работа',
-      output: project.type,
     }
   })
   const excludedIds = new Set([

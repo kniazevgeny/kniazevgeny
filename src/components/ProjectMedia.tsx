@@ -103,7 +103,7 @@ export const ProjectMedia = ({
     <img
       key={media.src}
       ref={onElement}
-      className="project-media"
+      className={`project-media${media.fit === 'contain' ? ' project-media--contain' : ''}`}
       src={media.src}
       alt={media.alt}
       loading={first ? 'eager' : 'lazy'}

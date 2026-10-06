@@ -60,13 +60,6 @@ const ProjectLinks = ({ project }: { project: Project }) => {
   )
 }
 
-const ToggleLabel = ({ content }: { content: SiteContent }) => (
-  <span className="toggle-label" aria-hidden="true">
-    <span className="toggle-label__more">{content.sections.showMore}</span>
-    <span className="toggle-label__less">{content.sections.hide}</span>
-  </span>
-)
-
 const storyInlineLinks = [
   {
     phrase: 'rental and location-based platforms',
@@ -135,17 +128,34 @@ const PreviewStrip = ({
 const ProjectDetails = ({
   project,
   content,
-  openByDefault = false,
+  initiallyOpen = false,
 }: {
   project: Project
   content: SiteContent
-  openByDefault?: boolean
+  initiallyOpen?: boolean
 }) => (
-  <details className="project-details" id={project.id} open={openByDefault}>
+  <details
+    className={`project-details${project.slides.length > 0 ? ' project-details--illustrated' : ''}`}
+    id={project.id}
+    open={initiallyOpen}
+  >
     <summary>
-      <span className="project-title">{project.title}</span>
-      <span className="project-type">{project.type}</span>
-      <ToggleLabel content={content} />
+      {project.slides[0] ? (
+        <img
+          className="project-details__backdrop"
+          src={project.slides[0]}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : null}
+      <div className="project-details__summary-content">
+        <div className="project-details__title-group">
+          <span className="project-title">{project.title}</span>
+          <span className="project-type">{project.type}</span>
+        </div>
+      </div>
     </summary>
     <div className="project-body">
       <div className="project-body__copy">
@@ -171,34 +181,37 @@ const ArchiveYear = ({
   content: SiteContent
   locale: Locale
 }) => (
-  <details className="archive-year">
-    <summary>
-      <span className="archive-year__year">{year.year}</span>
-      <span className="archive-year__count">
-        {year.projects.length} {pluralizeProject(year.projects.length, locale)}
-      </span>
-      <span className="archive-year__types">{year.types.join(' / ')}</span>
-      <ToggleLabel content={content} />
-    </summary>
-    <div className="archive-year__projects">
-      {year.projects.map((project) => (
-        <ProjectDetails
-          key={project.id}
-          project={project}
-          content={content}
-          openByDefault={year.projects.length === 1}
-        />
-      ))}
+  <section className="archive-year" aria-labelledby={`archive-year-${year.year}`}>
+    <h3 className="archive-year__year" id={`archive-year-${year.year}`}>
+      {year.year}
+    </h3>
+    <div className="archive-year__content">
+      <div className="archive-year__meta">
+        <span className="archive-year__count">
+          {year.projects.length} {pluralizeProject(year.projects.length, locale)}
+        </span>
+        <span className="archive-year__types">{year.types.join(' / ')}</span>
+      </div>
+      <div className="archive-year__projects">
+        {year.projects.map((project, index) => (
+          <ProjectDetails
+            key={project.id}
+            project={project}
+            content={content}
+            initiallyOpen={
+              year.year === content.archiveYears[0]?.year && index === 0
+            }
+          />
+        ))}
+      </div>
     </div>
-  </details>
+  </section>
 )
 
 const WorkCard = ({
   project,
-  content,
 }: {
   project: Project
-  content: SiteContent
 }) => {
   const visibleParagraph = project.summary ?? project.paragraphs[0]
   const extraParagraphs = project.summary
@@ -229,29 +242,14 @@ const WorkCard = ({
         </div>
         <h3>{project.title}</h3>
         {visibleParagraph ? <p>{visibleParagraph}</p> : null}
-        <dl>
-          <div>
-            <dt>Role</dt>
-            <dd>{project.role}</dd>
-          </div>
-          <div>
-            <dt>Output</dt>
-            <dd>{project.output}</dd>
-          </div>
-        </dl>
         <ProjectLinks project={project} />
       </div>
       {extraParagraphs.length > 0 ? (
-        <details className="work-card__details">
-          <summary>
-            <ToggleLabel content={content} />
-          </summary>
-          <div className="work-card__details-body">
-            {extraParagraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </details>
+        <div className="work-card__body">
+          {extraParagraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
       ) : null}
     </article>
   )
@@ -263,7 +261,6 @@ export const Portfolio = ({ content, locale }: PortfolioProps) => {
   const [activeProjectId, setActiveProjectId] = useState(
     content.personalProjects[0]?.id ?? ''
   )
-  const [contextOpen, setContextOpen] = useState(false)
   const onActiveProject = useCallback((projectId: string) => {
     setActiveProjectId(projectId)
   }, [])
@@ -358,23 +355,10 @@ export const Portfolio = ({ content, locale }: PortfolioProps) => {
               {content.hero.intro.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
-              <div className={`hero-context${contextOpen ? ' is-open' : ''}`}>
-                <button
-                  className="hero-context__trigger"
-                  type="button"
-                  aria-expanded={contextOpen}
-                  aria-controls="hero-context-panel"
-                  onClick={() => setContextOpen((open) => !open)}
-                >
-                  {content.story.detailsLabel}
-                </button>
-                <div id="hero-context-panel">
-                  {[...content.story.intro, ...content.story.details].map(
-                    (paragraph) => (
-                      <StoryParagraph key={paragraph} paragraph={paragraph} />
-                    )
-                  )}
-                </div>
+              <div className="hero-context">
+                {content.story.paragraphs.map((paragraph) => (
+                  <StoryParagraph key={paragraph} paragraph={paragraph} />
+                ))}
               </div>
             </div>
             <ul className="education-list" aria-label="Education">
@@ -393,7 +377,19 @@ export const Portfolio = ({ content, locale }: PortfolioProps) => {
                     <span className="education-entry__label">{item.text}</span>
                     {'details' in item && item.details ? (
                       <span className="education-entry__details">
-                        {item.details}
+                        {item.details.map((detail) => (
+                          <span
+                            className="education-entry__detail"
+                            key={`${detail.program}-${detail.years}`}
+                          >
+                            <span className="education-entry__program">
+                              {detail.program}
+                            </span>
+                            <span className="education-entry__years">
+                              {detail.years}
+                            </span>
+                          </span>
+                        ))}
                       </span>
                     ) : null}
                   </span>
@@ -430,7 +426,7 @@ export const Portfolio = ({ content, locale }: PortfolioProps) => {
         </header>
         <div className="work-list">
           {content.workProjects.map((project) => (
-            <WorkCard key={project.id} project={project} content={content} />
+            <WorkCard key={project.id} project={project} />
           ))}
         </div>
       </section>

@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Project } from '../data/site'
-import { getMotionControls, setMotionMode } from '../lib/motion'
+import {
+  getMotionControls,
+  installMotionControls,
+  setMotionMode,
+} from '../lib/motion'
 
 type SectionLocatorProps = {
   personalLabel: string
@@ -57,7 +61,9 @@ export const SectionLocator = ({
   }, [])
 
   useEffect(() => {
+    installMotionControls()
     const sync = () => setMotionModeState(getMotionControls().mode)
+    sync()
     window.addEventListener('portfolio-motion-change', sync)
     return () => window.removeEventListener('portfolio-motion-change', sync)
   }, [])

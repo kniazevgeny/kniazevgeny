@@ -18,63 +18,8 @@
     padding-inline: 0.55rem;
   }
 
-  .hero-context__trigger {
-    margin-inline: auto;
-  }
-
-  .toggle-label__more {
+  .archive-year__types {
     display: none;
-  }
-
-  .toggle-label__less {
-    display: none !important;
-  }
-
-  .toggle-label {
-    min-width: 2.1rem;
-    width: 2.1rem;
-    overflow: hidden;
-    color: transparent;
-  }
-
-  .toggle-label::before {
-    color: var(--ink);
-    content: '+';
-  }
-
-  details[open] > summary .toggle-label::before {
-    color: white;
-    content: '−';
-  }
-
-  .project-facts {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .archive-year[open] {
-    margin-inline: 0;
-  }
-
-  .archive-year > summary {
-    grid-template-columns: 4rem minmax(0, 1fr) auto;
-    gap: 0.5rem;
-  }
-
-  .toggle-label {
-    min-width: 2.1rem;
-    width: 2.1rem;
-    overflow: hidden;
-    color: transparent;
-  }
-
-  .toggle-label::before {
-    color: var(--ink);
-    content: '+';
-  }
-
-  details[open] > summary .toggle-label::before {
-    color: white;
-    content: '−';
   }
 }
 
@@ -105,8 +50,7 @@
   .incision-layer,
   .delayed-contour,
   .anamorphic-flare,
-  .prism-frame,
-  .stage-wordmark {
+  .prism-frame {
     display: none !important;
   }
 }
@@ -125,8 +69,6 @@
 
 @media (forced-colors: active) {
   .hero-notch,
-  .calibration-mark,
-  .stage-artifact,
   .project-cells a[aria-current='location'] {
     forced-color-adjust: auto;
   }

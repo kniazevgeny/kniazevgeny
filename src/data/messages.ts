@@ -634,7 +634,7 @@ export const messages = {
         year: 2022,
         projects: [
           {
-            title: 'Datasets project',
+            title: 'ProDDG',
             type: 'MVP ➡️ Web Service',
             id: 'ivankovlab',
             link: 'https://ivankovlab.ru/',
