@@ -2,8 +2,7 @@ import { messages } from './messages'
 import terImageUrl from '../assets/ter-cover.webp?url'
 import lotoVideoUrl from '../assets/loto-art.mp4?url'
 import lotoPosterUrl from '../assets/loto-art-poster.webp?url'
-import savedSpotsVideoUrl from '../assets/saved-spots-explorer.mp4?url'
-import savedSpotsPosterUrl from '../assets/saved-spots-explorer-poster.webp?url'
+import atmospherePaperUrl from '../assets/atmosphere-aware-place-discovery.webp?url'
 import whimbeanImageUrl from '../assets/whimbean.webp?url'
 import type { EffectProfile } from '../lib/effects'
 
@@ -369,13 +368,17 @@ const personalPresentation = {
       state: 'In progress',
       output: 'Tile generator',
     },
-    saved: {
-      title: 'Saved Spots Explorer',
-      type: 'Personal utility',
-      summary: 'A visual explorer for places saved from Google Maps.',
-      role: 'Concept and development',
-      state: 'In progress',
-      output: 'Map explorer',
+    atmosphere: {
+      title: 'Atmosphere-Aware Place Discovery',
+      type: 'Research',
+      summary: 'M. Aizinov, W. Ling, E. Kniazev, C. Liu, Z. Li · 34th ACM SIGSPATIAL',
+      paragraphs: [
+        'Architected and built a multimodal enrichment pipeline leveraging Qwen3-VL embeddings.',
+        'Applied PCA and Leiden micro-clustering to partition the graph into fine-grained review themes.',
+      ],
+      role: 'Multimodal enrichment and graph analysis',
+      state: 'Published 2026',
+      output: 'Research paper',
     },
     whimbean: {
       role: 'Product and full-stack development',
@@ -402,13 +405,17 @@ const personalPresentation = {
       state: 'В работе',
       output: 'Генератор карточек',
     },
-    saved: {
-      title: 'Saved Spots Explorer',
-      type: 'Личный инструмент',
-      summary: 'Визуальный исследователь мест, сохранённых из Google Maps.',
-      role: 'Концепция и разработка',
-      state: 'В работе',
-      output: 'Исследователь карты',
+    atmosphere: {
+      title: 'Atmosphere-Aware Place Discovery',
+      type: 'Исследование',
+      summary: 'M. Aizinov, W. Ling, E. Kniazev, C. Liu, Z. Li · 34th ACM SIGSPATIAL',
+      paragraphs: [
+        'Спроектировал и создал мультимодальный конвейер обогащения данных на основе эмбеддингов Qwen3-VL.',
+        'Применил PCA и микрокластеризацию Leiden, чтобы разделить граф на детализированные темы отзывов.',
+      ],
+      role: 'Мультимодальное обогащение и анализ графа',
+      state: 'Опубликовано в 2026',
+      output: 'Научная статья',
     },
     whimbean: {
       role: 'Продукт и full-stack разработка',
@@ -461,27 +468,26 @@ const getPersonalProjects = (
       effectOverride: { major: 'organic-matte' },
     },
     {
-      id: 'saved-spots',
+      id: 'atmosphere-aware-place-discovery',
       year: 2026,
-      title: presentation.saved.title,
-      type: presentation.saved.type,
-      summary: presentation.saved.summary,
-      paragraphs: [],
+      title: presentation.atmosphere.title,
+      type: presentation.atmosphere.type,
+      summary: presentation.atmosphere.summary,
+      paragraphs: presentation.atmosphere.paragraphs,
       slides: [],
-      links: [{ href: 'https://kniazevgeny.github.io/saved-spots-explorer/', label: copy[locale].projectLinks.website, kind: 'website' }],
+      links: [{ href: 'https://doi.org/10.1145/3841645.3843038', label: copy[locale].projectLinks.paper, kind: 'paper' }],
       featured: true,
       section: 'personal',
       media: {
-        kind: 'video',
-        src: savedSpotsVideoUrl,
-        poster: savedSpotsPosterUrl,
-        alt: presentation.saved.title,
+        kind: 'image',
+        src: atmospherePaperUrl,
+        alt: presentation.atmosphere.title,
         aspect: 'wide',
       },
-      role: presentation.saved.role,
-      state: presentation.saved.state,
-      output: presentation.saved.output,
-      effectOverride: { major: 'anamorphic', accent: 'chromatic' },
+      role: presentation.atmosphere.role,
+      state: presentation.atmosphere.state,
+      output: presentation.atmosphere.output,
+      effectOverride: { major: 'iris-gate', accent: 'chromatic' },
     },
     {
       ...whimbean,

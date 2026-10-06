@@ -15,7 +15,7 @@ test('English page renders the approved information hierarchy', async () => {
 
   for (const title of [
     'Loto+Art',
-    'Saved Spots Explorer',
+    'Atmosphere-Aware Place Discovery',
     'Whimbean',
     'Graph-based methods for analyzing and interpreting genomic data',
   ]) {
