@@ -44,3 +44,22 @@ test('archive opens its first project and keeps other rows label-free', async ()
   assert.match(entries[0][0], /\sopen(?:\s|=|>)/)
   assert.doesNotMatch(archive, /class="toggle-label"/)
 })
+
+test('sPawn appears in the 2021 archive with its project link and previews', async () => {
+  const html = await readFile(
+    new URL('../dist/index.html', import.meta.url),
+    'utf8'
+  )
+  const spawn = html.slice(html.indexOf('id="spawn"'))
+
+  assert.ok(html.includes('id="spawn"'))
+  assert.match(spawn, /sPawn/)
+  assert.match(spawn, /UE4 \/ C\+\+/)
+  assert.match(spawn, /Chemistry · UE4 \/ C\+\+/)
+  assert.match(spawn, /cross-platform mobile app with a UE4 interface/)
+  assert.match(spawn, /C\+\+ molecule parser that turns inorganic formulas/)
+  assert.match(spawn, /https:\/\/drive\.google\.com\/file\/d\/1Zxyu25WU_9ldc1JPSDnOwUOq7Rg2csuc\/view\?usp=sharing/)
+  assert.match(spawn, /https:\/\/github\.com\/kniazevgeny\/chem(?:\"|\/)/)
+  assert.match(spawn, /https:\/\/github\.com\/kniazevgeny\/chem\/blob\/master\/Source\/sPawn\/ParseMolecule\.cpp/)
+  assert.match(spawn, /spawn-4\.[^" ]+\.webp/)
+})

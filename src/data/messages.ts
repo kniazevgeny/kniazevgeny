@@ -279,6 +279,34 @@ export const messages = {
       {
         year: 2021,
         projects: [
+          {
+            title: 'sPawn',
+            type: 'Chemistry · UE4 / C++',
+            id: 'spawn',
+            link: 'https://drive.google.com/file/d/1Zxyu25WU_9ldc1JPSDnOwUOq7Rg2csuc/view?usp=sharing',
+            linkLabel: 'Скачать APK',
+            links: [
+              {
+                href: 'https://github.com/kniazevgeny/chem',
+                label: 'Репозиторий',
+                kind: 'repo',
+              },
+              {
+                href: 'https://github.com/kniazevgeny/chem/blob/master/Source/sPawn/ParseMolecule.cpp',
+                label: 'Парсер молекул',
+                kind: 'repo',
+              },
+            ],
+            slides: [
+              asset('spawn-4.webp'),
+              asset('spawn-1.webp'),
+              asset('spawn-2.webp'),
+              asset('spawn-3.webp'),
+            ],
+            paragraphs: [
+              'Кроссплатформенное мобильное приложение с интерфейсом на UE4 и парсером молекул на C++, который превращает формулы неорганических веществ из школьной программы в 3D-модели.',
+            ],
+          },
           // {
           //   title: 'Бронирование парковки',
           //   summary:
@@ -715,6 +743,34 @@ export const messages = {
       {
         year: 2021,
         projects: [
+          {
+            title: 'sPawn',
+            type: 'Chemistry · UE4 / C++',
+            id: 'spawn',
+            link: 'https://drive.google.com/file/d/1Zxyu25WU_9ldc1JPSDnOwUOq7Rg2csuc/view?usp=sharing',
+            linkLabel: 'Download APK',
+            links: [
+              {
+                href: 'https://github.com/kniazevgeny/chem',
+                label: 'Repository',
+                kind: 'repo',
+              },
+              {
+                href: 'https://github.com/kniazevgeny/chem/blob/master/Source/sPawn/ParseMolecule.cpp',
+                label: 'Molecule parser',
+                kind: 'repo',
+              },
+            ],
+            slides: [
+              asset('spawn-4.webp'),
+              asset('spawn-1.webp'),
+              asset('spawn-2.webp'),
+              asset('spawn-3.webp'),
+            ],
+            paragraphs: [
+              'A cross-platform mobile app with a UE4 interface and a C++ molecule parser that turns inorganic formulas from the school curriculum into 3D models.',
+            ],
+          },
           // {
           //   title: 'Parking reservations',
           //   summary:

@@ -71,6 +71,8 @@ type RawProject = {
   type: string
   summary?: string
   link?: string | null
+  linkLabel?: string
+  links?: readonly ProjectLink[]
   slides?: readonly string[]
   paragraphs?: readonly string[]
   hasDemo?: boolean
@@ -290,7 +292,7 @@ const normalizeProject = (
       : [
           {
             href: project.link,
-            label: copy[locale].projectLinks[kind],
+            label: project.linkLabel ?? copy[locale].projectLinks[kind],
             kind,
           },
         ]
@@ -303,7 +305,7 @@ const normalizeProject = (
     summary: project.summary,
     paragraphs: [...(project.paragraphs ?? [])].filter(Boolean),
     slides,
-    links: primaryLink,
+    links: [...primaryLink, ...(project.links ?? [])],
     featured: false,
     section: 'archive',
     media: slides[0]
